@@ -1,7 +1,8 @@
 # Incidentatlas - wekelijkse brief.
 # Draait Claude Code headless met WEEKBRIEF.md als opdracht, schrijft de uitvoer naar
-# logs\weekbrief-JJJJ-MM-DD.json en controleert daarna of alleen voorstellen.csv en runs.csv
-# zijn aangevuld. Zo niet, dan wordt de vorige versie teruggezet (zie scripts\controleer_weekbrief.py).
+# logs\weekbrief-JJJJ-MM-DD.json en controleert daarna de nieuwe rijen in voorstellen.csv en
+# runs.csv. Foute rijen gaan naar logs\afgekeurd-JJJJ-MM-DD.csv, bestaande rijen en de andere
+# bestanden worden zo nodig teruggezet (zie scripts\controleer_weekbrief.py).
 
 $ErrorActionPreference = "Stop"
 Set-Location -LiteralPath $PSScriptRoot
@@ -62,12 +63,13 @@ Log "claude klaar, exitcode $code, uitvoer in $jsonLog"
 
 # --- controle: alleen rijen toegevoegd, alles te_beoordelen
 $ErrorActionPreference = "Continue"
-$check = & python -I -X utf8 "scripts\controleer_weekbrief.py" --backup $backup --log $jsonLog 2>&1 | ForEach-Object { "$_" }
+$afgekeurd = Join-Path $logDir "afgekeurd-$datum.csv"
+$check = & python -I -X utf8 "scripts\controleer_weekbrief.py" --backup $backup --log $jsonLog --afgekeurd $afgekeurd 2>&1 | ForEach-Object { "$_" }
 $checkCode = $LASTEXITCODE
 $ErrorActionPreference = "Stop"
 $check | ForEach-Object { Log $_ }
 
-if ($checkCode -ne 0) { Log "Weekbrief afgekeurd door de controle; zie 'controle' in $jsonLog"; exit 1 }
+if ($checkCode -ne 0) { Log "Controle heeft rijen afgekeurd of bestanden teruggezet; zie 'controle' in $jsonLog"; exit 1 }
 if ($code -ne 0) { exit $code }
 Log "Weekbrief klaar."
 exit 0

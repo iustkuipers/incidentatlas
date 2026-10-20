@@ -22,7 +22,7 @@ WEEKBRIEF.md             de opdracht voor de wekelijkse taak van Claude
 ## Zo loopt een week
 
 1. **Maandag 06:00:** de geplande taak van Claude loopt `bronnen.csv` af en zet nieuwe voorstellen
-   in `voorstellen.csv` (of in de Google Sheet) met `beoordeling = te_beoordelen`.
+   in `voorstellen.csv` met `beoordeling = te_beoordelen`.
    Zie `WEEKBRIEF.md`.
 2. **Jij beoordeelt** elke rij: zet `beoordeling` op `goedgekeurd` of `afgewezen` en vul
    `beoordeeld_door` in. Je mag velden verbeteren voordat je goedkeurt.

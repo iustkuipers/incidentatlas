@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as dt
+import html
 import io
 import re
 import sys
@@ -162,10 +163,13 @@ def fetch(url: str, timeout: int = 20) -> tuple[int, str]:
         return 0, ""
 
 def norm(text: str) -> str:
+    """Alleen de woorden, in volgorde: zonder HTML, entiteiten, hoofdletters, leestekens,
+    aanhalingstekens en streepjes. Zo telt een ander streepje of aanhalingsteken niet als verschil."""
+    text = re.sub(r"<(script|style)\b.*?</\1\s*>", " ", text, flags=re.S | re.I)
     text = re.sub(r"<[^>]+>", " ", text)
-    text = unicodedata.normalize("NFKC", text).lower()
-    text = text.replace("’", "'").replace("“", '"').replace("”", '"')
-    return re.sub(r"\s+", " ", text)
+    text = unicodedata.normalize("NFKC", html.unescape(text)).casefold()
+    words = re.findall(r"[^\W_]+", text)
+    return " " + " ".join(words) + " "
 
 # ------------------------------------------------------------ validatie
 def validate_incident(r: dict, strict: bool = True) -> list[str]:
@@ -253,7 +257,7 @@ def check_link_and_quote(p: dict) -> str | None:
     if code != 200:
         return f"bron geeft HTTP {code or 'geen antwoord'}"
     q = norm(p["citaat"])
-    if q and q not in norm(body):
+    if q.strip() and q not in norm(body):
         return "citaat niet gevonden op de bronpagina"
     return None
 
