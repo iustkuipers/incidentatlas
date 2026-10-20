@@ -1,0 +1,28 @@
+naam,type,url_of_zoekterm,niveau,taal,waar_op_letten,actief
+Raad van de EU – persberichten en sanctiebesluiten,pagina,https://www.consilium.europa.eu/en/press/press-releases/,A,en,"sancties, hybride dreiging, toeschrijving",ja
+NAVO – nieuws,pagina,https://www.nato.int/cps/en/natohq/news.htm,A,en,"hybride aanvallen, luchtruim, verklaringen",ja
+VS – ministerie van Justitie,pagina,https://www.justice.gov/news,A,en,"aanklachten GRU/FSB/SVR, sabotage, spionage",ja
+"VK – overheidsnieuws (FCDO, NCSC)",pagina,https://www.gov.uk/search/news-and-communications,A,en,"GRU, sancties, cyber-toeschrijvingen",ja
+VK – NCSC,pagina,https://www.ncsc.gov.uk/news,A,en,cyberadviezen Rusland,ja
+VS – CISA,pagina,https://www.cisa.gov/news-events/news,A,en,cyberadviezen Rusland,ja
+NL – Openbaar Ministerie,pagina,https://www.om.nl/actueel/nieuws,A,nl,"spionage, sabotage, Rusland",ja
+NL – AIVD,pagina,https://www.aivd.nl/actueel/nieuws,A,nl,"Rusland, toeschrijving",ja
+NL – Defensie / MIVD,pagina,https://www.defensie.nl/actueel,A,nl,"MIVD, Rusland, drones",ja
+DE – Generalbundesanwalt,pagina,https://www.generalbundesanwalt.de,A,de,"Sabotage, Spionage, Russland",ja
+DE – Verfassungsschutz,pagina,https://www.verfassungsschutz.de,A,de,"Russland, Sabotage",ja
+PL – Prokuratura Krajowa,pagina,https://www.gov.pl/web/prokuratura-krajowa,A,pl,"dywersja, sabotaż, Rosja",ja
+EE – Prokuratuur,pagina,https://www.prokuratuur.ee,A,et,"Venemaa, sabotaaž",ja
+EE – KAPO,pagina,https://www.kapo.ee,A,et,Venemaa,ja
+LT – VSD,pagina,https://www.vsd.lt,A,lt,"Rusija, sabotažas",ja
+NO – PST,pagina,https://www.pst.no,A,no,"Russland, sabotasje",ja
+FR – SGDSN / Viginum,pagina,https://www.sgdsn.gouv.fr,A,fr,"ingérence numérique, Russie",ja
+EHRM – uitspraken,pagina,https://hudoc.echr.coe.int,A,en,Russia v.,ja
+ICC – nieuws,pagina,https://www.icc-cpi.int/news,A,en,Russia,ja
+OPCW – nieuws,pagina,https://www.opcw.org/media-centre/news,A,en,"Russia, Novichok",ja
+VN – nieuws,pagina,https://news.un.org,A,en,"Wagner, Russia, Ukraine",ja
+Reuters,zoekopdracht,Russia sabotage OR GRU OR 'Russian intelligence' attributed,B,en,nieuwe incidenten en toeschrijvingen,ja
+AP,zoekopdracht,Russia sabotage Europe GRU,B,en,nieuwe incidenten,ja
+NOS,zoekopdracht,Rusland sabotage spionage,B,nl,Nederlandse zaken,ja
+RFE/RL,zoekopdracht,Russia hybrid sabotage GRU,B,en,"Oost-Europa, Kaukasus",ja
+"Onderzoeksjournalistiek (Bellingcat, OCCRP, The Insider)",zoekopdracht,GRU unit operation investigation,C,en,signalen voor 'past in profiel',ja
+"Denktanks (CSIS, IISS, DFRLab)",zoekopdracht,Russian sabotage Europe tracker,C,en,signalen en overzichten,ja
