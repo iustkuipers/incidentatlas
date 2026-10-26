@@ -1,0 +1,28 @@
+bron,type,methode,gelukt,gevonden,zonder_datum,in_periode,melding
+Raad van de EU – persberichten en sanctiebesluiten,pagina,rss,ja,20,0,20,
+NAVO – nieuws,pagina,pagina,ja,0,167,0,pagina geladen maar geen links met datum gevonden (mogelijk JavaScript)
+VS – ministerie van Justitie,pagina,rss,ja,25,0,25,
+"VK – overheidsnieuws (FCDO, NCSC)",pagina,rss,ja,20,0,20,
+VK – NCSC,pagina,rss,ja,20,0,0,
+VS – CISA,pagina,pagina,nee,0,0,0,pagina: HTTP 403
+NL – Openbaar Ministerie,pagina,pagina,ja,0,1,0,pagina geladen maar geen links met datum gevonden (mogelijk JavaScript)
+NL – AIVD,pagina,pagina,ja,0,1,0,pagina geladen maar geen links met datum gevonden (mogelijk JavaScript)
+NL – Defensie / MIVD,pagina,pagina,ja,13,2,11,
+DE – Generalbundesanwalt,pagina,pagina,ja,3,0,2,
+DE – Verfassungsschutz,pagina,pagina,ja,2,48,0,
+PL – Prokuratura Krajowa,pagina,pagina,ja,5,21,4,
+EE – Prokuratuur,pagina,rss,ja,100,0,1,
+EE – KAPO,pagina,pagina,nee,0,0,0,pagina: HTTP 403
+LT – VSD,pagina,pagina,nee,0,0,0,pagina: HTTP 403
+NO – PST,pagina,rss,ja,10,0,2,
+FR – SGDSN / Viginum,pagina,pagina,ja,0,0,0,pagina geladen maar geen links met datum gevonden (mogelijk JavaScript)
+EHRM – uitspraken,pagina,pagina,nee,0,0,0,pagina: HTTP 403
+ICC – nieuws,pagina,rss→pagina,ja,0,0,0,feed: geen geldige feed; pagina geladen maar geen links met datum gevonden (mogelijk JavaScript)
+OPCW – nieuws,pagina,rss,ja,10,0,2,
+VN – nieuws,pagina,rss,ja,30,0,30,
+Reuters,zoekopdracht,overgeslagen,n.v.t.,0,0,0,zoekopdracht: doet Claude
+AP,zoekopdracht,overgeslagen,n.v.t.,0,0,0,zoekopdracht: doet Claude
+NOS,zoekopdracht,overgeslagen,n.v.t.,0,0,0,zoekopdracht: doet Claude
+RFE/RL,zoekopdracht,overgeslagen,n.v.t.,0,0,0,zoekopdracht: doet Claude
+"Onderzoeksjournalistiek (Bellingcat, OCCRP, The Insider)",zoekopdracht,overgeslagen,n.v.t.,0,0,0,zoekopdracht: doet Claude
+"Denktanks (CSIS, IISS, DFRLab)",zoekopdracht,overgeslagen,n.v.t.,0,0,0,zoekopdracht: doet Claude

@@ -1,3 +1,7 @@
 logs/
 test/
 __pycache__/
+tools/
+.claude/skills/
+*-taak.xml
+beheer-account.json

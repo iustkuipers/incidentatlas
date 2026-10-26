@@ -1,0 +1,7 @@
+﻿Backup van de NOS-testfase (2026-10-21 t/m 2026-10-26), vóór de overstap naar zaken met fasen.
+- data/voorstellen.csv     14 voorstellen (6 goedgekeurd), oude statusregels
+- data/beoordelingen.csv   288 beoordelingen (258 niet relevant, 16 volglijst, 14 voorstel)
+- data/runs.csv            tellingen van de runs
+- data/inbox.csv           257 NOS-berichten (kopie; het origineel blijft in gebruik)
+- Tasks/                   WEEKBRIEF.md en ARCHIEF.md zoals ze toen waren
+- testruns/                logs van de week- en archiefruns

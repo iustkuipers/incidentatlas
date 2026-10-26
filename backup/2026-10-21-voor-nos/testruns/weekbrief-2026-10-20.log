@@ -1,0 +1,27 @@
+﻿18:53:34  Start weekbrief met C:\Users\Iust\.vscode\extensions\anthropic.claude-code-2.1.304-win32-x64\resources\native-binary\claude.exe
+18:53:41  bronnen:   ✓ Raad van de EU – persberichten en sanctiebesluiten: rss, 20 in periode
+18:53:41  bronnen:   ✓ NAVO – nieuws: pagina, 0 in periode (pagina geladen maar geen links met datum gevonden (mogelijk JavaScript))
+18:53:41  bronnen:   ✓ VS – ministerie van Justitie: rss, 25 in periode
+18:53:41  bronnen:   ✓ VK – overheidsnieuws (FCDO, NCSC): rss, 20 in periode
+18:53:41  bronnen:   ✓ VK – NCSC: rss, 0 in periode
+18:53:41  bronnen:   ✗ VS – CISA: pagina, 0 in periode (pagina: HTTP 403)
+18:53:41  bronnen:   ✓ NL – Openbaar Ministerie: pagina, 0 in periode (pagina geladen maar geen links met datum gevonden (mogelijk JavaScript))
+18:53:41  bronnen:   ✓ NL – AIVD: pagina, 0 in periode (pagina geladen maar geen links met datum gevonden (mogelijk JavaScript))
+18:53:41  bronnen:   ✓ NL – Defensie / MIVD: pagina, 11 in periode
+18:53:41  bronnen:   ✓ DE – Generalbundesanwalt: pagina, 2 in periode
+18:53:41  bronnen:   ✓ DE – Verfassungsschutz: pagina, 0 in periode
+18:53:41  bronnen:   ✓ PL – Prokuratura Krajowa: pagina, 4 in periode
+18:53:41  bronnen:   ✓ EE – Prokuratuur: rss, 1 in periode
+18:53:41  bronnen:   ✗ EE – KAPO: pagina, 0 in periode (pagina: HTTP 403)
+18:53:41  bronnen:   ✗ LT – VSD: pagina, 0 in periode (pagina: HTTP 403)
+18:53:41  bronnen:   ✓ NO – PST: rss, 2 in periode
+18:53:41  bronnen:   ✓ FR – SGDSN / Viginum: pagina, 0 in periode (pagina geladen maar geen links met datum gevonden (mogelijk JavaScript))
+18:53:41  bronnen:   ✗ EHRM – uitspraken: pagina, 0 in periode (pagina: HTTP 403)
+18:53:41  bronnen:   ✓ ICC – nieuws: rss→pagina, 0 in periode (feed: geen geldige feed; pagina geladen maar geen links met datum gevonden (mogelijk JavaScript))
+18:53:41  bronnen:   ✓ OPCW – nieuws: rss, 2 in periode
+18:53:41  bronnen:   ✓ VN – nieuws: rss, 30 in periode
+18:53:41  bronnen: 117 berichten van 2026-10-12 t/m 2026-10-20 in logs\inbox-2026-10-20.csv; 17 van 21 bronnen opgehaald.
+18:59:18  claude klaar, exitcode 0, stream in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\test\logs\weekbrief-2026-10-20.jsonl
+18:59:19  Tokens: 34 zoek-/ophaalacties gelogd in tokens.csv; totale kosten $1.59
+18:59:19  Controle: 4 voorstel(len) toegevoegd, 0 afgekeurd; 1 run-regel(s) toegevoegd, 0 afgekeurd.
+18:59:19  Weekbrief klaar.

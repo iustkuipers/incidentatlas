@@ -1,0 +1,10 @@
+﻿06:48:20  Start weekbrief-2026-10-21 met C:\Users\Iust\.vscode\extensions\anthropic.claude-code-2.1.304-win32-x64\resources\native-binary\claude.exe
+06:48:20  Te beoordelen: 113 bericht(en) in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\logs\te-beoordelen-2026-10-21.csv
+06:51:54  claude klaar, exitcode 0, stream in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\logs\weekbrief-2026-10-21.jsonl
+06:51:54  Tokens: 8 zoek-/ophaalacties gelogd in tokens.csv; totale kosten $1.00
+06:51:57  Controle: 112 beoordelingen geaccepteerd (110 niet relevant, 2 volglijst, 0 voorstel), 1 afgekeurd; 0 voorstel(len), 1 afgekeurd.
+06:51:57    - 1 bericht(en) zonder geldige beoordeling; die komen de volgende run terug
+06:51:57    - afgekeurd https://nos.nl/l/2635022: citaat niet gevonden op de bronpagina
+06:51:57    - afgekeurd 2026-10-21-01: geen (geldige) beoordeling met besluit 'voorstel' voor dit bericht
+06:51:57    Afgekeurde regels staan in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\logs\afgekeurd-weekbrief-2026-10-21.csv
+06:51:57  Controle heeft regels afgekeurd, gemist of teruggezet; zie 'controle' in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\logs\weekbrief-2026-10-21.json

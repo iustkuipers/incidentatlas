@@ -1,28 +1,27 @@
-naam,type,url_of_zoekterm,niveau,taal,waar_op_letten,actief
-Raad van de EU – persberichten en sanctiebesluiten,pagina,https://www.consilium.europa.eu/en/press/press-releases/,A,en,"sancties, hybride dreiging, toeschrijving",ja
-NAVO – nieuws,pagina,https://www.nato.int/cps/en/natohq/news.htm,A,en,"hybride aanvallen, luchtruim, verklaringen",ja
-VS – ministerie van Justitie,pagina,https://www.justice.gov/news,A,en,"aanklachten GRU/FSB/SVR, sabotage, spionage",ja
-"VK – overheidsnieuws (FCDO, NCSC)",pagina,https://www.gov.uk/search/news-and-communications,A,en,"GRU, sancties, cyber-toeschrijvingen",ja
-VK – NCSC,pagina,https://www.ncsc.gov.uk/news,A,en,cyberadviezen Rusland,ja
-VS – CISA,pagina,https://www.cisa.gov/news-events/news,A,en,cyberadviezen Rusland,ja
-NL – Openbaar Ministerie,pagina,https://www.om.nl/actueel/nieuws,A,nl,"spionage, sabotage, Rusland",ja
-NL – AIVD,pagina,https://www.aivd.nl/actueel/nieuws,A,nl,"Rusland, toeschrijving",ja
-NL – Defensie / MIVD,pagina,https://www.defensie.nl/actueel,A,nl,"MIVD, Rusland, drones",ja
-DE – Generalbundesanwalt,pagina,https://www.generalbundesanwalt.de,A,de,"Sabotage, Spionage, Russland",ja
-DE – Verfassungsschutz,pagina,https://www.verfassungsschutz.de,A,de,"Russland, Sabotage",ja
-PL – Prokuratura Krajowa,pagina,https://www.gov.pl/web/prokuratura-krajowa,A,pl,"dywersja, sabotaż, Rosja",ja
-EE – Prokuratuur,pagina,https://www.prokuratuur.ee,A,et,"Venemaa, sabotaaž",ja
-EE – KAPO,pagina,https://www.kapo.ee,A,et,Venemaa,ja
-LT – VSD,pagina,https://www.vsd.lt,A,lt,"Rusija, sabotažas",ja
-NO – PST,pagina,https://www.pst.no,A,no,"Russland, sabotasje",ja
-FR – SGDSN / Viginum,pagina,https://www.sgdsn.gouv.fr,A,fr,"ingérence numérique, Russie",ja
-EHRM – uitspraken,pagina,https://hudoc.echr.coe.int,A,en,Russia v.,ja
-ICC – nieuws,pagina,https://www.icc-cpi.int/news,A,en,Russia,ja
-OPCW – nieuws,pagina,https://www.opcw.org/media-centre/news,A,en,"Russia, Novichok",ja
-VN – nieuws,pagina,https://news.un.org,A,en,"Wagner, Russia, Ukraine",ja
-Reuters,zoekopdracht,Russia sabotage OR GRU OR 'Russian intelligence' attributed,B,en,nieuwe incidenten en toeschrijvingen,ja
-AP,zoekopdracht,Russia sabotage Europe GRU,B,en,nieuwe incidenten,ja
-NOS,zoekopdracht,Rusland sabotage spionage,B,nl,Nederlandse zaken,ja
-RFE/RL,zoekopdracht,Russia hybrid sabotage GRU,B,en,"Oost-Europa, Kaukasus",ja
-"Onderzoeksjournalistiek (Bellingcat, OCCRP, The Insider)",zoekopdracht,GRU unit operation investigation,C,en,signalen voor 'past in profiel',ja
-"Denktanks (CSIS, IISS, DFRLab)",zoekopdracht,Russian sabotage Europe tracker,C,en,signalen en overzichten,ja
+naam,type,url_of_zoekterm,niveau,taal,waar_op_letten,actief,rss
+NOS – algemeen,rss,https://feeds.nos.nl/nosnieuwsalgemeen,B,nl,alle NOS-nieuws,ja,https://feeds.nos.nl/nosnieuwsalgemeen
+NOS – binnenland,rss,https://feeds.nos.nl/nosnieuwsbinnenland,B,nl,"sabotage, spionage, OM-zaken in Nederland",ja,https://feeds.nos.nl/nosnieuwsbinnenland
+NOS – buitenland,rss,https://feeds.nos.nl/nosnieuwsbuitenland,B,nl,"Europa, Afrika, toeschrijvingen door regeringen",ja,https://feeds.nos.nl/nosnieuwsbuitenland
+NOS – politiek,rss,https://feeds.nos.nl/nosnieuwspolitiek,B,nl,"kabinet, AIVD/MIVD, Kamerbrieven",ja,https://feeds.nos.nl/nosnieuwspolitiek
+NOS – economie,rss,https://feeds.nos.nl/nosnieuwseconomie,B,nl,"energie-chantage, sancties, infrastructuur",ja,https://feeds.nos.nl/nosnieuwseconomie
+NOS – tech,rss,https://feeds.nos.nl/nosnieuwstech,B,nl,"cyberaanvallen, hacks, desinformatie",ja,https://feeds.nos.nl/nosnieuwstech
+NOS – Nieuwsuur,rss,https://feeds.nos.nl/nieuwsuuralgemeen,B,nl,achtergrond en onderzoek,ja,https://feeds.nos.nl/nieuwsuuralgemeen
+ERR (Estland),rss_filter,https://news.err.ee/rss,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://news.err.ee/rss
+LRT (Litouwen),rss_filter,https://www.lrt.lt/en/news-in-english?rss,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.lrt.lt/en/news-in-english?rss
+LSM (Letland),rss_filter,https://eng.lsm.lv/rss/,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://eng.lsm.lv/rss/
+Yle (Finland),rss_filter,https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_NEWS,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_NEWS
+SVT (Zweden),rss_filter,https://www.svt.se/nyheter/rss.xml,B,sv,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.svt.se/nyheter/rss.xml
+NRK (Noorwegen),rss_filter,https://www.nrk.no/nyheter/siste.rss,B,no,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.nrk.no/nyheter/siste.rss
+DR (Denemarken),rss_filter,https://www.dr.dk/nyheder/service/feeds/allenyheder,B,da,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.dr.dk/nyheder/service/feeds/allenyheder
+Tagesschau (Duitsland),rss_filter,https://www.tagesschau.de/xml/rss2/,B,de,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.tagesschau.de/xml/rss2/
+DW (Duitsland),rss_filter,https://rss.dw.com/rdf/rss-en-all,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://rss.dw.com/rdf/rss-en-all
+BBC (VK),rss_filter,https://feeds.bbci.co.uk/news/world/europe/rss.xml,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://feeds.bbci.co.uk/news/world/europe/rss.xml
+VRT (België),rss_filter,https://www.vrt.be/vrtnws/nl.rss.articles.xml,B,nl,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.vrt.be/vrtnws/nl.rss.articles.xml
+RTBF (België),rss_filter,https://rss.rtbf.be/article/rss/highlight_rtbf_info.xml,B,fr,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://rss.rtbf.be/article/rss/highlight_rtbf_info.xml
+Polskie Radio (Polen),pagina_filter,https://www.polskieradio.pl/395,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,
+ČT24 (Tsjechië),rss_filter,https://ct24.ceskatelevize.cz/rss/svet,B,cs,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://ct24.ceskatelevize.cz/rss/svet
+RFE/RL (Oost-Europa),rss_filter,https://www.rferl.org/api/,B,en,alleen titels met trefwoorden (filter in nos_ophalen.py),ja,https://www.rferl.org/api/
+Reuters,zoekopdracht,site:reuters.com Russia sabotage OR espionage OR cyberattack OR drone OR disinformation,B,en,"geen openbare feed: Claude zoekt gericht, afgelopen 8 dagen",ja,
+AP,zoekopdracht,site:apnews.com Russia sabotage OR spy OR hack OR drone,B,en,"geen openbare feed: Claude zoekt gericht, afgelopen 8 dagen",ja,
+AFP,zoekopdracht,site:afp.com Russie sabotage OR espionnage OR cyberattaque,B,en,"geen openbare feed: Claude zoekt gericht, afgelopen 8 dagen",ja,
+TVR (Roemenië),rss_filter,https://tvrinfo.ro/feed/,B,ro,weigert automatische toegang (HTTP 403),nee,

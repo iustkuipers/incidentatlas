@@ -1,0 +1,495 @@
+domein,instelling,land,type,niveau,lijst,nieuwspagina,rss,taal,status,gecontroleerd_door,datum_controle,gebruikt_in_dataset,opmerking
+punetejashtme.gov.al,Ministria për Evropën dhe Punët e Jashtme,Albanië,buitenlandse zaken,A,voorkeur,https://punetejashtme.gov.al/en/newsrooms/lajme/,,en,voorstel,,,0,Engelse nieuwslijst
+dfat.gov.au,Department of Foreign Affairs and Trade (DFAT),Australië,buitenlandse zaken,A,voorkeur,,,en,voorstel,,,0,Domein geverifieerd; nieuwspagina blokkeert crawlers (robots)
+foreignminister.gov.au,Minister for Foreign Affairs,Australië,buitenlandse zaken,A,voorkeur,https://www.foreignminister.gov.au/minister/penny-wong/media-releases,,en,voorstel,,,0,Mediaberichten minister; pad bevat naam minister en wijzigt bij wisseling
+ministers.dfat.gov.au,DFAT ministers' media releases,Australië,buitenlandse zaken,A,voorkeur,,,en,voorstel,,,0,Sanctie-aankondigingen tegen Rusland (DFAT is ook sanctie-autoriteit)
+cyber.gov.au,ASD's Australian Cyber Security Centre (ACSC),Australië,cyberagentschap,A,voorkeur,https://www.cyber.gov.au/about-us/view-all-content/alerts-and-advisories,,en,voorstel,,,1,Co-auteur gezamenlijke adviezen over Russische militaire cyberactoren
+defence.gov.au,Department of Defence,Australië,defensie,A,voorkeur,https://www.defence.gov.au/news-events/releases,,en,voorstel,,,0,
+asd.gov.au,Australian Signals Directorate (ASD),Australië,inlichtingen/veiligheid,A,voorkeur,https://www.asd.gov.au/news,,en,voorstel,,,0,
+asio.gov.au,ASIO,Australië,inlichtingen/veiligheid,A,voorkeur,https://www.asio.gov.au/publications/speeches-and-statements.html,,en,voorstel,,,0,Speeches and statements incl. jaarlijkse dreigingsanalyse.
+pm.gov.au,Prime Minister of Australia,Australië,regering,A,voorkeur,https://www.pm.gov.au/media,,en,voorstel,,,0,
+om-mp.be,Federaal Parket,België,OM/justitie,A,voorkeur,https://www.om-mp.be/nl/uw-om/federaal-parket/press-release,,nl,voorstel,,,0,Persberichten federaal parket (o.a. buitenlandse inmenging); ook FR-versie op zelfde domein.
+diplomatie.belgium.be,FOD Buitenlandse Zaken,België,buitenlandse zaken,A,voorkeur,https://diplomatie.belgium.be/nl/nieuws,,nl,voorstel,,,0,"Persberichten en verklaringen; e-mailabonnement, geen RSS"
+ccb.belgium.be,CCB,België,cyberagentschap,A,voorkeur,https://ccb.belgium.be/advisories,,en,voorstel,,,0,Advisories/waarschuwingen; vooral kwetsbaarheden.
+mil.be,Defensie,België,defensie,A,voorkeur,https://www.mil.be/nl/nieuws/,,nl,voorstel,,,0,Ook ADIV/SGRS valt onder Defensie (geen eigen nieuwspagina geverifieerd)
+vsse.be,Veiligheid van de Staat (VSSE),België,inlichtingen/veiligheid,A,voorkeur,,,nl,voorstel,,,0,Jaarlijks Intelligence Report (bijv. /sites/default/files/2026-01/IR25-NL.pdf); site niet direct te openen
+police.be,Federale Politie,België,politie,A,voorkeur,https://www.police.be/5998/en/node/10868,,nl,voorstel,,,0,Nieuwspagina federale politie (pad /5998/ = federale politie).
+premier.be,Premier / Kanselarij,België,regering,A,voorkeur,https://www.premier.be/nl/nieuws,,nl,voorstel,,,0,Ook FR-versie; ministerraadberichten
+prb.bg,Прокуратура на Република България,Bulgarije,OM/justitie,A,voorkeur,https://prb.bg/en/news,,en,voorstel,,,0,OM; spionagezaken voor Rusland
+mfa.bg,МВнР,Bulgarije,buitenlandse zaken,A,voorkeur,https://www.mfa.bg/en/news,https://www.mfa.bg/en/rss,en,voorstel,,,0,Uitzettingen Russische diplomaten
+gov.bg,Министерски съвет,Bulgarije,regering,A,voorkeur,https://www.gov.bg/en/Press-center/News,,en,voorstel,,,0,Ministerraad; ook DANS-jaarverslagen gepubliceerd op gov.bg
+ppsc-sppc.gc.ca,Public Prosecution Service of Canada (PPSC),Canada,OM/justitie,A,voorkeur,https://ppsc-sppc.gc.ca/eng/nws-nvs/index.html,,en/fr,voorstel,,,0,Ook bereikbaar via ppsc.gc.ca / sppc.gc.ca / dpp.gc.ca
+canada.ca,Global Affairs Canada,Canada,buitenlandse zaken,A,voorkeur,https://www.canada.ca/en/global-affairs/news.html,,en/fr,voorstel,,,0,Publiceert statements over Russische kwaadwillige cyberactiviteit en sancties
+cyber.gc.ca,Canadian Centre for Cyber Security,Canada,cyberagentschap,A,voorkeur,https://www.cyber.gc.ca/en/news-events,,en/fr,voorstel,,,0,"Onderdeel van CSE; Atom-feed vermeld via contactpagina, directe URL niet geverifieerd"
+canada.ca,National Defence,Canada,defensie,A,voorkeur,https://www.canada.ca/en/department-national-defence/news.html,,en/fr,voorstel,,,0,
+canada.ca,Canadian Security Intelligence Service (CSIS),Canada,inlichtingen/veiligheid,A,voorkeur,https://www.canada.ca/en/security-intelligence-service/news.html,,en/fr,voorstel,,,0,
+cse-cst.gc.ca,Communications Security Establishment (CSE),Canada,inlichtingen/veiligheid,A,voorkeur,,,en/fr,voorstel,,,0,Statements onder /en/information-and-resources/announcements/ (bv. Russische cyber tegen Georgië); indexpagina niet geverifieerd
+rcmp.ca,Royal Canadian Mounted Police (RCMP),Canada,politie,A,voorkeur,https://rcmp.ca/en/news,,en/fr,voorstel,,,0,rcmp-grc.gc.ca verwijst door naar rcmp.ca; nationale veiligheidsonderzoeken
+pm.gc.ca,Prime Minister of Canada,Canada,regering,A,voorkeur,https://www.pm.gc.ca/en/news,,en/fr,voorstel,,,0,
+anklagemyndigheden.dk,Anklagemyndigheden,Denemarken,OM/justitie,A,voorkeur,https://anklagemyndigheden.dk/en/news,,da,voorstel,,,0,aanklachten spionage/terror; Deens nieuws onder /da/
+um.dk,Udenrigsministeriet,Denemarken,buitenlandse zaken,A,voorkeur,,,da,voorstel,,,0,verklaringen onder um.dk/udenrigspolitik/aktuelle-emner/; nieuwspagina niet geverifieerd
+cfcs.dk,CFCS (Center for Cybersikkerhed),Denemarken,cyberagentschap,A,voorkeur,,,da,voorstel,,,0,dreigingsvurderingen op https://www.cfcs.dk/da/cybertruslen/ ; nieuwspagina niet geverifieerd
+samsik.dk,Styrelsen for Samfundssikkerhed,Denemarken,cyberagentschap,A,voorkeur,,,da,voorstel,,,0,moederorganisatie CFCS; host PDF 'Cybertruslen mod Danmark'
+fmn.dk,Forsvarsministeriet,Denemarken,defensie,A,voorkeur,https://www.fmn.dk/da/arbejdsomraader/internationale-operationer/igangvarende-operationer/militar-stotte-til-ukraine/nyheder-om-ruslands-invasion-af-ukraine/,,da,voorstel,,,0,themapagina nieuws over Rusland/Oekraine; algemene nieuws onder fmn.dk/da/nyheder/<jaar>/
+fe-ddis.dk,Forsvarets Efterretningstjeneste (FE),Denemarken,inlichtingen/veiligheid,A,voorkeur,https://www.fe-ddis.dk/da/nyheder/,,da,voorstel,,,0,jaarlijks dreigingsrapport 'Udsyn'; Engelse site fe-ddis.dk/en/
+pet.dk,PET (Politiets Efterretningstjeneste),Denemarken,inlichtingen/veiligheid,A,voorkeur,https://pet.dk/nyhedsliste,,da,voorstel,,,0,attributies Russische sabotage/spionage; jaarlijkse VTD/dreigingsvurdering; Engelse site pet.dk/en; abonnement via pet.dk/abonner
+ft.dk,Folketinget,Denemarken,parlement,A,voorkeur,,,da,voorstel,,,0,Kamerstukken/antwoorden ministers met PET/FE-vurderingen
+politi.dk,Politiet / Rigspolitiet,Denemarken,politie,A,voorkeur,https://politi.dk/aktuelt/presse,,da,voorstel,,,0,per politiekreds nyhedsliste onder politi.dk/<kreds>/nyhedsliste/
+stm.dk,Statsministeriet,Denemarken,regering,A,voorkeur,,,da,voorstel,,,0,persberichten onder stm.dk/presse/pressemeddelelser/<jaar>/; lijstpagina niet geverifieerd
+generalbundesanwalt.de,Generalbundesanwalt,Duitsland,OM/justitie,A,voorkeur,https://www.generalbundesanwalt.de/DE/Presse/presse_node.html,,de,voorstel,,,0,"Federaal OM: arrestaties/aanklachten spionage en sabotage voor Rusland; geen RSS, wel mailinglijst en X"
+auswaertiges-amt.de,Auswärtiges Amt,Duitsland,buitenlandse zaken,A,voorkeur,https://www.auswaertiges-amt.de/de/newsroom,,de,voorstel,,,0,Newsroom met persberichten en verslagen Regierungspressekonferenz
+bmvg.de,Bundesministerium der Verteidigung (BMVg),Duitsland,defensie,A,voorkeur,https://www.bmvg.de/de/aktuelles,https://www.bmvg.de/de/rss,de,voorstel,,,0,Aktuelle Meldungen; RSS-link in footer
+bundeswehr.de,Bundeswehr,Duitsland,defensie,A,voorkeur,,,de,voorstel,,,0,Krijgsmachtsite; ook persberichten PKGr-hoorzittingen inlichtingendiensten (PDF) gezien
+bnd.bund.de,Bundesnachrichtendienst (BND),Duitsland,inlichtingen/veiligheid,A,voorkeur,https://www.bnd.bund.de/DE/Service/Presse/presse_node.html,,de,voorstel,,,0,Buitenlandse inlichtingendienst; persberichten en publieke waarschuwingen
+verfassungsschutz.de,Bundesamt für Verfassungsschutz (BfV),Duitsland,inlichtingen/veiligheid,A,voorkeur,https://www.verfassungsschutz.de/DE/service/presse/presse_node.html,https://www.verfassungsschutz.de/SiteGlobals/Functions/RSSNewsFeed/AlleMeldungen.xml,de,voorstel,,,0,"Binnenlandse veiligheidsdienst; contra-spionage, sabotagewaarschuwingen, Verfassungsschutzbericht"
+bka.de,Bundeskriminalamt (BKA),Duitsland,politie,A,voorkeur,,,de,voorstel,,,0,"Federale recherche; domein gezien, perspagina kon niet geopend worden"
+bundesregierung.de,Bundesregierung (Presse- und Informationsamt),Duitsland,regering,A,voorkeur,https://www.bundesregierung.de/breg-de/aktuelles,,de,voorstel,,,0,"Persberichten, regeringspersconferenties; geen RSS gevonden (alleen nieuwsbrief)"
+prokuratuur.ee,Prokuratuur,Estland,OM/justitie,A,voorkeur,https://www.prokuratuur.ee/otsing?f%5B0%5D=type%3Anews,https://www.prokuratuur.ee/rss-feeds/rss.xml,et,voorstel,,,2,verraad-/sabotagezaken; Engelse site prokuratuur.ee/en
+vm.ee,Välisministeerium,Estland,buitenlandse zaken,A,voorkeur,,,en,voorstel,,,1,"Engelse nieuws onder vm.ee/en/news/ (ontbieden Russische ambassadeur, noten)"
+ria.ee,Riigi Infosüsteemi Amet (RIA),Estland,cyberagentschap,A,voorkeur,,,en,voorstel,,,0,maandelijks 'Situation in cyberspace' en jaarlijks 'Cyber security in Estonia'
+kaitseministeerium.ee,Kaitseministeerium,Estland,defensie,A,voorkeur,,,en,voorstel,,,0,Engelse nieuws onder kaitseministeerium.ee/en/news/
+mil.ee,Kaitsevägi,Estland,defensie,A,voorkeur,,,en,voorstel,,,0,Engelse nieuws onder mil.ee/en/news/ (luchtdreigingen)
+kapo.ee,Kaitsepolitseiamet (KAPO),Estland,inlichtingen/veiligheid,A,voorkeur,,,et,voorstel,,,0,jaarlijks 'Aastaraamat'/Annual Review (https://kapo.ee/et/aastaraamatud/); nieuwslijst niet geverifieerd
+valisluureamet.ee,Välisluureamet,Estland,inlichtingen/veiligheid,A,voorkeur,,,et,voorstel,,,0,jaarlijks rapport 'Eesti rahvusvahelises julgeolekukeskkonnas'
+politsei.ee,Politsei- ja Piirivalveamet (PPA),Estland,politie,A,voorkeur,https://www.politsei.ee/en/news,,en,voorstel,,,0,
+riigikohus.ee,Riigikohus,Estland,rechtspraak,A,voorkeur,https://www.riigikohus.ee/en/news,,en,voorstel,,,0,Hooggerechtshof
+valitsus.ee,Valitsus,Estland,regering,A,voorkeur,,,en,voorstel,,,1,Engelse nieuws onder valitsus.ee/en/news/
+syyttajalaitos.fi,Syyttäjälaitos,Finland,OM/justitie,A,voorkeur,https://www.syyttajalaitos.fi/en/current-issues/press-releases/,,en,voorstel,,,0,o.a. Eagle S-zaak (kabelschade)
+um.fi,Ulkoministeriö,Finland,buitenlandse zaken,A,voorkeur,https://um.fi/press-releases,,en,voorstel,,,0,
+kyberturvallisuuskeskus.fi,Kyberturvallisuuskeskus (Traficom NCSC-FI),Finland,cyberagentschap,A,voorkeur,,,fi,voorstel,,,0,nieuws/weekoverzicht onder kyberturvallisuuskeskus.fi/fi/uutiset/; lijstpagina niet geverifieerd
+defmin.fi,Puolustusministeriö,Finland,defensie,A,voorkeur,,,en,voorstel,,,0,Engels 'Topical' onder defmin.fi/en/topical (alleen met paginaparameter gezien)
+puolustusvoimat.fi,Puolustusvoimat / Sotilastiedustelu,Finland,inlichtingen/veiligheid,A,voorkeur,,,fi,voorstel,,,0,jaarlijkse openbare 'Sotilastiedustelu julkinen katsaus'
+supo.fi,Suojelupoliisi (Supo),Finland,inlichtingen/veiligheid,A,voorkeur,,,en,voorstel,,,0,"jaarlijks 'National Security Overview' (https://supo.fi/en/overview, ook katsaus.supo.fi); nieuwslijst niet geverifieerd"
+poliisi.fi,Poliisi / Keskusrikospoliisi (KRP),Finland,politie,A,voorkeur,,,fi,voorstel,,,0,KRP-sectie poliisi.fi/keskusrikospoliisi; onderzoekt sabotage/kabelincidenten; lijstpagina niet schoon geverifieerd
+valtioneuvosto.fi,Valtioneuvosto,Finland,regering,A,voorkeur,,,en,voorstel,,,0,Engelse persberichten onder valtioneuvosto.fi/en/current-issues/press-releases (alleen met queryparameters gezien)
+justice.gouv.fr,Ministère de la Justice,Frankrijk,OM/justitie,A,voorkeur,,,fr,voorstel,,,0,Circulaires/beleid; nieuwspagina niet geverifieerd
+tribunal-de-paris.justice.fr,Parquet national antiterroriste (PNAT) – Tribunal judiciaire de Paris,Frankrijk,OM/justitie,A,voorkeur,https://www.tribunal-de-paris.justice.fr/75/le-tribunal-de-paris/parquet-national-antiterroriste,,fr,voorstel,,,0,Infopagina PNAT (geen communiquélijst geverifieerd); PNAT behandelt ook zaken van inmenging/sabotage
+diplomatie.gouv.fr,Ministère de l'Europe et des Affaires étrangères,Frankrijk,buitenlandse zaken,A,voorkeur,,,fr,voorstel,,,1,"Officiële attributies (APT28, Storm-1516) onder /fr/presse-et-ressources/decouvrir-et-informer/actualites/...; overzichtspagina niet te openen (robots)"
+cyber.gouv.fr,ANSSI,Frankrijk,cyberagentschap,A,voorkeur,https://cyber.gouv.fr/actualites,https://cyber.gouv.fr/actualites/rss/,fr,voorstel,,,0,Nationaal cyberagentschap; technische rapporten over APT28 e.d.; ook Atom: https://cyber.gouv.fr/actualites/atom/
+defense.gouv.fr,Ministère des Armées,Frankrijk,defensie,A,voorkeur,https://www.defense.gouv.fr/actualites,,fr,voorstel,,,0,Host ook VIGINUM/SGDSN-analyses: https://www.defense.gouv.fr/desinformation/aller-plus-loin/analyses-sgdsn/sgdsn-viginum-analyse-du-mode-operatoire-informationnel-russe-storm
+dgsi.interieur.gouv.fr,DGSI,Frankrijk,inlichtingen/veiligheid,A,voorkeur,,,fr,voorstel,,,0,"Binnenlandse veiligheidsdienst; geen nieuwssectie, wel 'Flash ingérence' en selectie op homepage"
+sgdsn.gouv.fr,SGDSN / VIGINUM,Frankrijk,inlichtingen/veiligheid,A,voorkeur,,,fr,voorstel,,,0,"VIGINUM = dienst tegen buitenlandse digitale inmenging; site achter botcheck, rapporten ook via defense.gouv.fr/desinformation"
+police-nationale.interieur.gouv.fr,Police nationale,Frankrijk,politie,A,voorkeur,https://www.police-nationale.interieur.gouv.fr/vous-informer/nos-actualites,,fr,voorstel,,,0,Canonieke URL van 'Nos actualités'
+elysee.fr,Présidence de la République (Élysée),Frankrijk,regering,A,voorkeur,https://www.elysee.fr/toutes-les-actualites,,fr,voorstel,,,0,"Communiqués, toespraken; geen RSS"
+mfa.gov.ge,საგარეო საქმეთა სამინისტრო,Georgië,buitenlandse zaken,A,voorkeur,https://www.mfa.gov.ge/en/news,,en,voorstel,,,0,Huidige regering (Georgische Droom) staat kritisch tegenover Westen; met voorzichtigheid gebruiken
+mfa.gr,Υπουργείο Εξωτερικών,Griekenland,buitenlandse zaken,A,voorkeur,https://www.mfa.gr/en/category/current-affairs/,,en,voorstel,,,0,Ook persbriefings: https://www.mfa.gr/en/category/press-briefings/
+nis.gr,EYP,Griekenland,inlichtingen/veiligheid,A,voorkeur,https://www.nis.gr/el/news,,el,voorstel,,,0,Nationale Inlichtingendienst (EYP).
+kormany.hu,Magyarország Kormánya,Hongarije,regering,A,voorkeur,https://kormany.hu/hirek,,hu,voorstel,,,0,Regeringsportaal; Engelse regeringscommunicatie via abouthungary.hu
+government.is,"Stjórnarráð Íslands (Government of Iceland, incl. Utanríkisráðuneytið)",IJsland,regering,A,voorkeur,,,en,voorstel,,,0,nieuws onder government.is/news/article/; dossier https://www.government.is/topics/foreign-affairs/war-in-ukraine/
+cert.europa.eu,CERT-EU,Internationaal,EU,A,voorkeur,https://cert.europa.eu/publications,,en,voorstel,,,0,Cybersecurity service for EU institutions; threat landscape reports and threat memos naming Russian APT groups.
+consilium.europa.eu,Raad van de EU,Internationaal,EU,A,voorkeur,https://www.consilium.europa.eu/en/press/press-releases/,https://www.consilium.europa.eu/en/rss/pressreleases.ashx,en,voorstel,,,0,"Sanctions listings: Russian hybrid/destabilising activities regime, cyber sanctions regime, Ukraine packages. Also HR declarations on behalf of the EU attributing cyberattacks. RSS confirmed working on 2026-10-15; dates use a10:updated."
+ec.europa.eu,Europese Commissie (Press Corner),Internationaal,EU,A,voorkeur,https://ec.europa.eu/commission/presscorner/home/en,,en,voorstel,,,0,"Commission press releases and statements (sanctions proposals, DSA actions against Russian propaganda outlets)."
+eeas.europa.eu,EEAS,Internationaal,EU,A,voorkeur,https://www.eeas.europa.eu/eeas/press-material_en,,en,voorstel,,,2,"HR/VP statements, démarches and summonings of Russian diplomats, FIMI threat reports. Also hosts some G7 foreign ministers' statements. Subscriptions: https://www.eeas.europa.eu/news-channels_en"
+enisa.europa.eu,ENISA,Internationaal,EU,A,voorkeur,https://www.enisa.europa.eu/news,,en,voorstel,,,0,"EU cybersecurity agency; annual Threat Landscape reports. Rarely attributes to individual states. Email alerts at /alertservice, no RSS found."
+eur-lex.europa.eu,EUR-Lex (Publicatieblad),Internationaal,EU,A,voorkeur,https://eur-lex.europa.eu/oj/daily-view/L-series/default.html,,en,voorstel,,,1,"Legally binding text of CFSP decisions and regulations, e.g. Decision (CFSP) 2024/2643 and Regulation (EU) 2024/2642 on Russia's destabilising activities. Their statements of reasons are the EU's formal attribution per person or entity."
+eurojust.europa.eu,Eurojust,Internationaal,EU,A,voorkeur,https://www.eurojust.europa.eu/media-and-events/press-releases-and-news,,en,voorstel,,,0,"Joint investigation teams on core international crimes in Ukraine (incl. ICPA) and on MH17, plus coordination of cross-border investigations."
+europarl.europa.eu,Europees Parlement (persdienst),Internationaal,EU,A,voorkeur,https://www.europarl.europa.eu/news/en/press-room,,en,voorstel,,,0,"Plenary resolutions on Russia (political, not attribution). Resolution summaries on the Legislative Observatory, oeil.europarl.europa.eu."
+europol.europa.eu,Europol,Internationaal,EU,A,voorkeur,https://www.europol.europa.eu/media-press/newsroom,,en,voorstel,,,0,"Joint operations against Russian-linked cybercrime and sabotage networks, IOCTA and TE-SAT reports. The newsroom is rendered in JavaScript."
+euvsdisinfo.eu,EUvsDisinfo (EEAS East StratCom),Internationaal,EU,A,voorkeur,https://euvsdisinfo.eu/news/,,en,voorstel,,,0,"EEAS East StratCom Task Force. Disinfo Review, analyses, and the disinformation case database at https://euvsdisinfo.eu/disinformation-cases/. Robots block automated fetching of /feed/."
+finance.ec.europa.eu,"Europese Commissie, DG FISMA (sancties Rusland)",Internationaal,EU,A,voorkeur,https://finance.ec.europa.eu/eu-and-world/sanctions-restrictive-measures/sanctions-adopted-following-russias-military-aggression-against-ukraine_en,,en,voorstel,,,0,"Overview of sanctions against Russia, with FAQs and guidance. Reference page, not a newsroom."
+sanctionsmap.eu,EU Sanctions Map,Internationaal,EU,A,voorkeur,"https://sanctionsmap.eu/#/main?checked=&search=%7B%22value%22:%22%22,%22searchType%22:%7B%7D%7D",,en,voorstel,,,0,Interactive overview of all EU sanctions regimes and listings. Reference tool; the legal source remains EUR-Lex.
+act.nato.int,NATO ACT,Internationaal,NAVO,A,voorkeur,https://www.act.nato.int/newsroom/articles/,,en,voorstel,,,0,Allied Command Transformation; doctrine and capability news. Rarely attributes incidents itself.
+ccdcoe.org,NATO CCDCOE,Internationaal,NAVO,A,voorkeur,https://www.ccdcoe.org/news,,en,voorstel,,,0,"Cyber defence centre of excellence in Tallinn (NATO-accredited, not a NATO body). Cyber-law analysis and incident case studies. Analysis, not attribution."
+jfcbs.nato.int,JFC Brunssum,Internationaal,NAVO,A,voorkeur,,,en,voorstel,,,0,Allied Joint Force Command Brunssum; news items sit under jfcbs.nato.int/page5964943/<year>/... Listing page not verified. Low attribution value.
+nato.int,NATO HQ,Internationaal,NAVO,A,voorkeur,https://www.nato.int/en/news-and-events/articles/news,,en,voorstel,,,0,"North Atlantic Council statements on Russian hybrid/cyber/sabotage campaigns, SG remarks. Site moved from /cps/en/natohq/ to /en/news-and-events/; press office: https://www.nato.int/en/news-and-events/press-office; official texts: https://www.nato.int/en/about-us/official-texts-and-resources/official-texts. Newsletters are email only, no RSS found."
+shape.nato.int,SHAPE / ACO,Internationaal,NAVO,A,voorkeur,,,en,voorstel,,,0,"Allied Command Operations news (e.g. Baltic Sentry, air policing, intercepts). Articles sit under shape.nato.int/news-archive/<year>/...; listing page could not be fetched."
+stratcomcoe.org,NATO StratCom COE,Internationaal,NAVO,A,voorkeur,https://stratcomcoe.org/news,,en,voorstel,,,0,"Riga centre of excellence. Research on Russian information operations and bot networks; publications at stratcomcoe.org/publications/. Analysis, not attribution."
+digitallibrary.un.org,UN Digital Library,Internationaal,VN,A,voorkeur,https://digitallibrary.un.org/,,en,voorstel,,,1,"Official UN documents: UNGA resolutions and votes, S/ documents, A/HRC reports. Archive, not a newsroom."
+iaea.org,IAEA,Internationaal,VN,A,voorkeur,https://www.iaea.org/newscenter/pressreleases,,en,voorstel,,,0,"Director General's 'Update NNN' statements on Ukraine and Zaporizhzhia NPP (drone strikes, power line outages). The fetched listing looked outdated (cache); no dedicated Ukraine page was verified."
+icao.int,ICAO,Internationaal,VN,A,voorkeur,https://www.icao.int/newsroom,,en,voorstel,,,0,"ICAO Council decision of May 2025 holding Russia responsible for MH17, plus GNSS interference statements. No ICAO source page for the MH17 decision was verified (only government.nl)."
+main.un.org,UNSC Panel of Experts CAR (res. 2127),Internationaal,VN,A,voorkeur,https://main.un.org/securitycouncil/en/sanctions/2127/panel-of-experts/reports,,en,voorstel,,,0,Panel reports covering Wagner/Africa Corps and Russian instructors in CAR.
+main.un.org,UNSC Panel of Experts Sudan (res. 1591),Internationaal,VN,A,voorkeur,https://main.un.org/securitycouncil/en/sanctions/1591/panel-of-experts/reports,,en,voorstel,,,0,Panel reports covering arms supplies and foreign actors (incl. Wagner/RSF gold links).
+news.un.org,UN News,Internationaal,VN,A,voorkeur,https://news.un.org/en/,,en,voorstel,,,2,"UN news service. Secondary relay of UN bodies' positions; the primary text sits with the body itself. An RSS overview exists at https://news.un.org/en/rss-feeds, but the exact feed URLs could not be read."
+ohchr.org,OHCHR (Ukraine),Internationaal,VN,A,voorkeur,https://www.ohchr.org/en/countries/ukraine,,en,voorstel,,,0,"UN Human Rights country page for Ukraine. Press releases sit under ohchr.org/en/press-releases/<year>/<month>/..., including those of the Independent International Commission of Inquiry on Ukraine. No dedicated CoI page was verified."
+press.un.org,UN Meetings Coverage and Press Releases,Internationaal,VN,A,voorkeur,https://press.un.org/en,,en,voorstel,,,0,"Official summaries of Security Council and General Assembly meetings, including votes and vetoes."
+press.un.org,UN Security Council (persberichten),Internationaal,VN,A,voorkeur,https://press.un.org/en/content/security-council/press-release,,en,voorstel,,,0,Security Council press statements and sanctions committee announcements.
+ukraine.ohchr.org,UN Human Rights Monitoring Mission in Ukraine (HRMMU),Internationaal,VN,A,voorkeur,https://ukraine.ohchr.org/en/mediacenter/latestnews,,en,voorstel,,,0,"Periodic reports on civilian casualties, POWs and occupied territories: https://ukraine.ohchr.org/en/reports"
+echr.coe.int,EHRM (ECHR),Internationaal,hof/tribunaal,A,voorkeur,https://www.echr.coe.int/w/latest-press-releases-1,https://hudoc.echr.coe.int/app/transform/rss?library=echrengpress&query=contentsitename:ECHR%20AND%20doctype=PR&sort=kpdate%20Descending&start=0&length=20&rankingModelId=11111111-0000-0000-0000-000000000000,en,voorstel,,,0,"Judgments against Russia (Ukraine and the Netherlands v. Russia incl. MH17, Georgia v. Russia, Litvinenko). RSS overview: https://www.echr.coe.int/en/echr-rss-feeds"
+hudoc.echr.coe.int,HUDOC (EHRM-database),Internationaal,hof/tribunaal,A,voorkeur,,https://hudoc.echr.coe.int/app/transform/rss?library=echrengpress&query=contentsitename:ECHR%20AND%20doctype=PR&sort=kpdate%20Descending&start=0&length=20&rankingModelId=11111111-0000-0000-0000-000000000000,en,voorstel,,,0,Full texts of ECHR judgments and press releases. Case law database; same press-release RSS feed as echr.coe.int.
+icc-cpi.int,ICC,Internationaal,hof/tribunaal,A,voorkeur,,,en,voorstel,,,1,Arrest warrants in the Situation in Ukraine (ICC-01/22): https://www.icc-cpi.int/situations/ukraine. The news listing (/news) could not be fetched.
+icj-cij.org,ICJ,Internationaal,hof/tribunaal,A,voorkeur,https://www.icj-cij.org/press-releases,,en,voorstel,,,0,"Ukraine v. Russia (genocide convention; ICSFT/CERD) and orders on provisional measures. Press releases are PDFs; mailing list, no RSS."
+itlos.org,ITLOS,Internationaal,hof/tribunaal,A,voorkeur,https://www.itlos.org/en/main/press-media/press-releases/press-releases-2026,,en,voorstel,,,2,Law of the Sea tribunal (e.g. Ukrainian naval vessels and servicemen). The press releases page is per year: change the year in the URL.
+pca-cpa.org,Permanent Court of Arbitration,Internationaal,hof/tribunaal,A,voorkeur,https://pca-cpa.org/en/news/,,en,voorstel,,,0,"UNCLOS arbitrations Ukraine v. Russia (coastal state rights, Kerch Strait; detention of naval vessels). Case documents on pcacases.com."
+cisa.gov,CISA – Russia state-sponsored advisories (Five Eyes joint advisories hub),Internationaal,internationale organisatie,A,voorkeur,https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors/russia/publications,,en,voorstel,,,2,"Actually a US agency, used as the hub for joint multinational advisories (CISA/FBI/NSA with NCSC-UK, ASD, CCCS, NCSC-NZ and EU partners) naming GRU/FSB/SVR units, e.g. https://www.cisa.gov/news-events/alerts/2025/05/21/russian-gru-cyber-actors-targeting-western-logistics-entities-and-tech-companies. Also cite the co-signing agencies; consider moving to the US register."
+coe.int,Raad van Europa,Internationaal,internationale organisatie,A,voorkeur,https://www.coe.int/en/web/portal/newsroom,,en,voorstel,,,0,"Council of Europe newsroom; Committee of Ministers supervising execution of ECHR judgments against Russia, Register of Damage for Ukraine, special tribunal for the crime of aggression."
+hybridcoe.fi,Hybrid CoE,Internationaal,internationale organisatie,A,voorkeur,https://www.hybridcoe.fi/all-publications/,,en,voorstel,,,0,European Centre of Excellence for Countering Hybrid Threats in Helsinki (EU/NATO participating states). Hybrid-threat analysis. /news/ redirects to the general content search /all-content/.
+interpol.int,INTERPOL,Internationaal,internationale organisatie,A,voorkeur,https://www.interpol.int/en/News-and-Events/News,,en,voorstel,,,0,Global police operations. Low direct attribution value (Article 3 neutrality).
+opcw.org,OPCW,Internationaal,internationale organisatie,A,voorkeur,https://www.opcw.org/media-centre/news,,en,voorstel,,,0,"Technical assistance reports confirming Novichok use (Skripal, Navalny) and riot-control agent use in Ukraine. Technical confirmation; states attribute."
+osce.org,OSCE,Internationaal,internationale organisatie,A,voorkeur,https://www.osce.org/press-releases,,en,voorstel,,,0,"OSCE newsroom; Moscow Mechanism reports (war crimes in Ukraine, treatment of POWs, Belarus), ODIHR documents under osce.org/odihr/... and Permanent Council statements."
+pace.coe.int,PACE (Parlementaire Assemblee RvE),Internationaal,internationale organisatie,A,voorkeur,,,en,voorstel,,,0,"Resolutions and news (e.g. pace.coe.int/en/news/9969). Political, not attribution. Listing page not verified."
+esteri.it,Ministero degli Affari Esteri (Farnesina),Italië,buitenlandse zaken,A,voorkeur,https://www.esteri.it/it/sala_stampa/,,it,voorstel,,,0,"Sala Stampa; geen RSS, wel mailinglijst"
+acn.gov.it,ACN,Italië,cyberagentschap,A,voorkeur,https://www.acn.gov.it/en/comunicazione/archivio,,it,voorstel,,,0,Nieuwsarchief; ook /portale/en/archivio-comunicazione gezien.
+difesa.it,Ministero della Difesa,Italië,defensie,A,voorkeur,,,it,voorstel,,,0,"Alleen persberichten gezien onder /il-ministro/comunicati/, bv. https://www.difesa.it/il-ministro/comunicati/comunicato-stampa-n-40-del-5-ottobre-2026/114015.html."
+sicurezzanazionale.gov.it,Sistema di informazione per la sicurezza (DIS/AISE/AISI),Italië,inlichtingen/veiligheid,A,voorkeur,,,it,voorstel,,,0,Homepage geverifieerd; Media Room gezien als /comunicazione/news (alleen met tagfilter). Jaarrapport: /contenuti/relazione-al-parlamento-2026.
+governo.it,Palazzo Chigi,Italië,regering,A,voorkeur,https://www.governo.it/it/tipologie-contenuto/comunicati-stampa,,it,voorstel,,,0,Ook 'Notizie da Palazzo Chigi' onder /it/notizie-chigi gezien.
+mofa.go.jp,Ministry of Foreign Affairs of Japan (MOFA),Japan,buitenlandse zaken,A,voorkeur,https://www.mofa.go.jp/press/release/index.html,,en/ja,voorstel,,,0,"Protesten tegen Russische luchtruimschendingen, sancties"
+mod.go.jp,Ministry of Defense (MOD),Japan,defensie,A,voorkeur,,,en/ja,voorstel,,,0,Persconferenties minister onder /en/article/ (bv. Russische luchtruimschending sept. 2024); indexpagina niet geverifieerd
+japan.kantei.go.jp,Prime Minister's Office of Japan (Kantei),Japan,regering,A,voorkeur,https://japan.kantei.go.jp/news/index.html,,en/ja,voorstel,,,0,Engelstalige site
+mvep.gov.hr,MVEP,Kroatië,buitenlandse zaken,A,voorkeur,https://mvep.gov.hr/press/8,,hr,voorstel,,,0,Engelse versie https://mvep.gov.hr/en
+soa.hr,SOA,Kroatië,inlichtingen/veiligheid,A,voorkeur,https://soa.hr/en/news/36,,en,voorstel,,,0,Veiligheids- en inlichtingendienst; jaarlijks openbaar rapport
+vlada.gov.hr,Vlada RH,Kroatië,regering,A,voorkeur,https://vlada.gov.hr/news/14956,,en,voorstel,,,0,Engelse nieuwssectie regering
+prokuratura.gov.lv,Prokuratūra,Letland,OM/justitie,A,voorkeur,,,lv,voorstel,,,0,persberichten onder prokuratura.gov.lv/lv/jaunumi/ (alleen oude artikelen gezien)
+mfa.gov.lv,Ārlietu ministrija,Letland,buitenlandse zaken,A,voorkeur,,,en,voorstel,,,0,Engelse artikelen onder mfa.gov.lv/en/article/
+cert.lv,CERT.LV,Letland,cyberagentschap,A,voorkeur,https://cert.lv/en/,,en,voorstel,,,0,homepage
+mod.gov.lv,Aizsardzības ministrija,Letland,defensie,A,voorkeur,https://www.mod.gov.lv/en/zinas,,en,voorstel,,,0,
+sab.gov.lv,Satversmes aizsardzības birojs (SAB),Letland,inlichtingen/veiligheid,A,voorkeur,https://www.sab.gov.lv/,,lv,voorstel,,,0,homepage; jaarlijks activiteitenrapport
+vdd.gov.lv,Valsts drošības dienests (VDD),Letland,inlichtingen/veiligheid,A,voorkeur,https://vdd.gov.lv/en/news/press-releases,,en,voorstel,,,0,jaarlijks publiek rapport; verzoeken tot vervolging spionage
+vp.gov.lv,Valsts policija,Letland,politie,A,voorkeur,https://www.vp.gov.lv/en/articles,,en,voorstel,,,0,
+prokuraturos.lt,Generalinė prokuratūra,Litouwen,OM/justitie,A,voorkeur,https://www.prokuraturos.lt/en/,,en,voorstel,,,0,"homepage; nieuwslijst niet geverifieerd; sabotage-/terreurzaken (IKEA-brand, pakketten)"
+urm.lt,Užsienio reikalų ministerija,Litouwen,buitenlandse zaken,A,voorkeur,https://www.urm.lt/en/news/928,https://www.urm.lt//globalnewsrss,en,voorstel,,,0,protestnoten aan Rusland/Belarus over hybride aanvallen; RSS-URL letterlijk met dubbele slash
+nksc.lt,Nacionalinis kibernetinio saugumo centras (NKSC),Litouwen,cyberagentschap,A,voorkeur,https://www.nksc.lt/rkgc/en_news.html,,en,voorstel,,,0,nieuwspagina is van RKGC/CTAC-onderdeel; jaarlijks cyberrapport
+kam.lt,Krašto apsaugos ministerija,Litouwen,defensie,A,voorkeur,https://kam.lt/kategorija/naujienos/,,lt,voorstel,,,0,host ook gezamenlijk VSD/AOTD 'National Threat Assessment' (AOTD heeft geen geverifieerd eigen domein)
+vsd.lt,Valstybės saugumo departamentas (VSD),Litouwen,inlichtingen/veiligheid,A,voorkeur,https://www.vsd.lt/naujienos/,https://www.vsd.lt/author/redaktore/feed/,lt,voorstel,,,0,jaarlijkse 'Grėsmių nacionaliniam saugumui vertinimas' (EN: vsd.lt/en/reports/); rss is auteursfeed van redactie
+lkpb.policija.lrv.lt,Lietuvos kriminalinės policijos biuras,Litouwen,politie,A,voorkeur,,,lt,voorstel,,,0,nieuws onder /lt/naujienos/; subdomein van lrv.lt
+sre.gouvernement.lu,Service de renseignement de l'État (SRE),Luxemburg,inlichtingen/veiligheid,A,voorkeur,,,fr,voorstel,,,0,Jaarrapporten als PDF onder /dam-assets/publications/; nieuws via gouvernement.lu
+gouvernement.lu,Gouvernement luxembourgeois,Luxemburg,regering,A,voorkeur,https://gouvernement.lu/fr/actualites/toutes_actualites.html,https://gouvernement.lu/fr/actualites/toutes_actualites.rss,fr,voorstel,,,0,Alle ministeries incl. MAEE (buitenlandse zaken/defensie); filterbaar op SRE/espionnage
+mfa.gov.md,MAE,Moldavië,buitenlandse zaken,A,voorkeur,https://mfa.gov.md/en/press-release-types/comunicate-de-presa,https://mfa.gov.md/en/press/feed.xml,en,voorstel,,,0,Uitzettingen Russische diplomaten
+sis.md,SIS,Moldavië,inlichtingen/veiligheid,A,voorkeur,https://sis.md/ro/comunicate,,ro,voorstel,,,0,"Inlichtingen- en veiligheidsdienst; spionagenetwerken, verkiezingsinmenging"
+gov.md,Guvernul Republicii Moldova,Moldavië,regering,A,voorkeur,https://gov.md/en/taxonomy/term/22,https://gov.md/en/rss.xml,en,voorstel,,,0,Persberichten regering
+gov.me,Vlada Crne Gore,Montenegro,regering,A,voorkeur,https://www.gov.me/en/search?type=all&at=1&sort=published_at,,en,voorstel,,,0,Centraal portaal regering en ministeries
+om.nl,Openbaar Ministerie,Nederland,OM/justitie,A,voorkeur,https://www.om.nl/actueel/nieuws,https://www.om.nl/service/rss,nl,voorstel,,,0,RSS-link uit pagina; mogelijk overzichtspagina van feeds
+government.nl,Ministerie van Buitenlandse Zaken,Nederland,buitenlandse zaken,A,voorkeur,https://www.government.nl/ministries/ministry-of-foreign-affairs/news,,nl,voorstel,,,1,Engelstalige nieuwspagina BZ; Nederlandstalig nieuws via rijksoverheid.nl
+ncsc.nl,NCSC,Nederland,cyberagentschap,A,voorkeur,https://www.ncsc.nl/actueel/nieuws,https://www.ncsc.nl/rss,nl,voorstel,,,0,Nationaal Cyber Security Centrum
+defensie.nl,Ministerie van Defensie / MIVD,Nederland,defensie,A,voorkeur,,,nl,voorstel,,,0,MIVD-nieuws (bijv. Russische hackers) onder /actueel/nieuws/JJJJ/MM/DD/...; overzichtspagina kon niet geopend worden
+aivd.nl,AIVD,Nederland,inlichtingen/veiligheid,A,voorkeur,https://www.aivd.nl/actueel,https://www.aivd.nl/service/rss,nl,voorstel,,,0,RSS-link uit pagina; mogelijk overzichtspagina van feeds
+nctv.nl,NCTV,Nederland,inlichtingen/veiligheid,A,voorkeur,https://www.nctv.nl/actueel/nieuws,,nl,voorstel,,,0,Dreigingsbeelden statelijke actoren (DBSA) en terrorisme
+politie.nl,Politie,Nederland,politie,A,voorkeur,https://www.politie.nl/nieuws,https://www.politie.nl/rss,nl,voorstel,,,0,Landelijke en regionale politieberichten
+rechtspraak.nl,De Rechtspraak,Nederland,rechtspraak,A,voorkeur,,,nl,voorstel,,,0,"Nieuws per rechtbank, bv. https://www.rechtspraak.nl/organisatie-en-contact/organisatie/rechtbanken/rechtbank-den-haag ; uitspraken via uitspraken.rechtspraak.nl."
+rijksoverheid.nl,Rijksoverheid,Nederland,regering,A,voorkeur,https://www.rijksoverheid.nl/actueel/nieuws,,nl,voorstel,,,0,Nieuws alle ministeries (ook AIVD/MIVD-jaarverslagen); RSS-overzicht: https://www.rijksoverheid.nl/service/rss
+mfat.govt.nz,Ministry of Foreign Affairs and Trade (MFAT),Nieuw-Zeeland,buitenlandse zaken,A,voorkeur,https://www.mfat.govt.nz/en/media-and-resources,,en,voorstel,,,0,Ministeriële statements staan vooral op beehive.govt.nz
+gcsb.govt.nz,Government Communications Security Bureau (GCSB) / NCSC NZ,Nieuw-Zeeland,cyberagentschap,A,voorkeur,https://www.gcsb.govt.nz/news,,en,voorstel,,,0,Cyberattributies; NCSC NZ valt onder GCSB (eigen NCSC-domein niet geverifieerd)
+nzsis.govt.nz,New Zealand Security Intelligence Service (NZSIS),Nieuw-Zeeland,inlichtingen/veiligheid,A,voorkeur,https://www.nzsis.govt.nz/news/,,en,voorstel,,,0,Alleen e-mailabonnement
+beehive.govt.nz,Beehive (NZ Government),Nieuw-Zeeland,regering,A,voorkeur,https://www.beehive.govt.nz/releases,,en,voorstel,,,0,Ministeriële persberichten incl. buitenlandse zaken/sancties; feedoverzicht op https://www.beehive.govt.nz/feeds
+riksadvokaten.no,Riksadvokaten,Noorwegen,OM/justitie,A,voorkeur,https://www.riksadvokaten.no/,,no,voorstel,,,0,homepage; geen aparte nieuwslijst geverifieerd
+regjeringen.no,Utenriksdepartementet (UD),Noorwegen,buitenlandse zaken,A,voorkeur,,,no,voorstel,,,0,onderdeel regjeringen.no; ook sanctie-implementatie Rusland
+nsm.no,NSM (Nasjonal sikkerhetsmyndighet),Noorwegen,cyberagentschap,A,voorkeur,,,no,voorstel,,,0,jaarlijks rapport 'Risiko'
+forsvaret.no,Forsvaret / Etterretningstjenesten,Noorwegen,defensie,A,voorkeur,https://forsvaret.no/fokus,,no,voorstel,,,0,"E-tjenesten jaarlijks dreigingsrapport 'Fokus' (pagina is Fokus, geen nieuwslijst); Forsvaret algemeen nieuws niet geverifieerd"
+pst.no,PST (Politiets sikkerhetstjeneste),Noorwegen,inlichtingen/veiligheid,A,voorkeur,https://www.pst.no/aktuelt/,,no,voorstel,,,0,jaarlijkse 'Nasjonal trusselvurdering' (ook Engels)
+politiet.no,Politiet / Kripos,Noorwegen,politie,A,voorkeur,,,no,voorstel,,,0,Kripos-nieuws onder politiet.no/nyheter-og-presse/kripos/nyhet/; lijstpagina niet geverifieerd
+regjeringen.no,"Regjeringen (SMK, UD, FD)",Noorwegen,regering,A,voorkeur,,,no,voorstel,,,0,gedeeld domein voor alle departementen; nieuws onder regjeringen.no/no/aktuelt/ en Engels regjeringen.no/en/whats-new/; lijstpagina niet geverifieerd; ook sanctiemaatregelen
+gp.gov.ua,Office of the Prosecutor General,Oekraïne,OM/justitie,A,voorkeur,https://gp.gov.ua/ua/categories/novini,,uk,voorstel,,,0,Nieuws OGP; ook new.gp.gov.ua gezien.
+mfa.gov.ua,МЗС України,Oekraïne,buitenlandse zaken,A,voorkeur,,,uk,voorstel,,,0,Partij in het conflict; nieuwslijst-URL niet geverifieerd
+cert.gov.ua,CERT-UA,Oekraïne,cyberagentschap,A,voorkeur,https://cert.gov.ua/,,uk,voorstel,,,0,Partij in het conflict; onder Staatsdienst Speciale Communicatie; artikellijst niet geverifieerd (JS-site)
+ssu.gov.ua,СБУ,Oekraïne,inlichtingen/veiligheid,A,voorkeur,https://ssu.gov.ua/en/novyny,,en,voorstel,,,0,Partij in het conflict
+gov.pl,Prokuratura Krajowa,Polen,OM/justitie,A,voorkeur,https://www.gov.pl/web/prokuratura-krajowa/aktualnosci,,pl,voorstel,,,1,Nationaal OM; aanklachten wegens sabotage/spionage voor Rusland; geen Engelse versie
+gov.pl,MSZ,Polen,buitenlandse zaken,A,voorkeur,https://www.gov.pl/web/diplomacy/news-,,en,voorstel,,,1,Engelse site; o.a. sluiting Russische consulaten. Persmateriaal: https://www.gov.pl/web/diplomacy/for-the-media
+cert.pl,CERT Polska,Polen,cyberagentschap,A,voorkeur,https://cert.pl/en/news/,,en,voorstel,,,0,Nationaal CSIRT (NASK); meldt APT28/UNC1151-campagnes
+gov.pl,MON,Polen,defensie,A,voorkeur,https://www.gov.pl/web/national-defence/news,,en,voorstel,,,1,Ministerie van Nationale Defensie (Engels); Poolse versie gov.pl/web/obrona-narodowa
+abw.gov.pl,ABW,Polen,inlichtingen/veiligheid,A,voorkeur,https://www.abw.gov.pl/pl/aktualnosci,https://www.abw.gov.pl/pl/rss,pl,voorstel,,,0,Binnenlandse veiligheidsdienst; publiceert arrestaties wegens spionage/sabotage
+gov.pl,Minister-Koordynator Służb Specjalnych,Polen,inlichtingen/veiligheid,A,voorkeur,https://www.gov.pl/web/special-services/news,,en,voorstel,,,1,Coördinator speciale diensten; verklaringen over sabotage (bv. spoorwegsabotage)
+policja.pl,Policja (KGP),Polen,politie,A,voorkeur,https://www.policja.pl/pol/aktualnosci,https://www.policja.pl/pol/rss,pl,voorstel,,,0,Hoofdbureau politie; Engelse info op info.policja.pl/ine/
+gov.pl,KPRM,Polen,regering,A,voorkeur,,,en,voorstel,,,1,"Kanselarij premier, pad gov.pl/web/primeminister (artikel gezien); nieuwslijst-URL niet geverifieerd"
+ministeriopublico.pt,Ministério Público,Portugal,OM/justitie,A,voorkeur,https://www.ministeriopublico.pt/actividade,,pt,voorstel,,,0,Notícias – Atividade do MP
+portaldiplomatico.mne.gov.pt,MNE (Portal Diplomático),Portugal,buitenlandse zaken,A,voorkeur,https://portaldiplomatico.mne.gov.pt/comunicacao-e-media/comunciados-de-imprensa,,pt,voorstel,,,0,Persberichten (let op: spelfout 'comunciados' zit in de echte URL).
+portugal.gov.pt,Governo de Portugal,Portugal,regering,A,voorkeur,https://www.portugal.gov.pt/pt/gc24/comunicacao/noticias,,pt,voorstel,,,0,Pad bevat regeringsnummer (gc24) en wijzigt bij nieuwe regering; ook RASI-rapport gepubliceerd
+diicot.ro,DIICOT,Roemenië,OM/justitie,A,voorkeur,https://www.diicot.ro/mass-media/comunicate-de-pres%C4%83,,ro,voorstel,,,0,Directie onderzoek georganiseerde misdaad en terrorisme; persberichtenpagina gezien in zoekresultaat.
+mpublic.ro,Parchetul (PICCJ / Ministerul Public),Roemenië,OM/justitie,A,voorkeur,https://www.mpublic.ro/index.php/ro/comunicate-de-presa-piccj,,ro,voorstel,,,0,Persberichten parket-generaal; algemene lijst ook op https://www.mpublic.ro/ro/content/comunicate-de-pres%C4%83. Lokale parketten op subdomeinen (bv. ptalba.mpublic.ro).
+mae.ro,MAE,Roemenië,buitenlandse zaken,A,voorkeur,,,ro,voorstel,,,0,"Alleen artikel-URL's geverifieerd, bv. https://www.mae.ro/node/68923 (ontbieden Russische ambassadeur)."
+dnsc.ro,DNSC,Roemenië,cyberagentschap,A,voorkeur,,,ro,voorstel,,,0,"Alleen artikel-URL's geverifieerd onder /citeste/, bv. https://dnsc.ro/citeste/comunicat-atacuri-ddos-grupari-rusia-site-uri-romania."
+mapn.ro,MApN,Roemenië,defensie,A,voorkeur,https://www.mapn.ro/cpresa/index.php,,ro,voorstel,,,0,Defensie; meldingen Russische drones in Roemeens luchtruim
+sri.ro,SRI,Roemenië,inlichtingen/veiligheid,A,voorkeur,https://sri.ro/categorii/comunicate-de-presa,,ro,voorstel,,,0,Binnenlandse inlichtingendienst; o.a. verijdelde Russische sabotageoperatie. Engels: https://sri.ro/en
+gov.ro,Guvernul României,Roemenië,regering,A,voorkeur,,,ro,voorstel,,,0,"Alleen artikel-URL's onder /ro/media/comunicate/ geverifieerd, bv. https://www.gov.ro/ro/media/comunicate/comunicat-de-presa-edinta-de-guvern-strategia-militara-a-romaniei-aprobata-de-guvern."
+gov.si,SOVA,Slovenië,inlichtingen/veiligheid,A,voorkeur,https://www.gov.si/drzavni-organi/vladne-sluzbe/slovenska-obvescevalno-varnostna-agencija/novice-slovenske-obvescevalne-varnostne-agencije/,https://www.gov.si/novice/rss/?orgID%5B0%5D=38,sl,voorstel,,,0,Weinig publicaties; eigen site sova.gov.si niet geverifieerd
+gov.si,Vlada RS,Slovenië,regering,A,voorkeur,https://www.gov.si/en/news/,https://www.gov.si/en/news/rss/,en,voorstel,,,0,Centraal regeringsportaal (ook ministeries)
+mzv.sk,MZVEZ SR,Slowakije,buitenlandse zaken,A,voorkeur,https://www.mzv.sk/web/sk/current/all-news,https://www.mzv.sk/sk/web/sk/home/-/journal/rss/10182/13409199,sk,voorstel,,,0,Ministerie van Buitenlandse en Europese Zaken
+minv.sk,Ministerstvo vnútra SR / Policajný zbor,Slowakije,politie,A,voorkeur,,,sk,voorstel,,,0,Binnenlandse Zaken incl. politie (NAKA); persberichten onder minv.sk/?tlacove-spravy-2 (voorbeeldbericht gezien)
+vlada.gov.sk,Úrad vlády SR,Slowakije,regering,A,voorkeur,https://www.vlada.gov.sk/tlacove-spravy/,,sk,voorstel,,,0,Regeringsbureau; huidige regering-Fico terughoudend in toeschrijving aan Rusland
+fiscal.es,Fiscalía General del Estado,Spanje,OM/justitie,A,voorkeur,https://www.fiscal.es/noticias,,es,voorstel,,,0,Notas de prensa.
+exteriores.gob.es,"Ministerio de Asuntos Exteriores, UE y Cooperación",Spanje,buitenlandse zaken,A,voorkeur,https://www.exteriores.gob.es/es/Comunicacion/Comunicados/Paginas/index.aspx,,es,voorstel,,,0,Comunicados; aparte sectie 'Notas de prensa' bestaat
+ccn-cert.cni.es,CCN-CERT,Spanje,cyberagentschap,A,voorkeur,https://www.ccn-cert.cni.es/es/seguridad-al-dia/avisos-ccn-cert.html,,es,voorstel,,,0,Waarschuwingen; ook novedades: /es/seguridad-al-dia/novedades-ccn-cert.html.
+incibe.es,INCIBE-CERT,Spanje,cyberagentschap,A,voorkeur,https://www.incibe.es/incibe-cert/alerta-temprana/avisos,,es,voorstel,,,0,Technische advisories; RSS via '/feed'-link (exacte URL niet vastgesteld)
+defensa.gob.es,Ministerio de Defensa,Spanje,defensie,A,voorkeur,https://www.defensa.gob.es/gabinete/notasPrensa/,,es,voorstel,,,0,Persberichten (notas de prensa).
+cni.es,CNI,Spanje,inlichtingen/veiligheid,A,voorkeur,,,es,voorstel,,,0,Alleen info-pagina's gezien (bv. /sobre-el-cni/principios-y-funciones); geen nieuwspagina gevonden.
+poderjudicial.es,Audiencia Nacional (CGPJ),Spanje,rechtspraak,A,voorkeur,https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Audiencia-Nacional/Oficina-de-Comunicacion/Notas-de-prensa/,,es,voorstel,,,0,Ook Noticias Judiciales: https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Audiencia-Nacional/Noticias-Judiciales/
+lamoncloa.gob.es,La Moncloa (Gobierno de España),Spanje,regering,A,voorkeur,https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/Paginas/index.aspx,,es,voorstel,,,0,"Nieuws van alle ministeries, filterbaar per ministerie (incl. Defensa)"
+nsz.cz,Nejvyšší státní zastupitelství,Tsjechië,OM/justitie,A,voorkeur,,,cs,voorstel,,,0,"Alleen persberichten gezien onder /index.php/cs/tiskove-zpravy/ (http), bv. http://www.nsz.cz/index.php/cs/tiskove-zpravy/2290-zloin-napi-hranicemi-pomahaji-potirat-spolene-vyetovaci-tymy."
+mzv.gov.cz,MZV,Tsjechië,buitenlandse zaken,A,voorkeur,https://www.mzv.gov.cz/jnp/en/issues_and_press/press_releases/index.html,https://mzv.gov.cz/jnp/en/rss.html,en,voorstel,,,0,O.a. toeschrijving cyberaanvallen APT28
+nukib.gov.cz,NÚKIB,Tsjechië,cyberagentschap,A,voorkeur,https://nukib.gov.cz/en/infoservis-en/news/,,en,voorstel,,,0,Nationaal cyberagentschap; toeschrijvingen aan GRU/APT28
+mocr.mo.gov.cz,Ministerstvo obrany,Tsjechië,defensie,A,voorkeur,https://mocr.mo.gov.cz/scripts/detail.php?pgid=481,,cs,voorstel,,,0,mocr.army.cz verwijst door naar mocr.mo.gov.cz; Engelse site https://www.mo.gov.cz/en/
+bis.cz,BIS,Tsjechië,inlichtingen/veiligheid,A,voorkeur,https://www.bis.cz/aktuality/,,cs,voorstel,,,0,Contraspionagedienst; jaarverslagen over Russische operaties; Engelse homepage https://www.bis.cz/en/
+policie.gov.cz,Policie ČR,Tsjechië,politie,A,voorkeur,https://policie.gov.cz/zpravodajstvi,,cs,voorstel,,,0,Incl. NCOZ (persarchief https://policie.gov.cz/ncoz-archiv-tiskovych-zprav.aspx); Vrbětice-onderzoek wees GRU aan
+vlada.gov.cz,Vláda ČR,Tsjechië,regering,A,voorkeur,,,en,voorstel,,,0,"Regeringsbureau; Engelse persberichten onder /en/media-centrum/ (artikelen gezien), lijst-URL niet geverifieerd; oude host uv.gov.cz/vlada.cz komt ook voor"
+mfa.gov.tr,Dışişleri Bakanlığı,Turkije,buitenlandse zaken,A,voorkeur,https://www.mfa.gov.tr/sub.en.mfa?2fff0e6d-5c85-4ce2-8c55-9cf3ef33c53b,,en,voorstel,,,0,Engelse persberichtenlijst
+mit.gov.tr,MİT,Turkije,inlichtingen/veiligheid,A,voorkeur,https://www.mit.gov.tr/basindan-yansimalar.html,,tr,voorstel,,,0,Publiceert vooral persoverzicht; operaties tegen Russische spionagenetwerken worden meestal via Anadolu/Daily Sabah bekend
+cps.gov.uk,Crown Prosecution Service (CPS),Verenigd Koninkrijk,OM/justitie,A,voorkeur,https://www.cps.gov.uk/news,,en,voorstel,,,0,"Aanklachten National Security Act (Russische proxy-sabotage, spionage)"
+gov.uk,"Foreign, Commonwealth & Development Office (FCDO)",Verenigd Koninkrijk,buitenlandse zaken,A,voorkeur,https://www.gov.uk/search/news-and-communications?organisations[]=foreign-commonwealth-development-office,https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=foreign-commonwealth-development-office,en,voorstel,,,9,"Formele attributies (GRU-cyber, sabotage) en sanctie-aankondigingen"
+ncsc.gov.uk,National Cyber Security Centre (NCSC),Verenigd Koninkrijk,cyberagentschap,A,voorkeur,https://www.ncsc.gov.uk/section/keep-up-to-date/ncsc-news,,en,voorstel,,,0,Attributies van GRU-cyberoperaties; overzicht feeds op https://www.ncsc.gov.uk/information/rss-feeds (feed-URL zelf niet geverifieerd)
+gov.uk,Ministry of Defence,Verenigd Koninkrijk,defensie,A,voorkeur,https://www.gov.uk/search/news-and-communications?organisations[]=ministry-of-defence,https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=ministry-of-defence,en,voorstel,,,9,O.a. meldingen Russische schepen/vliegtuigen nabij VK
+mi5.gov.uk,MI5 - Security Service,Verenigd Koninkrijk,inlichtingen/veiligheid,A,voorkeur,,,en,voorstel,,,0,Homepage geverifieerd; nieuwspagina kon niet worden geopend. Jaarlijkse DG-toespraak over Russische dreiging
+isc.independent.gov.uk,Intelligence and Security Committee of Parliament (ISC),Verenigd Koninkrijk,parlement,A,voorkeur,https://isc.independent.gov.uk/news/,,en,voorstel,,,0,Rapporten o.a. Russia report (2020)
+counterterrorism.police.uk,Counter Terrorism Policing,Verenigd Koninkrijk,politie,A,voorkeur,https://www.counterterrorism.police.uk/news/,,en,voorstel,,,1,Onderzoekt ook statelijke dreigingen (arrestaties wegens Russische sabotage)
+judiciary.uk,Courts and Tribunals Judiciary,Verenigd Koninkrijk,rechtspraak,A,voorkeur,https://www.judiciary.uk/judgments/,,en,voorstel,,,0,Uitspraken en sentencing remarks
+gov.uk,"Prime Minister's Office, 10 Downing Street",Verenigd Koninkrijk,regering,A,voorkeur,https://www.gov.uk/search/news-and-communications?organisations[]=prime-ministers-office-10-downing-street,https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=prime-ministers-office-10-downing-street,en,voorstel,,,9,Atom-feed gefilterd op organisatie
+gov.uk,Office of Financial Sanctions Implementation (OFSI),Verenigd Koninkrijk,sanctie-autoriteit,A,voorkeur,https://www.gov.uk/search/news-and-communications?organisations[]=office-of-financial-sanctions-implementation&parent=office-of-financial-sanctions-implementation,,en,voorstel,,,9,Handhaving Russische sancties; blog op ofsi.blog.gov.uk; Atom-feed via zelfde gov.uk-zoekpatroon mogelijk maar niet geverifieerd
+justice.gov,U.S. Department of Justice,Verenigde Staten,OM/justitie,A,voorkeur,https://www.justice.gov/news,https://www.justice.gov/news/rss?m=1,en,voorstel,,,11,Aanklachten tegen GRU-officieren en Russische agenten; oudere zaken onder /archives/
+state.gov,U.S. Department of State,Verenigde Staten,buitenlandse zaken,A,voorkeur,,,en,voorstel,,,0,Domein gezien in zoekresultaten; persberichtenpagina kon niet worden geopend (fetch-fout)
+cisa.gov,Cybersecurity and Infrastructure Security Agency (CISA),Verenigde Staten,cyberagentschap,A,voorkeur,https://www.cisa.gov/news-events/cybersecurity-advisories,,en,voorstel,,,2,Publiceert gezamenlijke cyberadviezen over GRU/SVR/FSB (bv. AA24-249A)
+media.defense.gov,U.S. Department of War - mediabestanden,Verenigde Staten,defensie,A,voorkeur,,,en,voorstel,,,0,Host van PDF's van gezamenlijke NSA/FBI/CISA-adviezen (o.a. GRU unit 29155)
+war.gov,Department of War (voorheen Department of Defense),Verenigde Staten,defensie,A,voorkeur,https://www.war.gov/News/Releases/,,en,voorstel,,,0,Hernoemd sept. 2025; media.defense.gov host nog in gebruik voor gezamenlijke cyberadviezen (PDF). Releasespagina opende maar met beperkte inhoud; controleren
+fbi.gov,Federal Bureau of Investigation (FBI),Verenigde Staten,inlichtingen/veiligheid,A,voorkeur,https://www.fbi.gov/news/press-releases,,en,voorstel,,,0,Persberichten HQ en field offices; spionage- en sabotagezaken
+nsa.gov,National Security Agency (NSA),Verenigde Staten,inlichtingen/veiligheid,A,voorkeur,https://www.nsa.gov/Press-Room/Press-Releases-Statements/,,en,voorstel,,,1,Co-auteur van cyberattributies over Russische militaire inlichtingendienst
+odni.gov,Office of the Director of National Intelligence (ODNI),Verenigde Staten,inlichtingen/veiligheid,A,voorkeur,https://www.odni.gov/newsroom/,,en,voorstel,,,0,dni.gov verwijst door naar odni.gov; dreigingsbeoordelingen en verkiezingsbeïnvloeding
+intelligence.house.gov,House Permanent Select Committee on Intelligence,Verenigde Staten,parlement,A,voorkeur,https://intelligence.house.gov/news/,,en,voorstel,,,0,Parlementaire inlichtingencontrole
+intelligence.senate.gov,Senate Select Committee on Intelligence,Verenigde Staten,parlement,A,voorkeur,https://www.intelligence.senate.gov/press-releases,,en,voorstel,,,0,Parlementaire inlichtingencontrole
+whitehouse.gov,The White House,Verenigde Staten,regering,A,voorkeur,https://www.whitehouse.gov/news/,,en,voorstel,,,0,Statements van de president; geen RSS gevonden
+home.treasury.gov,U.S. Department of the Treasury (OFAC),Verenigde Staten,sanctie-autoriteit,A,voorkeur,https://home.treasury.gov/news/press-releases,,en,voorstel,,,1,OFAC-sanctiebesluiten tegen Russische actoren; alleen e-mailabonnement (govdelivery)
+mofa.go.kr,Ministry of Foreign Affairs (MOFA),Zuid-Korea,buitenlandse zaken,A,voorkeur,,,en/ko,voorstel,,,0,Berichten onder /eng/brd/m_5676/ en m_5674/; lijstpagina blokkeert crawlers. Ambassades op subdomeinen (*.mofa.go.kr)
+aklagare.se,Åklagarmyndigheten,Zweden,OM/justitie,A,voorkeur,https://www.aklagare.se/for-media/pressmeddelanden/,,sv,voorstel,,,0,aanklachten spionage/sabotage; Engelse persberichten onder aklagare.se/en/media/press-releases/
+cert.se,CERT-SE,Zweden,cyberagentschap,A,voorkeur,,,sv,voorstel,,,0,wekelijkse 'veckobrev' onder cert.se/<jaar>/<maand>/
+ncsc.se,NCSC (Nationellt cybersäkerhetscenter),Zweden,cyberagentschap,A,voorkeur,https://www.ncsc.se/sv/aktuellt/,,sv,voorstel,,,0,
+forsvarsmakten.se,Försvarsmakten,Zweden,defensie,A,voorkeur,https://www.forsvarsmakten.se/en/news-and-events/news/,,en,voorstel,,,0,Zweeds nieuws: https://www.forsvarsmakten.se/aktuellt/nyheter/
+forsvarsmakten.se,MUST (Militära underrättelse- och säkerhetstjänsten),Zweden,inlichtingen/veiligheid,A,voorkeur,https://www.forsvarsmakten.se/en/about-the-swedish-armed-forces/organisation/joint-forces/military-intelligence-and-security-service-must/,,en,voorstel,,,0,jaarlijkse 'Must årsöversikt'; geen eigen nieuwslijst
+fra.se,FRA,Zweden,inlichtingen/veiligheid,A,voorkeur,https://www.fra.se/nyheter.4.55af049f184e92956c42cb3.html,,sv,voorstel,,,0,Signaalinlichtingendienst; nieuwspagina.
+sakerhetspolisen.se,Säkerhetspolisen (Säpo),Zweden,inlichtingen/veiligheid,A,voorkeur,,,sv,voorstel,,,0,"nieuws onder sakerhetspolisen.se/ovriga-sidor/nyheter/nyheter/; jaarlijkse 'lägesbild' (Ryssland, Kina och Iran); lijstpagina niet geverifieerd"
+polisen.se,Polisen,Zweden,politie,A,voorkeur,,,sv,voorstel,,,0,"Alleen artikelen gezien onder /aktuellt/nyheter/, bv. https://polisen.se/aktuellt/nyheter/mitt/2026/april/man-doms-for-sabotage--allmanhetens-iakttagelser-viktiga/."
+government.se,Regeringskansliet (incl. Utrikesdepartementet),Zweden,regering,A,voorkeur,,,en,voorstel,,,1,"Engels; persberichten onder government.se/press-releases/<jaar>/, verklaringen onder government.se/statements/<jaar>/ (o.a. ontbieden Russische ambassadeur); lijstpagina niet geverifieerd"
+regeringen.se,Regeringen (Zweedstalig),Zweden,regering,A,voorkeur,,,sv,voorstel,,,0,Zweedse versie; government.se is Engelse spiegel
+ks.echr.coe.int,,Internationaal,VN en hoven,A,voorkeur,,,,voorstel,,,1,
+media.un.org,,Internationaal,VN en hoven,A,voorkeur,,,,voorstel,,,1,
+prod-site-internet-minarm-admin.cloud.defense.gouv.fr,,Frankrijk,regering,A,voorkeur,,,,voorstel,,,1,
+courtmh17.com,,Nederland,regering,A,voorkeur,,,,voorstel,,,1,
+mzv.cz,,,regering,A,voorkeur,,,,voorstel,,,0,
+vlada.cz,,,regering,A,voorkeur,,,,voorstel,,,0,
+afp.com,,,persbureau,B,voorkeur,,,,voorstel,,,0,
+apnews.com,,,persbureau,B,voorkeur,,,,voorstel,,,0,
+reuters.com,,,persbureau,B,voorkeur,,,,voorstel,,,0,
+aap.com.au,Australian Associated Press (AAP),Australië,persbureau,B,vertrouwd,https://www.aap.com.au/,,en,voorstel,,,0,
+abc.net.au,ABC News (Australian Broadcasting Corporation),Australië,publieke omroep,B,vertrouwd,,https://www.abc.net.au/news/feed/51120/rss.xml,en,voorstel,,,0,RSS 'Just In' geverifieerd
+belganewsagency.eu,Belga News Agency,België,persbureau,B,vertrouwd,https://www.belganewsagency.eu/,,nl,voorstel,,,0,Engelstalige nieuwssite van Belga
+rtbf.be,RTBF Info,België,publieke omroep,B,vertrouwd,https://www.rtbf.be/info,,fr,voorstel,,,0,Franstalige publieke omroep
+vrt.be,VRT NWS,België,publieke omroep,B,vertrouwd,https://www.vrt.be/vrtnws/nl/,,nl,voorstel,,,0,"Pad /vrtnws/nl/feed/ gelinkt ('NWS kort'), niet bevestigd als RSS"
+bta.bg,БТА,Bulgarije,persbureau,B,vertrouwd,https://www.bta.bg/en,,en,voorstel,,,4,Nationaal persbureau
+bnrnews.bg,БНР,Bulgarije,publieke omroep,B,vertrouwd,https://bnrnews.bg/en,,en,voorstel,,,0,Publieke radio (Radio Bulgaria); bnr.bg verwijst door naar bnrnews.bg
+bntnews.bg,БНТ,Bulgarije,publieke omroep,B,vertrouwd,https://bntnews.bg/,,bg,voorstel,,,0,Publieke televisie; Engelse artikelen ook op bnt.bg/news
+thecanadianpress.com,The Canadian Press,Canada,persbureau,B,vertrouwd,,,en,voorstel,,,0,Opgehaalde homepage toonde verouderde inhoud (2014); CP-berichten verschijnen vooral via partnermedia
+cbc.ca,CBC/Radio-Canada,Canada,publieke omroep,B,vertrouwd,,,en/fr,voorstel,,,0,Domein geverifieerd via artikelen; RSS-pagina niet te openen
+via.ritzau.dk,Ritzau (via.ritzau.dk persberichtenplatform),Denemarken,persbureau,B,vertrouwd,,,da,voorstel,,,0,persberichtendistributie van Ritzau; hoofddomein ritzau.dk niet geverifieerd
+dr.dk,DR,Denemarken,publieke omroep,B,vertrouwd,,,da,voorstel,,,0,nieuws onder dr.dk/nyheder/
+dpa.com,dpa Deutsche Presse-Agentur,Duitsland,persbureau,B,vertrouwd,,,de,voorstel,,,0,Nationaal persbureau; dpa.com is bedrijfssite (geen open nieuwsfeed)
+zdfheute.de,ZDFheute,Duitsland,publieke omroep,B,vertrouwd,https://www.zdfheute.de/,https://www.zdfheute.de/rss/zdf/nachrichten,de,voorstel,,,0,Nieuwssite publieke omroep ZDF (zdf.de/nachrichten verwijst hierheen)
+bns.ee,BNS,Estland,persbureau,B,vertrouwd,,,et,voorstel,,,0,Alleen dienst-/registratiepagina's gezien (bv. https://www.bns.ee/en/services). Abonnementsdienst; bns.lt niet geverifieerd.
+err.ee,ERR,Estland,publieke omroep,B,vertrouwd,,,et,voorstel,,,0,
+news.err.ee,ERR News,Estland,publieke omroep,B,vertrouwd,,,en,voorstel,,,4,Engelse dienst ERR; Estisch op err.ee
+yle.fi,Yle,Finland,publieke omroep,B,vertrouwd,,,fi,voorstel,,,0,"Alleen artikelen gezien, bv. https://yle.fi/a/74-20244320."
+1tv.ge,საზოგადოებრივი მაუწყებელი (GPB / 1TV),Georgië,publieke omroep,B,vertrouwd,https://1tv.ge/lang/en/,,en,voorstel,,,1,Publieke omroep; zorgen over regeringsinvloed
+amna.gr,ΑΠΕ-ΜΠΕ (ANA-MPA),Griekenland,persbureau,B,vertrouwd,https://www.amna.gr/en,,el,voorstel,,,0,Nationaal persbureau
+ertnews.gr,ΕΡΤ,Griekenland,publieke omroep,B,vertrouwd,https://www.ertnews.gr/,,el,voorstel,,,0,Nieuwssite publieke omroep ERT
+ruv.is,RÚV,IJsland,publieke omroep,B,vertrouwd,,https://www.ruv.is/rss/hladvarp/ruv-english-radio,is,voorstel,,,0,Engelse artikelen onder ruv.is/english/; rss is podcastfeed RÚV English Radio
+france24.com,France 24,Internationaal,publieke omroep,B,vertrouwd,,,en,voorstel,,,0,"Alleen artikelen gezien onder /en/europe/, bv. https://www.france24.com/en/europe/20260901-germany-blames-russia-for-leipzig-airport-drone-attack-orders-russian-consulate-closed."
+ansa.it,ANSA,Italië,persbureau,B,vertrouwd,,https://www.ansa.it/sito/notizie/topnews/topnews_rss.xml,it,voorstel,,,1,Geldige RSS 'Ultima ora'
+hina.hr,HINA,Kroatië,persbureau,B,vertrouwd,https://www.hina.hr/news,,en,voorstel,,,0,Nationaal persbureau
+hrt.hr,HRT,Kroatië,publieke omroep,B,vertrouwd,https://www.hrt.hr/,https://o-nama.hrt.hr/rss-i-mobilne-aplikacije/rss-328191,hr,voorstel,,,0,Publieke omroep; RSS-overzichtspagina
+new.leta.lv,LETA,Letland,persbureau,B,vertrouwd,,,lv,voorstel,,,0,Alleen 'about'-pagina gezien: https://new.leta.lv/eng/info_pages/about/. Abonnementsdienst.
+eng.lsm.lv,LSM (Latvijas Sabiedriskie Mediji),Letland,publieke omroep,B,vertrouwd,,,en,voorstel,,,2,Engelse dienst; Lets op lsm.lv
+lsm.lv,LSM,Letland,publieke omroep,B,vertrouwd,,,lv,voorstel,,,0,
+lrt.lt,LRT,Litouwen,publieke omroep,B,vertrouwd,https://www.lrt.lt/en/news-in-english,https://www.lrt.lt/en/news-in-english?rss,en,voorstel,,,5,Engelse dienst
+moldpres.md,MOLDPRES,Moldavië,persbureau,B,vertrouwd,https://www.moldpres.md/en,,en,voorstel,,,0,Staatspersbureau
+mina.news,MINA,Montenegro,persbureau,B,vertrouwd,https://www.mina.news/,https://www.mina.news/feed,sr,voorstel,,,0,Onafhankelijk persbureau (geen staatsbureau)
+anp.nl,ANP,Nederland,persbureau,B,vertrouwd,,,nl,voorstel,,,0,"Algemeen Nederlands Persbureau; bedrijfssite, nieuws via afnemers"
+nos.nl,NOS,Nederland,publieke omroep,B,vertrouwd,,https://feeds.nos.nl/nosnieuwsalgemeen,nl,voorstel,,,0,Geldige RSS 2.0 'NOS Nieuws' (host feeds.nos.nl)
+rnz.co.nz,RNZ (Radio New Zealand),Nieuw-Zeeland,publieke omroep,B,vertrouwd,,https://www.rnz.co.nz/rss/world.xml,en,voorstel,,,0,Feeds voor persoonlijk gebruik volgens RNZ
+ntb.no,NTB,Noorwegen,persbureau,B,vertrouwd,,,no,voorstel,,,0,nationaal persbureau; ook kommunikasjon.ntb.no persberichtenplatform
+nrk.no,NRK,Noorwegen,publieke omroep,B,vertrouwd,,,no,voorstel,,,0,veel berichtgeving PST-spionagezaken
+pap.pl,PAP,Polen,persbureau,B,vertrouwd,https://www.pap.pl/en,,en,voorstel,,,1,Nationaal persbureau
+polskieradio.pl,Polskie Radio,Polen,publieke omroep,B,vertrouwd,https://www.polskieradio.pl/395,https://www.polskieradio.pl/395/7808,en,voorstel,,,3,English Section van de publieke radio
+lusa.pt,Lusa,Portugal,persbureau,B,vertrouwd,https://www.lusa.pt/,,pt,voorstel,,,0,Nationaal persbureau
+rtp.pt,RTP Notícias,Portugal,publieke omroep,B,vertrouwd,https://www.rtp.pt/noticias/,,pt,voorstel,,,0,Publieke omroep
+agerpres.ro,AGERPRES,Roemenië,persbureau,B,vertrouwd,https://agerpres.ro/english,,ro,voorstel,,,0,Nationaal persbureau; geeft ook MAE/DIICOT-communiqués door
+tvrinfo.ro,TVR,Roemenië,publieke omroep,B,vertrouwd,https://tvrinfo.ro/,,ro,voorstel,,,0,Nieuwssite publieke televisie TVR
+sta.si,STA,Slovenië,persbureau,B,vertrouwd,https://english.sta.si/,,en,voorstel,,,0,Nationaal persbureau; Engelse dienst op english.sta.si
+rtvslo.si,RTV SLO,Slovenië,publieke omroep,B,vertrouwd,https://www.rtvslo.si/,https://www.rtvslo.si/rss,sl,voorstel,,,0,Publieke omroep
+teraz.sk,TASR,Slowakije,persbureau,B,vertrouwd,https://www.teraz.sk/,https://www.teraz.sk/rss,sk,voorstel,,,0,Nieuwsportaal van persbureau TASR; geen Engelse sectie
+ctk.cz,ČTK,Tsjechië,persbureau,B,vertrouwd,https://www.ctk.eu,,cs,voorstel,,,0,Nationaal persbureau; Engelse dienst op ctk.eu
+ct24.ceskatelevize.cz,Česká televize ČT24,Tsjechië,publieke omroep,B,vertrouwd,https://ct24.ceskatelevize.cz/,https://www.ceskatelevize.cz/rss/,cs,voorstel,,,0,"Publieke televisie, nieuwskanaal"
+english.radio.cz,Český rozhlas (Radio Prague International),Tsjechië,publieke omroep,B,vertrouwd,,,en,voorstel,,,2,Engelse dienst publieke radio; nieuwspagina niet apart geverifieerd
+npr.org,NPR,Verenigde Staten,publieke omroep,B,vertrouwd,https://www.npr.org/sections/world/,,en,voorstel,,,1,RSS bestaat volgens pagina maar URL niet geverifieerd
+tt.se,TT Nyhetsbyrån,Zweden,persbureau,B,vertrouwd,,,sv,voorstel,,,0,persberichtenplatform via.tt.se (o.a. Säpo/Åklagare-persberichten)
+svt.se,SVT,Zweden,publieke omroep,B,vertrouwd,,,sv,voorstel,,,0,"Alleen artikelen gezien onder /nyheter/, bv. https://www.svt.se/nyheter/inrikes/sapo-okad-risk-for-ryskt-sabotage-pa-svensk-mark."
+abcnews.go.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,3,
+aljazeera.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,28,
+bloomberg.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+bostonglobe.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+cbsnews.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,3,
+cnbc.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,3,
+cnn.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+edition.cnn.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+euronews.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,13,
+ft.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+janes.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+lemonde.fr,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+lloydslist.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+militarytimes.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+nbcnews.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,8,
+nrc.nl,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+nytimes.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+politico.eu,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+spiegel.de,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+stripes.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,3,
+theglobeandmail.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+theguardian.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+timesofisrael.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,1,
+volkskrant.nl,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+washingtonpost.com,,,internationale omroep/krant,B,vertrouwd,,,,voorstel,,,0,
+kyivindependent.com,,,onafhankelijk Russisch/Oost-Europees,B,vertrouwd,,,,voorstel,,,7,
+meduza.io,,,onafhankelijk Russisch/Oost-Europees,B,vertrouwd,,,,voorstel,,,7,
+novayagazeta.eu,,,onafhankelijk Russisch/Oost-Europees,B,vertrouwd,,,,voorstel,,,2,
+themoscowtimes.com,,,onafhankelijk Russisch/Oost-Europees,B,vertrouwd,,,,voorstel,,,11,
+upi.com,,,persbureau,B,vertrouwd,,,,voorstel,,,1,
+bbc.co.uk,,,publieke omroep,B,vertrouwd,,,,voorstel,,,0,
+bbc.com,,,publieke omroep,B,vertrouwd,,,,voorstel,,,0,
+bnt.bg,,,publieke omroep,B,vertrouwd,,,,voorstel,,,1,
+dw.com,,,publieke omroep,B,vertrouwd,,,,voorstel,,,0,
+pbs.org,,,publieke omroep,B,vertrouwd,,,,voorstel,,,4,
+rferl.org,,,publieke omroep,B,vertrouwd,,,,voorstel,,,9,
+sbs.com.au,,,publieke omroep,B,vertrouwd,,,,voorstel,,,1,
+swissinfo.ch,,,publieke omroep,B,vertrouwd,,,,voorstel,,,1,
+tagesschau.de,,,publieke omroep,B,vertrouwd,,,,voorstel,,,0,
+voaafrica.com,,,publieke omroep,B,vertrouwd,,,,voorstel,,,1,
+wbur.org,,,publieke omroep,B,vertrouwd,,,,voorstel,,,1,
+hirado.hu,Közmédia (MTVA) – hirado.hu,Hongarije,publieke omroep,C,toegestaan,,,hu,voorstel,,,0,Staatsgecontroleerde publieke media met onafhankelijkheidszorgen; site toonde okt 2026 alleen melding dat de nieuwsdienst wordt herzien. MTI niet geverifieerd
+abouthungary.hu,About Hungary,Hongarije,regering,C,toegestaan,https://abouthungary.hu/,,en,voorstel,,,0,"Engelstalige regeringscommunicatie; politiek gekleurd, met voorzichtigheid gebruiken"
+ukrinform.net,Укрінформ,Oekraïne,persbureau,C,toegestaan,https://www.ukrinform.net/,,en,voorstel,,,1,Staatspersbureau; partij in het conflict
+suspilne.media,Суспільне,Oekraïne,publieke omroep,C,toegestaan,https://suspilne.media/eng_suspilne/,https://suspilne.media/rss/all.rss,uk,voorstel,,,0,Publieke omroep; partij in het conflict
+aa.com.tr,Anadolu Ajansı,Turkije,persbureau,C,toegestaan,https://www.aa.com.tr/en,https://www.aa.com.tr/en/rss/default?cat=live,en,voorstel,,,3,Staatsgecontroleerd persbureau; onafhankelijkheidszorgen
+trtworld.com,TRT World,Turkije,publieke omroep,C,toegestaan,https://www.trtworld.com/,,en,voorstel,,,0,Staatsomroep; onafhankelijkheidszorgen
+archive.kyivpost.com,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,1,
+eurointegration.com.ua,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,4,
+euromaidanpress.com,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,2,
+hromadske.ua,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,1,
+mind.ua,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,2,
+pravda.com.ua,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,2,
+unian.info,,,Oekraïense media (partij in het conflict),C,toegestaan,,,,voorstel,,,1,
+atlanticcouncil.org,,,denktank,C,toegestaan,,,,voorstel,,,1,
+ge.boell.org,,,denktank,C,toegestaan,,,,voorstel,,,1,
+gzeromedia.com,,,denktank,C,toegestaan,,,,voorstel,,,1,
+jamestown.org,,,denktank,C,toegestaan,,,,voorstel,,,2,
+jsis.washington.edu,,,denktank,C,toegestaan,,,,voorstel,,,2,
+osw.waw.pl,,,denktank,C,toegestaan,,,,voorstel,,,3,
+reap.fsi.stanford.edu,,,denktank,C,toegestaan,,,,voorstel,,,1,
+securingdemocracy.gmfus.org,,,denktank,C,toegestaan,,,,voorstel,,,1,
+asil.org,,,juridische analyse,C,toegestaan,,,,voorstel,,,3,
+casebook.icrc.org,,,juridische analyse,C,toegestaan,,,,voorstel,,,1,
+ejiltalk.org,,,juridische analyse,C,toegestaan,,,,voorstel,,,1,
+gpil.jura.uni-bonn.de,,,juridische analyse,C,toegestaan,,,,voorstel,,,1,
+irishlegal.com,,,juridische analyse,C,toegestaan,,,,voorstel,,,1,
+jurist.org,,,juridische analyse,C,toegestaan,,,,voorstel,,,3,
+lawfaremedia.org,,,juridische analyse,C,toegestaan,,,,voorstel,,,2,
+mansfield.bailii.org,,,juridische analyse,C,toegestaan,,,,voorstel,,,1,
+verfassungsblog.de,,,juridische analyse,C,toegestaan,,,,voorstel,,,1,
+abc13.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+adn.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,0,
+clickorlando.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+cp24.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,0,
+feeds.ajc.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,3,
+hawaiitribune-herald.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+heraldnet.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+inquirer.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+kpbs.org,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,2,
+ktvu.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+opb.org,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+salisburyradio.co.uk,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+wsvn.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,1,
+yahoo.com,,,lokale overname persbureau (AP/Reuters),C,toegestaan,,,,voorstel,,,4,
+acleddata.com,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+amnesty.org.uk,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+amnestyusa.org,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+bellingcat.com,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+criticalthreats.org,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+cyberlaw.ccdcoe.org,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+edmo.eu,,,onderzoek,C,toegestaan,,,,voorstel,,,2,
+hrw.org,,,onderzoek,C,toegestaan,,,,voorstel,,,2,
+occrp.org,,,onderzoek,C,toegestaan,,,,voorstel,,,3,
+statewatch.org,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+theins.press,,,onderzoek,C,toegestaan,,,,voorstel,,,2,
+thesentry.org,,,onderzoek,C,toegestaan,,,,voorstel,,,1,
+abs-cbn.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+acquiaprod.middleeasteye.net,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+africanews.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+allafrica.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+arabnews.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,5,
+arabnews.pk,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+armenpress.am,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+baltictimes.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+brusselstimes.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+burkina24.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+business-standard.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+civil.ge,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,0,
+connexionfrance.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+dailymaverick.co.za,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+deccanherald.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+dutchnews.nl,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,3,
+dutchreview.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+europeanjournalists.org,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+expats.cz,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+globalnews.ca,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+gulfnews.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,3,
+intellinews.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+internazionale.it,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+malaymail.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+newarab.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+newsnationnow.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+nltimes.nl,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+oldwp.civil.ge,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+politifact.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+publicsenat.fr,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+rudaw.net,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+sofiaglobe.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+the-star.co.ke,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+thedailystar.net,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+theeastafrican.co.ke,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+thelocal.de,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+thelocal.fr,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,2,
+thelocal.se,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+theweek.in,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+vaticannews.va,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+washingtontimes.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,4,
+ynetnews.com,,,regionaal nieuws,C,toegestaan,,,,voorstel,,,1,
+bankinfosecurity.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+bleepingcomputer.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,4,
+cyberscoop.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,2,
+darkreading.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+govinfosecurity.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+infosecurity-magazine.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+next.ink,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,2,
+publictechnology.net,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,2,
+redmondmag.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+securityaffairs.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,2,
+securityweek.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+sophos.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+thehackernews.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+therecord.media,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,3,
+theregister.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+welivesecurity.com,,,vakmedia cyber,C,toegestaan,,,,voorstel,,,1,
+ajot.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,2,
+arctictoday.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,2,
+balkangreenenergynews.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+gcaptain.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+military.africa,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+mining.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+rigzone.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+spglobal.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+thedefensepost.com,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+ukdefencejournal.org.uk,,,vakmedia defensie/energie,C,toegestaan,,,,voorstel,,,1,
+rg.ru,,,"Russische staatsmedia (alleen voor Russische reactie, nooit als bewijs)",D,niet_gebruiken,,,,voorstel,,,0,
+ria.ru,,,"Russische staatsmedia (alleen voor Russische reactie, nooit als bewijs)",D,niet_gebruiken,,,,voorstel,,,0,
+rt.com,,,"Russische staatsmedia (alleen voor Russische reactie, nooit als bewijs)",D,niet_gebruiken,,,,voorstel,,,0,
+sputnikglobe.com,,,"Russische staatsmedia (alleen voor Russische reactie, nooit als bewijs)",D,niet_gebruiken,,,,voorstel,,,0,
+tass.com,,,"Russische staatsmedia (alleen voor Russische reactie, nooit als bewijs)",D,niet_gebruiken,,,,voorstel,,,0,
+tass.ru,,,"Russische staatsmedia (alleen voor Russische reactie, nooit als bewijs)",D,niet_gebruiken,,,,voorstel,,,0,
+arynews.tv,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,1,
+devdiscourse.com,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,2,
+everycrsreport.com,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,1,
+globalsecurity.org,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,9,
+reliefweb.int,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,1,
+staging7.balcanicaucaso.org,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,1,
+un-project.org,,,aggregator of spiegel,D,niet_gebruiken,,,,voorstel,,,1,
+blog.knowbe4.com,,,blog of bedrijfspagina,D,niet_gebruiken,,,,voorstel,,,1,
+dronexl.co,,,blog of bedrijfspagina,D,niet_gebruiken,,,,voorstel,,,1,
+munich-airport.de,,,blog of bedrijfspagina,D,niet_gebruiken,,,,voorstel,,,1,
+en.wikipedia.org,,,encyclopedie,D,niet_gebruiken,,,,voorstel,,,4,
+wikipedia.org,,,encyclopedie,D,niet_gebruiken,,,,voorstel,,,0,
+newsonair.gov.in,,,staatsmedia derde land,D,niet_gebruiken,,,,voorstel,,,1,
+von.gov.ng,,,staatsmedia derde land,D,niet_gebruiken,,,,voorstel,,,1,
+onderzoeksraad.nl,Onderzoeksraad voor Veiligheid,Nederland,onderzoeksraad,A,voorkeur,https://www.onderzoeksraad.nl/nl/actueel,,nl,voorstel,,,0,"OVV-rapporten (o.a. MH17, 2015)"
+prosecutionservice.nl,Openbaar Ministerie (Engelse site),Nederland,openbaar ministerie,A,voorkeur,https://www.prosecutionservice.nl/topics/mh17-plane-crash,,en,voorstel,,,0,JIT- en MH17-documenten
+tweedekamer.nl,Tweede Kamer der Staten-Generaal,Nederland,parlement,A,voorkeur,https://www.tweedekamer.nl/kamerstukken,,nl,voorstel,,,0,Kamerbrieven van het kabinet

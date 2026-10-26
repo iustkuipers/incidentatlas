@@ -28,6 +28,7 @@ import re
 import sys
 import unicodedata
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -37,6 +38,7 @@ INCIDENTS = DATA / "incidenten.csv"
 PROPOSALS = DATA / "voorstellen.csv"
 CHANGES = DATA / "wijzigingen.csv"
 RUNS = DATA / "runs.csv"
+DEVELOPMENTS = DATA / "ontwikkelingen.csv"
 
 # ---------------------------------------------------------------- schema
 COLUMNS = [
@@ -55,7 +57,9 @@ PROPOSAL_COLUMNS = [
     "beoordeling", "beoordeeld_door", "opmerking_redactie", "verwerkt",
 ]
 CHANGE_COLUMNS = ["datum", "run_datum", "soort", "incident_id", "titel", "omschrijving"]
-RUN_COLUMNS = ["run_datum", "bekeken", "relevant", "voorstellen", "goedgekeurd", "afgewezen"]
+RUN_COLUMNS = ["run_datum", "inbox", "bekeken", "relevant", "voorstellen", "goedgekeurd", "afgewezen"]
+DEV_COLUMNS = ["ontwikkeling_id", "incident_id", "datum", "fase", "fasewissel", "wat", "wie",
+               "bron_url", "bron_uitgever", "bron_niveau", "citaat", "toegevoegd_op"]
 
 CATEGORIES = {
     "sabotage": "Sabotage & brandstichting",
@@ -69,11 +73,20 @@ CATEGORIES = {
     "energie_chantage": "Energie-chantage",
     "migratie": "Migratie als wapen",
 }
-STATUSES = {"bewezen", "past_in_profiel", "afgewezen"}
+# fasen van een zaak (protocol 2.0, hoofdstuk 3); oude namen worden bij het lezen omgezet
+STATUSES = {"signaal", "beschuldigd", "aangeklaagd", "bewezen", "ontkracht"}
+LEGACY_STATUS = {"past_in_profiel": "signaal", "afgewezen": "ontkracht"}
+PHASE_RANK = {"signaal": 1, "beschuldigd": 2, "aangeklaagd": 3, "bewezen": 4}
+# alleen deze categorieën kunnen als signaal beginnen; de rest pas vanaf beschuldigd
+SIGNAL_CATEGORIES = {"spionage", "sabotage", "cyber", "desinformatie_verkiezingen"}
+
+def phase(s: str) -> str:
+    s = (s or "").strip()
+    return LEGACY_STATUS.get(s, s)
 PRECISIONS = {"dag", "maand", "jaar"}
 REGIONS = {"Europa", "Afrika", "Midden-Oosten", "Azië", "Noord-Amerika", "Latijns-Amerika",
            "Rusland & buurlanden", "Oekraïne"}
-KINDS = {"nieuw", "extra_bron", "statuswijziging", "correctie"}
+KINDS = {"nieuw", "ontwikkeling", "extra_bron", "statuswijziging", "correctie"}
 
 # ------------------------------------------------------------ bronniveaus
 LEVEL_A = ("justice.gov", "gov.uk", "cisa.gov", "treasury.gov", "state.gov", "europa.eu", "nato.int",
@@ -151,8 +164,16 @@ def append_csv(path: Path, rows: list[dict], columns: list[str]) -> None:
 
 DATE_RE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
 
+def iri_to_uri(url: str) -> str:
+    """URL met letters als 'ț' of '–' omzetten naar iets wat urllib kan versturen."""
+    p = urllib.parse.urlsplit(url)
+    host = p.hostname.encode("idna").decode("ascii") if p.hostname else ""
+    netloc = host + (f":{p.port}" if p.port else "")
+    q = lambda s: urllib.parse.quote(s, safe="/%:@!$&'()*+,;=-._~?")
+    return urllib.parse.urlunsplit((p.scheme, netloc, q(p.path), q(p.query), q(p.fragment)))
+
 def fetch(url: str, timeout: int = 20) -> tuple[int, str]:
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Incidentatlas linkcheck)"})
+    req = urllib.request.Request(iri_to_uri(url), headers={"User-Agent": "Mozilla/5.0 (Incidentatlas linkcheck)"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             body = r.read(3_000_000).decode("utf-8", "ignore")
@@ -190,6 +211,7 @@ def validate_incident(r: dict, strict: bool = True) -> list[str]:
         e.append(f"onbekende regio: {r['regio']!r}")
     if r["categorie"] not in CATEGORIES:
         e.append(f"onbekende categorie: {r['categorie']!r}")
+    r["status"] = phase(r["status"])
     if r["status"] not in STATUSES:
         e.append(f"onbekende status: {r['status']!r}")
     try:
@@ -206,20 +228,26 @@ def validate_incident(r: dict, strict: bool = True) -> list[str]:
             e.append("bewezen zonder toeschrijver")
         if "A" not in levels and levels.count("B") < 2:
             warn("bewezen vereist een A-bron of twee B-bronnen")
-    if r["status"] == "past_in_profiel" and not ({"A", "B"} & set(levels)):
-        warn("past_in_profiel vereist minstens een A- of B-bron")
+    if r["status"] in ("signaal", "beschuldigd", "aangeklaagd", "ontkracht") and not ({"A", "B"} & set(levels)):
+        warn(f"{r['status']} vereist minstens een A- of B-bron")
+    if r["status"] == "signaal" and r["categorie"] not in SIGNAL_CATEGORIES:
+        warn(f"categorie {r['categorie']!r} kan niet als signaal beginnen, pas vanaf beschuldigd")
+    for k in ("lat", "lon"):
+        if re.fullmatch(r"-?\d+(\.\d?)?", r[k].strip() or "x"):
+            e.append(f"waarschuwing: {k} heeft minder dan 2 decimalen; zoek de exacte plek")
     if r["oekraine_oorlog"] not in ("ja", "nee"):
         e.append("oekraine_oorlog moet ja of nee zijn")
     return e
 
 def cmd_validate(_args) -> int:
     rows = read_csv(INCIDENTS, COLUMNS)
-    ids, bad, weak = set(), 0, []
+    ids, bad, weak, coords = set(), 0, [], {}
     for r in rows:
         msgs = validate_incident(r, strict=False)
         if r["id"] in ids:
             msgs.append("dubbel id")
         ids.add(r["id"])
+        coords.setdefault((r["lat"].strip(), r["lon"].strip()), []).append(r["id"])
         errs = [m for m in msgs if not m.startswith("waarschuwing")]
         if errs:
             bad += 1
@@ -227,7 +255,10 @@ def cmd_validate(_args) -> int:
         elif msgs:
             weak.append(r["id"])
     if weak:
-        print(f"  ! {len(weak)} incidenten hebben een sterkere bron nodig (zie 'bron verbeteren' in opmerking).")
+        print(f"  ! {len(weak)} incidenten met een waarschuwing (bron te zwak of te weinig decimalen).")
+    dup = {k: v for k, v in coords.items() if len(v) > 1 and all(k)}
+    for (la, lo), v in dup.items():
+        print(f"  ! zelfde coördinaten {la},{lo} bij {len(v)} incidenten: {', '.join(v[:4])}{' …' if len(v) > 4 else ''}")
     print(f"{len(rows)} incidenten gecontroleerd, {bad} met fouten.")
     return 1 if bad else 0
 
@@ -252,6 +283,22 @@ def add_source(inc: dict, p: dict) -> str | None:
     inc[f"bron_{i}_niveau"] = p["bron_niveau"] or source_level(p["bron_url"])
     return None
 
+def promote_source(inc: dict, p: dict) -> None:
+    """Zet de bron van p op plek 1; de overige houden hun volgorde en de zwakste valt af als er
+    meer dan drie zijn. Alle bronnen blijven daarnaast in ontwikkelingen.csv staan."""
+    keys = ("url", "uitgever", "titel", "niveau")
+    cur = [{k: inc[f"bron_{i}_{k}"] for k in keys} for i in (1, 2, 3) if inc[f"bron_{i}_url"]]
+    new = {"url": p["bron_url"], "uitgever": p["bron_uitgever"], "titel": p["bron_titel"],
+           "niveau": p["bron_niveau"] or source_level(p["bron_url"])}
+    rest = [s for s in cur if s["url"] != new["url"]]
+    while len(rest) > 2:
+        rest.remove(max(reversed(rest), key=lambda s: "ABCD".index(s["niveau"] or "D")))
+    for i, s in enumerate([new] + rest + [{k: "" for k in keys}] * 2, start=1):
+        if i > 3:
+            break
+        for k in keys:
+            inc[f"bron_{i}_{k}"] = s[k]
+
 def check_link_and_quote(p: dict) -> str | None:
     code, body = fetch(p["bron_url"])
     if code != 200:
@@ -261,78 +308,43 @@ def check_link_and_quote(p: dict) -> str | None:
         return "citaat niet gevonden op de bronpagina"
     return None
 
+def dev_row(inc: dict, p: dict, fasewissel: bool, wat: str | None = None) -> dict:
+    """Eén ontwikkeling voor de tijdlijn van een zaak."""
+    return {"ontwikkeling_id": p["voorstel_id"], "incident_id": inc["id"],
+            "datum": (p["datum_bevestigd"] if p["soort"] == "nieuw" else p["datum"]) or p["datum"] or today(),
+            "fase": inc["status"], "fasewissel": "ja" if fasewissel else "nee",
+            "wat": (wat or p["samenvatting"] or p["titel"]).strip(), "wie": p["toegeschreven_door"].strip(),
+            "bron_url": p["bron_url"], "bron_uitgever": p["bron_uitgever"], "bron_niveau": p["bron_niveau"],
+            "citaat": p["citaat"], "toegevoegd_op": today()}
+
 def cmd_process(args) -> int:
+    """Neemt goedgekeurde voorstellen over. Soorten:
+    - nieuw: nieuwe zaak (met eerste ontwikkeling);
+    - ontwikkeling / statuswijziging: nieuw feit bij een zaak, eventueel met fasewissel;
+    - extra_bron: extra bron bij een zaak; correctie: velden aanpassen.
+    incident_id 'voorstel:<id>' verwijst naar een nieuwe zaak uit een ander voorstel: zo'n regel
+    wordt verwerkt nadat die zaak bestaat (extra bronnen tellen al mee bij het aanmaken)."""
     src = args.voorstellen or str(PROPOSALS)
     proposals = read_csv(src, PROPOSAL_COLUMNS)
     incidents = read_csv(INCIDENTS, COLUMNS)
+    for r in incidents:
+        r["status"] = phase(r["status"])
     by_id = {r["id"]: r for r in incidents}
+    devs: list[dict] = []
     changes, done, failed = [], 0, 0
-
-    for p in proposals:
-        if p["beoordeling"].strip().lower() != "goedgekeurd" or p["verwerkt"].strip():
-            continue
+    pending = [p for p in proposals if p["beoordeling"].strip().lower() == "goedgekeurd" and not p["verwerkt"].strip()]
+    for p in pending:
         p["bron_niveau"] = (p["bron_niveau"] or source_level(p["bron_url"])).upper()
-        kind = p["soort"].strip().lower()
-        err = None
-        if kind not in KINDS:
-            err = f"onbekende soort: {kind!r}"
-        elif not p["bron_url"].startswith("http"):
-            err = "bron_url ontbreekt"
-        elif args.controleer_links:
-            err = check_link_and_quote(p)
+        p["status"] = phase(p["status"])
+        p["soort"] = p["soort"].strip().lower()
+    children: dict[str, list[dict]] = {}
+    for p in pending:
+        if p["incident_id"].startswith("voorstel:"):
+            children.setdefault(p["incident_id"].split(":", 1)[1], []).append(p)
+    created: dict[str, str] = {}  # voorstel_id -> nieuwe incident-id
 
-        if not err and kind == "nieuw":
-            iid = base = f"{p['datum']}-{slugify(p['titel'])[:40]}"
-            n = 2
-            while iid in by_id:
-                iid, n = f"{base}-{n}", n + 1
-            inc = {c: "" for c in COLUMNS}
-            for c in COLUMNS:
-                if c in p and p[c]:
-                    inc[c] = p[c].strip()
-            inc.update(id=iid, toegevoegd_op=today(), oekraine_oorlog=inc["oekraine_oorlog"] or "nee",
-                       statusgeschiedenis=f"{p['datum_bevestigd'] or today()}:{inc['status']}")
-            add_source(inc, p)
-            errs = validate_incident(inc)
-            if errs:
-                err = "; ".join(errs)
-            else:
-                incidents.append(inc); by_id[iid] = inc
-                changes.append(dict(datum=today(), run_datum=p["run_datum"], soort="nieuw", incident_id=iid, titel=inc["titel"],
-                                    omschrijving=f"Opgenomen als {inc['status'].replace('_', ' ')} · bron {inc['bron_1_niveau']}"))
-        elif not err:
-            inc = by_id.get(p["incident_id"].strip())
-            if not inc:
-                err = f"incident_id niet gevonden: {p['incident_id']!r}"
-            else:
-                before = dict(inc)
-                if kind in ("extra_bron", "statuswijziging"):
-                    err = add_source(inc, p)
-                if not err and kind == "statuswijziging":
-                    new = p["status"].strip()
-                    inc["status"] = new
-                    if p["toegeschreven_door"]:
-                        inc["toegeschreven_door"] = p["toegeschreven_door"].strip()
-                    if p["datum_bevestigd"]:
-                        inc["datum_bevestigd"] = p["datum_bevestigd"].strip()
-                    inc["statusgeschiedenis"] += f";{p['datum_bevestigd'] or today()}:{new}"
-                if not err and kind == "correctie":
-                    for c in COLUMNS:
-                        if c in p and p[c].strip() and c not in ("id", "statusgeschiedenis"):
-                            inc[c] = p[c].strip()
-                if not err:
-                    errs = validate_incident(inc)
-                    if errs:
-                        inc.clear(); inc.update(before)
-                        err = "; ".join(errs)
-                    else:
-                        inc["opmerking"] = re.sub(r"^bron verbeteren:[^.]*\.?\s*", "", inc["opmerking"])
-                if not err:
-                    label = {"extra_bron": "Bron toegevoegd", "statuswijziging": f"Status nu {inc['status'].replace('_', ' ')}",
-                             "correctie": "Gecorrigeerd"}[kind]
-                    changes.append(dict(datum=today(), run_datum=p["run_datum"], soort=kind, incident_id=inc["id"], titel=inc["titel"],
-                                        omschrijving=f"{label} · {p['bron_uitgever']} (niveau {p['bron_niveau']})"))
-
+    def finish(p: dict, err: str | None) -> None:
+        nonlocal done, failed
         if err:
             failed += 1
             p["verwerkt"] = f"fout: {err}"
@@ -342,17 +354,123 @@ def cmd_process(args) -> int:
             p["verwerkt"] = f"ja {today()}"
             print(f"  ✓ {p['voorstel_id'] or p['titel']}")
 
+    def precheck(p: dict) -> str | None:
+        if p["soort"] not in KINDS:
+            return f"onbekende soort: {p['soort']!r}"
+        if not p["bron_url"].startswith("http"):
+            return "bron_url ontbreekt"
+        return check_link_and_quote(p) if args.controleer_links else None
+
+    def new_case(p: dict) -> str | None:
+        iid = base = f"{p['datum']}-{slugify(p['titel'])[:40]}"
+        n = 2
+        while iid in by_id:
+            iid, n = f"{base}-{n}", n + 1
+        inc = {c: "" for c in COLUMNS}
+        for c in COLUMNS:
+            if c in p and p[c]:
+                inc[c] = p[c].strip()
+        inc.update(id=iid, toegevoegd_op=today(), oekraine_oorlog=inc["oekraine_oorlog"] or "nee",
+                   statusgeschiedenis=f"{p['datum_bevestigd'] or p['datum'] or today()}:{inc['status']}")
+        add_source(inc, p)
+        extra = [e for e in children.get(p["voorstel_id"], []) if e["soort"] == "extra_bron"]
+        for e in extra:
+            err = precheck(e)
+            if err:
+                return f"extra bron {e['voorstel_id']}: {err}"
+            add_source(inc, e)
+        errs = validate_incident(inc)
+        if errs:
+            return "; ".join(errs)
+        incidents.append(inc); by_id[iid] = inc; created[p["voorstel_id"]] = iid
+        devs.append(dev_row(inc, p, True))
+        for e in extra:
+            devs.append(dev_row(inc, e, False, wat=e["samenvatting"] or "Aanvullende bron"))
+        changes.append(dict(datum=today(), run_datum=p["run_datum"], soort="nieuw", incident_id=iid, titel=inc["titel"],
+                            omschrijving=f"Nieuwe zaak · {inc['status']} · bron {inc['bron_1_niveau']}"))
+        return None
+
+    def develop(inc: dict, p: dict) -> str | None:
+        kind, before = p["soort"], dict(inc)
+        cur, new = inc["status"], p["status"] or inc["status"]
+        switched = False
+        if kind in ("ontwikkeling", "statuswijziging") and new != cur:
+            if new not in STATUSES:
+                return f"onbekende fase {new!r}"
+            if new != "ontkracht" and cur != "ontkracht" and PHASE_RANK[new] < PHASE_RANK[cur]:
+                return f"fase kan niet omlaag van {cur} naar {new} (alleen naar ontkracht)"
+            switched = True
+        if switched:
+            promote_source(inc, p)  # de bron die de nieuwe fase draagt komt altijd vooraan
+            err = None
+        else:
+            err = add_source(inc, p) if kind in ("extra_bron", "ontwikkeling", "statuswijziging") else None
+        if err and kind == "extra_bron":
+            return err  # bij een ontwikkeling zonder fasewissel staat de bron in elk geval in de tijdlijn
+        if switched:
+            inc["status"] = new
+            if p["toegeschreven_door"]:
+                inc["toegeschreven_door"] = p["toegeschreven_door"].strip()
+            if p["datum_bevestigd"] or p["datum"]:
+                inc["datum_bevestigd"] = (p["datum_bevestigd"] or p["datum"]).strip()
+            inc["statusgeschiedenis"] += f";{p['datum_bevestigd'] or p['datum'] or today()}:{new}"
+        if kind == "correctie":
+            for c in COLUMNS:
+                if c in p and p[c].strip() and c not in ("id", "statusgeschiedenis"):
+                    inc[c] = p[c].strip()
+        errs = validate_incident(inc)
+        if errs:
+            inc.clear(); inc.update(before)
+            return "; ".join(errs)
+        inc["opmerking"] = re.sub(r"^bron verbeteren:[^.]*\.?\s*", "", inc["opmerking"])
+        if kind != "correctie":
+            devs.append(dev_row(inc, p, switched))
+        label = {"extra_bron": "Bron toegevoegd", "correctie": "Gecorrigeerd"}.get(kind) or (f"Fase nu {inc['status']}" if switched else "Ontwikkeling")
+        changes.append(dict(datum=today(), run_datum=p["run_datum"], soort=kind, incident_id=inc["id"], titel=inc["titel"],
+                            omschrijving=f"{label} · {p['bron_uitgever']} (niveau {p['bron_niveau']})"))
+        return None
+
+    # ronde 1: nieuwe zaken en ontwikkelingen bij bestaande zaken
+    for p in pending:
+        if p["incident_id"].startswith("voorstel:"):
+            continue
+        err = precheck(p)
+        if not err:
+            if p["soort"] == "nieuw":
+                err = new_case(p)
+            else:
+                inc = by_id.get(p["incident_id"].strip())
+                err = f"incident_id niet gevonden: {p['incident_id']!r}" if not inc else develop(inc, p)
+        finish(p, err)
+        for e in children.get(p["voorstel_id"], []):
+            if e["soort"] == "extra_bron":
+                finish(e, None if not err else f"hoofdvoorstel niet verwerkt ({err})")
+
+    # ronde 2: ontwikkelingen bij zaken die in deze ronde (of eerder) uit een voorstel ontstonden
+    later = [e for k in children for e in children[k] if e["soort"] != "extra_bron" and not e["verwerkt"]]
+    for e in sorted(later, key=lambda e: e["datum"]):
+        parent_id = e["incident_id"].split(":", 1)[1]
+        parent = next((q for q in proposals if q["voorstel_id"] == parent_id), None)
+        iid = created.get(parent_id)
+        if not iid and parent and parent["verwerkt"].startswith("ja"):
+            iid = next((r["id"] for r in incidents if f";{parent_id}" in ";" + r.get("statusgeschiedenis", "")), None)
+            iid = iid or next((d["incident_id"] for d in read_csv(DEVELOPMENTS, DEV_COLUMNS) if d["ontwikkeling_id"] == parent_id), None)
+        if not iid:
+            if parent and parent["beoordeling"].strip().lower() == "goedgekeurd":
+                finish(e, f"hoofdvoorstel niet verwerkt ({parent['verwerkt'] or 'nog niet'})")
+            continue  # hoofdvoorstel nog niet goedgekeurd: laten staan
+        err = precheck(e) or develop(by_id[iid], e)
+        finish(e, err)
+
     write_incidents(incidents)
+    if devs:
+        append_csv(DEVELOPMENTS, devs, DEV_COLUMNS)
     if changes:
         append_csv(CHANGES, changes, CHANGE_COLUMNS)
 
     # tellingen per run bijwerken
     runs = {r["run_datum"]: r for r in read_csv(RUNS, RUN_COLUMNS)}
-    for p in proposals:
-        rd = p["run_datum"]
-        if not rd or rd not in runs:
-            continue
-        rr = runs[rd]
+    for rd, rr in runs.items():
         rr["goedgekeurd"] = str(sum(1 for q in proposals if q["run_datum"] == rd and q["beoordeling"].lower() == "goedgekeurd"))
         rr["afgewezen"] = str(sum(1 for q in proposals if q["run_datum"] == rd and q["beoordeling"].lower() == "afgewezen"))
     if runs:
@@ -366,6 +484,39 @@ def cmd_process(args) -> int:
         write_csv(Path(src), proposals, PROPOSAL_COLUMNS)
     print(f"{done} verwerkt, {failed} met fout.")
     return 1 if failed else 0
+
+def cmd_migrate(_args) -> int:
+    """Zet oude statusnamen om en bouwt ontwikkelingen.csv op uit statusgeschiedenis (eenmalig)."""
+    rows = read_csv(INCIDENTS, COLUMNS)
+    have = {d["incident_id"] for d in read_csv(DEVELOPMENTS, DEV_COLUMNS)}
+    devs, n = [], 0
+    for r in rows:
+        if phase(r["status"]) != r["status"]:
+            r["status"] = phase(r["status"]); n += 1
+        hist = []
+        for part in filter(None, r["statusgeschiedenis"].split(";")):
+            d, _, s = part.partition(":")
+            hist.append(f"{d}:{phase(s)}")
+        r["statusgeschiedenis"] = ";".join(hist)
+        if r["id"] in have:
+            continue
+        for i, part in enumerate(hist):
+            d, _, s = part.partition(":")
+            devs.append({"ontwikkeling_id": f"{r['id']}-{i + 1}", "incident_id": r["id"], "datum": d, "fase": s,
+                         "fasewissel": "ja", "wat": r["samenvatting"] if i == 0 else f"Fase nu {s}",
+                         "wie": r["toegeschreven_door"] if s != "signaal" else "",
+                         "bron_url": r["bron_1_url"], "bron_uitgever": r["bron_1_uitgever"], "bron_niveau": r["bron_1_niveau"],
+                         "citaat": "", "toegevoegd_op": today()})
+    write_incidents(rows)
+    append_csv(DEVELOPMENTS, devs, DEV_COLUMNS)
+    props = read_csv(PROPOSALS, PROPOSAL_COLUMNS)
+    m = 0
+    for p in props:
+        if phase(p["status"]) != p["status"]:
+            p["status"] = phase(p["status"]); m += 1
+    write_csv(PROPOSALS, props, PROPOSAL_COLUMNS)
+    print(f"{n} incidenten en {m} voorstellen omgezet naar de nieuwe fasenamen; {len(devs)} ontwikkelingen aangemaakt.")
+    return 0
 
 # ------------------------------------------------------------- links
 def cmd_links(_args) -> int:
@@ -398,6 +549,7 @@ def main() -> int:
     pr.add_argument("--controleer-links", action="store_true", help="link en citaat online controleren")
     pr.set_defaults(fn=cmd_process)
     sub.add_parser("links").set_defaults(fn=cmd_links)
+    sub.add_parser("migreer").set_defaults(fn=cmd_migrate)
     args = ap.parse_args()
     return args.fn(args)
 

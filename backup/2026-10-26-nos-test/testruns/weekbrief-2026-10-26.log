@@ -1,0 +1,6 @@
+﻿07:00:04  Start weekbrief-2026-10-26 met C:\Users\Iust\.vscode\extensions\anthropic.claude-code-2.1.310-win32-x64\resources\native-binary\claude.exe
+07:00:05  Te beoordelen: 142 bericht(en) in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\logs\te-beoordelen-2026-10-26.csv
+07:21:04  claude klaar, exitcode 0, stream in C:\Users\Iust\OneDrive\Documenten\bridgeview\Russia\logs\weekbrief-2026-10-26.jsonl
+07:21:05  Tokens: 5 zoek-/ophaalacties gelogd in tokens.csv; totale kosten $0.96
+07:21:07  Controle: 142 beoordelingen geaccepteerd (141 niet relevant, 0 volglijst, 1 voorstel), 0 afgekeurd; 1 voorstel(len), 0 afgekeurd.
+07:21:07  weekbrief-2026-10-26 klaar.

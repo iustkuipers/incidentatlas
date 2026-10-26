@@ -1,0 +1,166 @@
+{
+  "duration_api_ms": 466338,
+  "stop_reason": "end_turn",
+  "session_id": "cc95da2e-2f1f-4285-aaad-c692c36716a0",
+  "total_cost_usd": 1.5396901950000002,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 93457,
+    "cache_read_input_tokens": 725198,
+    "output_tokens": 23693,
+    "output_tokens_details": {
+      "thinking_tokens": 6969
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 93457,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2069,
+        "cache_read_input_tokens": 88605,
+        "cache_creation_input_tokens": 4852,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4852
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-haiku-5-5": {
+      "inputTokens": 205931,
+      "outputTokens": 62758,
+      "cacheReadInputTokens": 10062,
+      "cacheCreationInputTokens": 167727,
+      "webSearchRequests": 10,
+      "costUSD": 0.173038595,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 39682,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5-5": {
+      "inputTokens": 24,
+      "outputTokens": 23693,
+      "cacheReadInputTokens": 725198,
+      "cacheCreationInputTokens": 93457,
+      "webSearchRequests": 0,
+      "costUSD": 1.3666516,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 6969,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "extra_usage_disabled",
+  "subagent_stats": {
+    "spawned": 2,
+    "requested": {
+      "background": 0,
+      "foreground": 2,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 2,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "web-fetch": 2
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 24,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "De archiefrun voor 2024 is klaar. Ik heb 36 NOS-artikelen uit 2024 beoordeeld en onderaan `data/beoordelingen.csv` gezet. Daaruit volgen 13 voorstellen in `data/voorstellen.csv`, `archief-2024-01` t/m `-13`, met `run_datum` `archief`. `controleer_weekbrief.py` heb ik niet gedraaid. De citaten zijn dus nog niet tegen de pagina's gecontroleerd.\n\n**Zoekopdrachten (10, allemaal `site:nos.nl 2024`):**\n- Rusland sabotage\n- Russische hackers cyberaanval\n- Russische spion opgepakt\n- Russische desinformatie verkiezingen\n- kabel Oostzee Rusland beschadigd\n- Russische drone luchtruim schending\n- Wagner Africa Corps\n- Russische diplomaten uitgezet\n- aanslag Russische geheime dienst vergiftiging\n- Finland grens migranten Rusland migratie als wapen\n\nIk heb 29 artikelen geopend. De andere 7 heb ik op titel als `niet_relevant` genoteerd. Artikelen uit andere jaren heb ik weggelaten, zoals de ASML/SVR-zaak, de Warschause winkelcentrumbrand en Wagner-stukken van Nieuwsuur uit 2025.\n\n**Besluiten:** 13 `voorstel`, 16 `volglijst` (waarvan 10 \"zelfde incident als …\"), 7 `niet_relevant`.\n\n**Voorstellen:**\n1. 2024-01 Duitsland: Russisch netwerk van 50.000 nepaccounts op X (`past_in_profiel`)\n2. 2024-03 Tsjechië: netwerk rond Voice of Europe gericht op de EU-verkiezingen (`past_in_profiel`)\n3. 2024-04 Niger: Africa Corps landt in Niamey, valt onder het Russische ministerie van Defensie (`bewezen`)\n4. 2024-04 Duitsland: arrestaties in Bayreuth voor het voorbereiden van sabotage voor Rusland (`bewezen`, Duits OM)\n5. 2024-06-24 EU: sancties tegen zes Russische hackers (`bewezen`, EU)\n6. 2024-07 Mali: zware verliezen van het Africa Corps in Noord-Mali (`past_in_profiel`)\n7. Slovenië: Russisch spionnenpaar, opgepakt in 2022 en vrijgelaten bij de gevangenenruil van augustus 2024 (`past_in_profiel`)\n8. 2024-09-04 VS: regering beschuldigt Rusland van verkiezingsinmenging via RT (`bewezen`)\n9. GRU-eenheid 29155: VS klagen vijf officieren aan voor de Whispergate-aanvallen van 2022 (`bewezen`)\n10. 2024-09-08 Roemenië en Letland: Russische drones in het luchtruim (`bewezen`, Roemeens ministerie van Defensie)\n11. 2024 Nederland en Europa: Russische verstoring van zes satellieten, waaronder BabyTV (`past_in_profiel`)\n12. 2024-11-17/18 Oostzee: twee datakabels beschadigd (`past_in_profiel`, zekerheid laag)\n13. 2024-12-25 Finland: Estlink 2 beschadigd, tanker Eagle S in beslag genomen (`past_in_profiel`)\n\nGeen van deze incidenten stond al in `incidenten.csv`, dus alle voorstellen zijn `nieuw`.\n\n**Twijfelgevallen:**\n- **Citaten:** een hulpagent heeft de citaten van de pagina's overgenomen. Een paar zinnen zijn erg kort, zoals \"het land verdenkt Rusland van het beschadigen van de kabels\", en lopen het meeste risico om in de controle af te vallen.\n- **Estlink 2:** het vervolgartikel 2549817 vermeldt \"Finland houdt Rusland hiervoor verantwoordelijk\". Mogelijk is `bewezen` dus terecht, maar ik heb `past_in_profiel` aangehouden.\n- **Africa Corps in Niger:** `bewezen` steunt op Ruslands eigen erkenning dat het korps onder zijn ministerie valt, niet op een toeschrijving door derden.\n- **Datum van het incident ligt vóór 2024** bij voorstel 7 (2022-12) en 9 (2022-01). De artikelen zelf zijn wel van 2024.\n- **Datums:** van de 7 artikelen die ik niet heb geopend staat alleen de maand in de datumkolom.\n- **Instructies in artikelen:** geen opdrachten aangetroffen in de NOS-teksten.\n\n**Categorieën met waarschijnlijk gemiste artikelen:**\n- `energie_chantage` en mijlpalen Oekraïne (Strafhof, VN, annexatie): niet gezocht.\n- Roemeense verkiezingen (december 2024): wel in een zoekfragment genoemd, maar geen NOS-artikel gevonden of geopend.\n- Uitzettingen van diplomaten: het zoeken leverde geen artikel uit 2024 op.\n- `migratie` en `moord_vergiftiging`: elk maar één zoekopdracht gedaan.\n- Wagner/Africa Corps: alleen de eerste zoekterm gebruikt.\n\nEen vervolgrun met deze termen vult de gaten waarschijnlijk.",
+  "ttft_ms": 2930,
+  "type": "result",
+  "duration_ms": 320139,
+  "uuid": "1b3c1029-bb2a-44a7-a18f-7d673c1b9434",
+  "ttft_stream_ms": 1806,
+  "time_to_request_ms": 825,
+  "time_to_request_phases_ms": {
+    "other": 135,
+    "system_prompt": 304,
+    "resume_other": 1,
+    "process_user_input": 19,
+    "input_attachments": 98,
+    "input_hooks": 11,
+    "transcript_persist": 55,
+    "tool_pool_refresh": 16,
+    "init_message": 43,
+    "engine_pickup": 8,
+    "message_prep": 5,
+    "model_config_wait": 14,
+    "autocompact": 22,
+    "query_setup": 1,
+    "model_gates": 2,
+    "tool_schema_build": 37,
+    "message_normalization": 7,
+    "client_creation": 7,
+    "request_build": 40
+  },
+  "turn_start_resume_kind": "none",
+  "process_turn_index": 0,
+  "time_to_request_loop_lag_ms": 221,
+  "time_to_request_cpu_ms": 1078,
+  "time_to_request_major_faults": 5603,
+  "input_attachments_detail": {
+    "slowest_producer": "deferred_tools_delta",
+    "slowest_producer_ms": 68,
+    "cpu_ms": 110,
+    "major_faults": 417
+  },
+  "first_content_frame_ms": 1808,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "controle": {
+    "tijd": "2026-10-21T15:46:38",
+    "modus": "archief",
+    "fouten": [],
+    "teruggezet": [],
+    "beoordeeld": {
+      "voorstel": 13,
+      "volglijst": 14,
+      "niet_relevant": 7
+    },
+    "afgekeurd_beoordelingen": 1,
+    "voorstellen": 13,
+    "afgekeurd_voorstellen": 0,
+    "afgekeurd_bestand": "C:\\Users\\Iust\\OneDrive\\Documenten\\bridgeview\\Russia\\logs\\afgekeurd-archief-2024.csv",
+    "afgekeurde_regels": [
+      "https://nos.nl/l/2545245: citaat niet gevonden op de bronpagina"
+    ],
+    "ok": false
+  }
+}

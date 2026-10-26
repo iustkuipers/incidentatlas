@@ -1,0 +1,147 @@
+{
+  "duration_api_ms": 173051,
+  "stop_reason": "end_turn",
+  "session_id": "f414d27f-89d4-4d5e-87f5-778dd1bcafea",
+  "total_cost_usd": 0.9604275350000001,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1308,
+    "cache_read_input_tokens": 65691,
+    "output_tokens": 164,
+    "output_tokens_details": {
+      "thinking_tokens": 31
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1308,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 164,
+        "cache_read_input_tokens": 65691,
+        "cache_creation_input_tokens": 1308,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1308
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 24,
+      "outputTokens": 19883,
+      "cacheReadInputTokens": 557059,
+      "cacheCreationInputTokens": 55632,
+      "webSearchRequests": 0,
+      "costUSD": 0.9542238000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1611,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 5908,
+      "cacheReadInputTokens": 3496,
+      "cacheCreationInputTokens": 25715,
+      "webSearchRequests": 0,
+      "costUSD": 0.006203735000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 3756,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 1,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "web-fetch": 1
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 1,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Er is niets meer om op te wachten: de artikelen waren al opgehaald en de run is klaar. Alle 142 berichten zijn beoordeld in `data/beoordelingen.csv`, met één voorstel (de nepvideo over Glucksmann, status `beschuldigd`) in `data/voorstellen.csv`. Ik heb geen nieuwe wekker gezet.",
+  "ttft_ms": 1877,
+  "type": "result",
+  "duration_ms": 3396,
+  "uuid": "46188f7a-eb12-4a59-ab21-a8068da4d61b",
+  "ttft_stream_ms": 1562,
+  "time_to_request_ms": 464,
+  "first_content_frame_ms": 1564,
+  "queued_turn_count": 0,
+  "result_index": 2,
+  "model_usage_since_last_result": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 164,
+      "cacheReadInputTokens": 65691,
+      "cacheCreationInputTokens": 1308,
+      "webSearchRequests": 0,
+      "costUSD": 0.026890200000000003,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 31,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "controle": {
+    "tijd": "2026-10-26T07:21:06",
+    "modus": "week",
+    "fouten": [],
+    "teruggezet": [],
+    "beoordeeld": {
+      "voorstel": 1,
+      "niet_relevant": 141
+    },
+    "afgekeurd_beoordelingen": 0,
+    "te_beoordelen": 142,
+    "zonder_geldige_beoordeling": 0,
+    "voorstellen": 1,
+    "afgekeurd_voorstellen": 0,
+    "ok": true
+  }
+}

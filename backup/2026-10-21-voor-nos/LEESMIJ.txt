@@ -1,0 +1,8 @@
+﻿Backup van de Incidentatlas vóór de overstap naar NOS als enige bron (2026-10-21).
+- data/          volledige dataset: 202 incidenten, bronnen (27), voorstellen, runs, wijzigingen, landen
+- Tasks/         oude WEEKBRIEF.md (alle bronnen) en ONDERZOEKSPROTOCOL.md
+- scripts/       atlas.py, haal_bronnen.py, controleer_weekbrief.py, tokens_weekbrief.py (oude versies)
+- testruns/      inbox (117 berichten), voorstellen, tokens en runlogs van de testruns van 2026-10-20
+- run_weekbrief.ps1, verwerk.ps1, weekbrief-taak.xml, index.html, 404.html, README.md
+Terugzetten: kopieer de map data/ (en zo nodig Tasks/, scripts/, run_weekbrief.ps1) terug naar de projectmap.
+

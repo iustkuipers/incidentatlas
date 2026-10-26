@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beoordelen · Incidentatlas</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<style>
+:root{color-scheme:light;--bg:#F5F6F7;--panel:#FFFFFF;--ink:#14181C;--ink-2:#4A535C;--ink-3:#5F6872;--rule:rgba(0,0,0,.10);--rule-soft:rgba(0,0,0,.06);
+  --proven:#1F5E9E;--profile:#9A5B00;--accused:#1B6F68;--ok:#1E7A4C;--bad:#B3362F;--warn-bg:#FFF6E5;--bad-bg:#FDECEA;--ok-bg:#E8F5EE;
+  --ctl-track:#E9ECF0;--ctl-fill:#EEF1F4;--ctl-fill-hi:#E2E7EC;--ctl-on:#FFFFFF;--sh-1:0 1px 2px rgba(16,24,40,.08),0 2px 6px rgba(16,24,40,.08);
+  --ring:color-mix(in srgb,var(--proven) 45%,transparent);--ease:cubic-bezier(.2,.8,.2,1);--t:150ms;
+  --f-ui:"Source Sans 3",system-ui,sans-serif;--f-head:"Source Serif 4",Georgia,serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0B0E12;--panel:#11161C;--ink:#E6EAEE;--ink-2:#9AA4AF;--ink-3:#8A949F;--rule:rgba(255,255,255,.09);--rule-soft:rgba(255,255,255,.05);
+  --proven:#8AB8E6;--profile:#E0A64A;--accused:#6CC4BA;--ok:#6FCF97;--bad:#F08A80;--warn-bg:#2A2216;--bad-bg:#2C1917;--ok-bg:#14261C;
+  --ctl-track:rgba(255,255,255,.06);--ctl-fill:rgba(255,255,255,.07);--ctl-fill-hi:rgba(255,255,255,.12);--ctl-on:#26303C;--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.25)}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink-2);font:16px/1.55 var(--f-ui);font-variant-numeric:tabular-nums}
+h1,h2{font-family:var(--f-head);font-weight:600;color:var(--ink);margin:0;text-wrap:balance}
+h1{font-size:28px}h2{font-size:21px;line-height:1.25}
+a{color:var(--proven)}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;border-radius:999px;height:38px;padding:0 18px;font-weight:600;font-size:14.5px;background:var(--ctl-fill);color:var(--ink);transition:background var(--t) var(--ease),transform var(--t) var(--ease),box-shadow var(--t) var(--ease)}
+button:hover{background:var(--ctl-fill-hi)}
+button.primary{background:var(--ink);color:var(--bg);box-shadow:var(--sh-1)}
+button.primary:hover{transform:translateY(-1px)}
+button.ok{background:var(--ok);color:#fff}button.bad{background:none;color:var(--bad);box-shadow:inset 0 0 0 1.5px var(--bad)}button.bad:hover{background:var(--bad-bg)}
+button.link{background:none;height:auto;padding:4px 2px;color:var(--ink-2);font-weight:500;text-decoration:underline;text-underline-offset:3px}
+button[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+input,select,textarea{width:100%;border:1px solid transparent;background:var(--ctl-fill);border-radius:10px;padding:9px 12px;font-size:15px;transition:background-color var(--t) var(--ease),border-color var(--t) var(--ease)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ring);background:var(--panel)}
+textarea{min-height:76px;resize:vertical}
+label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--ink-2)}
+header{background:var(--panel);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:5}
+header .wrap{display:flex;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+header b{font-weight:700;color:var(--ink)}header .who{margin-left:auto;font-size:14px}
+.tabs{display:flex;gap:2px;background:var(--ctl-track);padding:3px;border-radius:999px;flex-wrap:wrap}
+.tabs button{height:32px;padding:0 14px;background:none;font-weight:500;color:var(--ink-2)}
+.tabs button[aria-pressed=true]{background:var(--ctl-on);color:var(--ink);box-shadow:var(--sh-1)}
+.tabs .n{margin-left:6px;color:var(--ink-3);font-weight:600}
+.tabs button[data-tab=bron] .n{color:#fff;background:var(--bad);border-radius:999px;padding:0 7px}
+.tabs button[data-tab=bron][data-zero] .n{background:none;color:var(--ink-3)}
+.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:20px 0 8px}
+.bar .grow{flex:1}
+.banner{border-radius:12px;padding:12px 16px;margin:12px 0;font-size:15px}
+.banner.warn{background:var(--warn-bg);color:var(--ink)}.banner.bad{background:var(--bad-bg);color:var(--ink)}.banner.ok{background:var(--ok-bg);color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:20px;margin:14px 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--ink-3);margin:6px 0 12px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600;border:1px solid}
+.pill.p{color:var(--proven);border-color:color-mix(in srgb,var(--proven) 40%,transparent)}.pill.g{color:var(--profile);border-color:color-mix(in srgb,var(--profile) 45%,transparent)}
+.pill.a{color:var(--accused);border-color:color-mix(in srgb,var(--accused) 45%,transparent)}
+.pill.b{color:var(--profile);border-color:color-mix(in srgb,var(--profile) 45%,transparent);background:color-mix(in srgb,var(--profile) 12%,transparent)}
+.pill.x{color:var(--ink-3);border-color:var(--rule);text-decoration:line-through}
+.pill.s{color:var(--ink-2);border-color:var(--rule)}
+.tl{list-style:none;margin:0 0 14px;padding:0;border-left:2px solid var(--rule);margin-left:6px}
+.tl li{position:relative;padding:0 0 10px 16px;font-size:14px}
+.tl li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--panel);box-shadow:inset 0 0 0 2px var(--ink-3)}
+.tl li.ja::before{box-shadow:inset 0 0 0 2px var(--proven);background:color-mix(in srgb,var(--proven) 25%,var(--panel))}
+.tl li.nu{background:color-mix(in srgb,var(--proven) 8%,transparent);border-radius:8px;padding-top:4px}
+.tl li.nu::before{background:var(--proven);box-shadow:none}
+.tl .d{color:var(--ink-3);font-size:13px;margin-right:8px}.tl .w{color:var(--ink-3);font-size:13px}
+.tl-h{font-size:13px;font-weight:600;color:var(--ink-2);margin:4px 0 8px}
+.reden{font-size:15px;color:var(--ink-2);margin:0 0 12px}
+blockquote{margin:0 0 12px;padding:12px 16px;border-radius:10px;background:var(--ctl-fill);color:var(--ink);font-size:15.5px}
+blockquote a{display:inline-block;margin-top:6px;font-size:14px;font-weight:600}
+.sum{margin:0 0 14px;color:var(--ink-2)}
+blockquote.extra{background:none;box-shadow:inset 0 0 0 1px var(--rule)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--rule-soft);padding-top:14px}
+.actions .grow{flex:1}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:4px 0 14px}
+.grid .wide{grid-column:1/-1}
+details{margin:0 0 14px}summary{cursor:pointer;font-weight:600;color:var(--ink-2);font-size:14px;padding:4px 0}
+.empty{text-align:center;padding:48px 16px;color:var(--ink-3)}
+.login{max-width:380px;margin:12vh auto;background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:28px;display:grid;gap:14px}
+.login p{margin:0;font-size:15px}
+.err{color:var(--bad);font-size:14px;min-height:1em}
+.result{font-size:14.5px;white-space:pre-wrap;margin:0}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;box-shadow:var(--sh-1);z-index:9}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"><p class="empty">Laden…</p></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script>
+const $=s=>document.querySelector(s),app=$("#app");
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const api=async(path,body)=>{const r=await fetch(path,body?{method:"POST",headers:{"Content-Type":"application/json","X-Beheer":"1"},body:JSON.stringify(body)}:{});
+  let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.fout||("fout "+r.status));return j};
+function toast(t){const e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2600)}
+let D=null,tab="open",me="",openEdit=new Set(),addSrc=new Set(),lastRun=null;
+// 'bewezen' zonder één A-bron of twee B-bronnen (extra bronnen tellen mee), en nog niet verwerkt
+const needsSrc=v=>{if(v.status!=="bewezen"||v.verwerkt.startsWith("ja")||v.beoordeling==="afgewezen")return false;const lv=[v.bron_niveau,...(v._extra||[]).map(e=>e.bron_niveau)];return !(lv.includes("A")||lv.filter(x=>x==="B").length>=2)};
+const state=v=>v.verwerkt.startsWith("ja")?"verwerkt":v.beoordeling==="goedgekeurd"?"goed":v.beoordeling==="afgewezen"?"af":"open";
+const STATUS_UITLEG={signaal:"Signaal – past in het patroon, niemand wijst Rusland aan",beschuldigd:"Beschuldigd – Rusland met naam aangewezen, niet formeel toegeschreven",aangeklaagd:"Aangeklaagd – verdachten opgepakt/aangeklaagd, nog geen uitspraak",bewezen:"Bewezen – veroordeeld, formeel toegeschreven of openlijk erkend",ontkracht:"Ontkracht – andere dader of ongeluk vastgesteld"};
+const STATUS={bewezen:["p","Bewezen"],aangeklaagd:["a","Aangeklaagd · wacht op uitspraak"],beschuldigd:["b","Beschuldigd"],signaal:["g","Signaal"],past_in_profiel:["g","Signaal"],ontkracht:["x","Ontkracht"]};
+const FIELDS=[["titel","Titel","wide"],["samenvatting","Samenvatting","wide area"],["status","Status"],["categorie","Categorie"],["zekerheid","Zekerheid"],
+  ["datum","Datum incident"],["datum_precisie","Precisie"],["land","Land"],["regio","Regio"],["lat","Breedtegraad"],["lon","Lengtegraad"],
+  ["toegeschreven_door","Toegeschreven door","wide"],["datum_bevestigd","Datum toeschrijving"],["oekraine_oorlog","Oorlog Oekraïne"],
+  ["soort","Soort"],["incident_id","Bestaand incident (id)"],["bron_url","Bron-URL","wide"],["bron_uitgever","Uitgever"],["bron_titel","Brontitel"],
+  ["bron_niveau","Bronniveau"],["citaat","Citaat (letterlijk van de bronpagina)","wide area"],["opmerking_redactie","Opmerking redactie","wide area"]];
+
+async function start(){let s;try{s=await api("/api/status")}catch(e){app.innerHTML=`<p class="empty">Server niet bereikbaar.</p>`;return}
+  if(s.ingelogd){me=s.ingelogd;return load()}
+  const first=!s.account;
+  app.innerHTML=`<form class="login" id="lf"><h1>${first?"Account aanmaken":"Inloggen"}</h1>
+    <p>${first?"Eenmalig: kies een naam en wachtwoord. Je naam komt bij elke beoordeling te staan.":"Beoordelen van voorstellen voor de Incidentatlas."}</p>
+    <label>Naam<input name="naam" autocomplete="username" required value="${first?"":esc(s.naam||"")}"></label>
+    <label>Wachtwoord<input name="wachtwoord" type="password" autocomplete="${first?"new-password":"current-password"}" required minlength="${first?8:1}"></label>
+    ${first?'<label>Wachtwoord herhalen<input name="w2" type="password" autocomplete="new-password" required></label>':""}
+    <div class="err" id="le" role="alert"></div><button class="primary" type="submit">${first?"Aanmaken en inloggen":"Inloggen"}</button></form>`;
+  $("#lf [name=naam]").focus();
+  $("#lf").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);
+    if(first&&f.get("wachtwoord")!==f.get("w2")){$("#le").textContent="De wachtwoorden zijn niet gelijk.";return}
+    try{const r=await api(first?"/api/account":"/api/login",{naam:f.get("naam"),wachtwoord:f.get("wachtwoord")});me=r.naam;load()}catch(err){$("#le").textContent=err.message}}}
+
+async function load(){try{D=await api("/api/voorstellen");D.voorstellen=D.voorstellen||[];D.zaken=D.zaken||[];D.keuzes=D.keuzes||{};D.categorieen=D.categorieen||{}}catch(e){if(/ingelogd/.test(e.message))return start();app.innerHTML=`<p class="empty">${esc(e.message)}</p>`;return}render()}
+
+let autoRefresh=null;
+function render(){clearTimeout(autoRefresh);if(D&&D.verdieping_bezig&&D.verdieping_bezig.zaak)autoRefresh=setTimeout(load,20000);const V=D.voorstellen,c={open:0,goed:0,af:0,verwerkt:0};V.forEach(v=>c[state(v)]++);
+  const nb=V.filter(needsSrc).length;
+  const tabs=[["bron","Bronnen nodig",nb],["open","Te beoordelen",c.open],["goed","Goedgekeurd",c.goed],["af","Afgewezen",c.af],["verwerkt","Verwerkt",c.verwerkt],["zaken","Zaken",D.zaken.length]];
+  const list=tab==="zaken"?D.zaken:tab==="bron"?V.filter(needsSrc):V.filter(v=>state(v)===tab);
+  app.innerHTML=`<header><div class="wrap"><b>Incidentatlas · beoordelen</b>
+    <div class="tabs" role="group" aria-label="Filter">${tabs.map(([k,t,n])=>`<button data-tab="${k}" aria-pressed="${tab===k}"${n?"":" data-zero"}>${t}<span class="n">${n}</span></button>`).join("")}</div>
+    <span class="who">${esc(me)} · <button class="link" id="out">Uitloggen</button></span></div></header>
+  <main class="wrap">
+    ${D.brief_bezig?'<div class="banner warn">De wekelijkse brief draait nu. Opslaan en verwerken kan zodra die klaar is.</div>':""}
+    ${D.verdieping_bezig&&D.verdieping_bezig.zaak?`<div class="banner warn">Verdieping loopt voor <b>${esc(D.verdieping_bezig.zaak)}</b>. Dit duurt een paar minuten; de pagina ververst zichzelf.</div>`:""}
+    <div class="bar"><div class="grow">${tab==="zaken"?"Alle zaken met hun fase en tijdlijn. Verdiepen laat de AI de hele geschiedenis van één zaak zoeken (max. $1); de gevonden stappen komen als voorstellen bij Te beoordelen.":
+      tab==="open"?"Lees het citaat, open zo nodig het NOS-artikel, pas velden aan en kies Goedkeuren of Afwijzen.":
+      tab==="bron"?"Bewezen, maar nog geen A-bron of twee B-bronnen. Voeg per voorstel een bron toe, of kies een voorzichtigere status. Zonder extra bron komt het niet door de verwerking.":
+      tab==="goed"?"Goedgekeurd en klaar om te verwerken. Verwerken controleert de link, het citaat en de bewijsregel opnieuw.":""}</div>
+      <button class="primary" id="run" ${c.goed&&!D.brief_bezig?"":"disabled"}>Verwerk goedgekeurde (${c.goed})</button></div>
+    ${lastRun?resultHTML(lastRun):""}
+    ${list.length?list.map(tab==="zaken"?zaakCard:card).join(""):`<p class="empty">Niets in deze lijst.</p>`}
+  </main>`;
+  document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});
+  $("#out").onclick=async()=>{await api("/api/logout",{});start()};
+  $("#run").onclick=verwerk;
+  document.querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>act(b.dataset.id,b.dataset.act,b));
+}
+
+function card(v){const st=STATUS[v.status]||["s",v.status||"geen status"],cat=D.categorieen[v.categorie]||v.categorie,s=state(v),ed=openEdit.has(v.voorstel_id);
+  const lv=[v.bron_niveau,...(v._extra||[]).map(e=>e.bron_niveau)],enough=lv.includes("A")||lv.filter(x=>x==="B").length>=2,open=["paramilitair","militair"].includes(v.categorie);
+  const warn=v.status==="bewezen"&&!enough?`<div class="banner warn"><b>Bewezen, maar nog te weinig bronnen</b> (${esc(lv.join(" + "))}). De bewijsregel vraagt één A-bron (vonnis of officieel persbericht) of twee B-bronnen.
+      ${open?"Gaat het om een openlijke Russische inzet (zoals het Africa Corps), dan telt de erkenning door Rusland of de gastregering als toeschrijving: voeg een tweede bron toe die die erkenning vastlegt.":"Voeg een tweede bron toe, of kies een voorzichtigere status als het om verdachten of een vermoeden gaat."}
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"><button data-act="addsrc" data-id="${esc(v.voorstel_id)}">Bron toevoegen</button><button data-act="acc" data-id="${esc(v.voorstel_id)}">Zet op aangeklaagd</button><button data-act="bes" data-id="${esc(v.voorstel_id)}">Zet op beschuldigd</button><button data-act="ppp" data-id="${esc(v.voorstel_id)}">Zet op signaal</button></div></div>`:"";
+  const fout=v.verwerkt.startsWith("fout")?`<div class="banner bad"><b>Verwerken mislukt:</b> ${esc(v.verwerkt.replace(/^fout:\s*/,""))}. Pas het voorstel aan en keur het opnieuw goed.</div>`:"";
+  return `<article class="card" id="v-${esc(v.voorstel_id)}">
+    <span class="pill ${st[0]}">${st[1]}</span> ${v.zekerheid?`<span class="pill s">zekerheid ${esc(v.zekerheid)}</span>`:""} ${v.soort&&v.soort!=="nieuw"?`<span class="pill s">${esc(v.soort.replace("_"," "))}${v._incident_titel?": "+esc(v._incident_titel):""}</span>`:""}
+    <h2 style="margin-top:10px">${esc(v.titel)}</h2>
+    <div class="meta"><span>${esc(v.datum)}</span><span>${esc(v.land)}</span><span>${esc(cat)}</span>${v.toegeschreven_door?`<span>toegeschreven door ${esc(v.toegeschreven_door)}</span>`:""}<span>${esc(v.voorstel_id)}</span></div>
+    ${v._reden?`<p class="reden"><b>Waarom:</b> ${esc(v._reden)}</p>`:""}
+    <blockquote>“${esc(v.citaat)}”<br><a href="${esc(v.bron_url)}" target="_blank" rel="noopener noreferrer">Lees bij ${esc(v.bron_uitgever||"de bron")} ↗</a></blockquote>
+    ${(v._extra||[]).map(e=>`<blockquote class="extra"><span class="pill s">extra bron · niveau ${esc(e.bron_niveau)}</span> “${esc(e.citaat)}”<br><a href="${esc(e.bron_url)}" target="_blank" rel="noopener noreferrer">Lees bij ${esc(e.bron_uitgever)} ↗</a>${e.verwerkt.startsWith("ja")?"":` <button class="link" data-act="delsrc" data-id="${esc(v.voorstel_id)}" data-src="${esc(e.voorstel_id)}">verwijderen</button>`}</blockquote>`).join("")}
+    ${addSrc.has(v.voorstel_id)?srcForm(v):""}
+    <p class="sum">${esc(v.samenvatting)}</p>
+    ${warn}${fout}
+    ${timelineHTML(v._tijdlijn,v.voorstel_id,v.soort==="nieuw"?"":v._incident_titel)}
+    ${ed?editForm(v):""}
+    ${s==="verwerkt"?`<div class="actions"><span>Verwerkt: ${esc(v.verwerkt.replace(/^ja\s*/,""))} · beoordeeld door ${esc(v.beoordeeld_door)}</span></div>`:
+    `<div class="actions">${s==="open"?`<button class="ok" data-act="goedgekeurd" data-id="${esc(v.voorstel_id)}">Goedkeuren</button><button class="bad" data-act="afgewezen" data-id="${esc(v.voorstel_id)}">Afwijzen</button>`:
+      `<span>${s==="goed"?"Goedgekeurd":"Afgewezen"} door ${esc(v.beoordeeld_door)}</span><button data-act="te_beoordelen" data-id="${esc(v.voorstel_id)}">Terugzetten</button>`}
+      <span class="grow"></span>${ed?`<button data-act="cancel" data-id="${esc(v.voorstel_id)}">Annuleren</button><button class="primary" data-act="save" data-id="${esc(v.voorstel_id)}">Opslaan</button>`:
+      `<button data-act="addsrc" data-id="${esc(v.voorstel_id)}">Bron toevoegen</button><button data-act="edit" data-id="${esc(v.voorstel_id)}">Bewerken</button>`}</div>`}
+  </article>`}
+
+function srcForm(v){return `<form class="grid card" id="s-${esc(v.voorstel_id)}" style="margin:0 0 14px;background:var(--ctl-track)" onsubmit="return false">
+    <label class="wide">URL van de bron<input name="bron_url" placeholder="https://nos.nl/artikel/..."></label>
+    <label>Uitgever<input name="bron_uitgever" value="NOS"></label><label>Titel<input name="bron_titel"></label>
+    <label>Bronniveau<select name="bron_niveau"><option value="B">B · persbureau / kwaliteitsmedium</option><option value="A">A · de toeschrijver zelf (vonnis, persbericht)</option><option value="C">C · onderzoek / denktank</option><option value="D">D · secundair</option></select></label>
+    <label class="wide">Letterlijk citaat van die pagina (10–20 woorden)<textarea name="citaat"></textarea></label>
+    <div class="wide" style="display:flex;gap:8px;justify-content:flex-end"><button data-act="cancelsrc" data-id="${esc(v.voorstel_id)}">Annuleren</button><button class="primary" data-act="savesrc" data-id="${esc(v.voorstel_id)}">Bron controleren en toevoegen</button></div></form>`}
+function editForm(v){const f=([k,l,c=""])=>{const ch=D.keuzes[k],val=v[k]||"",area=c.includes("area"),cls=c.includes("wide")?"wide":"";
+    const ctl=ch?`<select name="${k}"><option value=""></option>${ch.map(o=>`<option ${o===val?"selected":""} value="${esc(o)}">${esc(k==="categorie"?D.categorieen[o]:k==="status"?STATUS_UITLEG[o]||o:o)}</option>`).join("")}</select>`:
+      area?`<textarea name="${k}">${esc(val)}</textarea>`:`<input name="${k}" value="${esc(val)}">`;return `<label class="${cls}">${l}${ctl}</label>`};
+  return `<form class="grid" id="f-${esc(v.voorstel_id)}" onsubmit="return false">${FIELDS.slice(0,10).map(f).join("")}</form>
+    <details><summary>Meer velden: toeschrijving, bron en opmerking</summary><form class="grid" id="g-${esc(v.voorstel_id)}" onsubmit="return false">${FIELDS.slice(10).map(f).join("")}</form></details>`}
+
+function timelineHTML(items,cur,zaak){if(!items||!items.length)return "";
+  return `<div class="tl-h">${zaak?"Tijdlijn van de zaak: "+esc(zaak):"Tijdlijn"}</div><ol class="tl">${items.map(x=>{const st=STATUS[x.fase]||["s",x.fase];
+    return `<li class="${x.fasewissel==="ja"?"ja":""} ${x._id&&x._id===cur?"nu":""}"><span class="d">${esc(x.datum)}</span><span class="pill ${st[0]}">${st[1]}</span> ${esc(x.wat)}
+      ${x.wie?`<span class="w">· ${esc(x.wie)}</span>`:""} ${x.bron_url?`<a href="${esc(x.bron_url)}" target="_blank" rel="noopener noreferrer">${esc(x.bron_uitgever||"bron")} ↗</a>`:""}
+      ${x._bron==="voorstel"?`<span class="w">· ${x._id===cur?"dit voorstel":"voorstel, nog niet verwerkt"}</span>`:""}</li>`}).join("")}</ol>`}
+function zaakCard(z){const st=STATUS[z.fase]||["s",z.fase],open=["signaal","beschuldigd","aangeklaagd"].includes(z.fase);
+  const slapend=z.wachtrij?z.wachtrij==="slapend":open&&z.laatste&&(Date.now()-Date.parse(z.laatste.length===7?z.laatste+"-01":z.laatste.length===4?z.laatste+"-01-01":z.laatste))>365*864e5;
+  const bezig=D.verdieping_bezig&&D.verdieping_bezig.zaak;
+  const rij={volglijst:"op de volglijst",verrijken:"bronnen zoeken",afgerond:"afgerond"}[z.wachtrij];
+  return `<article class="card"><span class="pill ${st[0]}">${st[1]}</span>${slapend?' <span class="pill s">slapend</span>':""}${rij?` <span class="pill s">${rij}</span>`:""}${z.verwerkt?"":' <span class="pill s">nog niet verwerkt</span>'}
+  <h2 style="margin-top:10px">${esc(z.titel)}</h2><div class="meta"><span>${esc(z.datum)}</span><span>${esc(z.land)}</span><span>${esc(D.categorieen[z.categorie]||z.categorie)}</span><span>laatst bijgewerkt ${esc(z.laatste)}</span><span>laatst nagezocht ${z.laatst_gezocht?esc(z.laatst_gezocht)+(z.laatst_gezocht_door?" ("+esc(z.laatst_gezocht_door)+(z.laatste_uitkomst?": "+esc(z.laatste_uitkomst):"")+")":""):"nog nooit"}</span>${z.bronniveaus?`<span>bronnen ${esc(z.bronniveaus.split("+").filter(x=>x==="A").length)}×A, ${esc(z.bronniveaus.split("+").filter(x=>x==="B").length)}×B${z.bronnen_voldoende==="nee"?" (te weinig)":""}</span>`:""}</div>
+  ${timelineHTML(z.tijdlijn,"","")}
+  <div class="actions"><span class="grow"></span><button data-act="verdiep" data-id="${esc(z.id)}" ${bezig||D.brief_bezig?"disabled":""}>${bezig===z.id?"Verdieping loopt…":"Verdiepen (max. $1)"}</button></div></article>`}
+
+async function act(id,a,btn){const v=D.voorstellen.find(x=>x.voorstel_id===id)||{};
+  if(a==="edit"){openEdit.add(id);render();document.querySelector(`#f-${CSS.escape(id)} input,#f-${CSS.escape(id)} select`)?.focus();return}
+  if(a==="cancel"){openEdit.delete(id);render();return}
+  if(a==="verdiep"){if(!confirm("De AI zoekt de hele geschiedenis van deze zaak (max. $1). De gevonden stappen komen als voorstellen bij Te beoordelen. Doorgaan?"))return;
+    btn.disabled=true;try{await api("/api/verdiep",{zaak:id});toast("Verdieping gestart");await load()}catch(e){btn.disabled=false;toast(e.message)}return}
+  if(a==="addsrc"){addSrc.add(id);render();document.querySelector(`#s-${CSS.escape(id)} input`)?.focus();return}
+  if(a==="cancelsrc"){addSrc.delete(id);render();return}
+  if(a==="savesrc"){const f=Object.fromEntries([...document.querySelectorAll(`#s-${CSS.escape(id)} [name]`)].map(e=>[e.name,e.value]));btn.disabled=true;btn.textContent="Controleren…";
+    try{await api("/api/bron",{voorstel_id:id,...f});addSrc.delete(id);toast("Bron toegevoegd en citaat gevonden");await load()}catch(e){btn.disabled=false;btn.textContent="Bron controleren en toevoegen";toast(e.message)}return}
+  if(a==="delsrc"){btn.disabled=true;try{await api("/api/bron/verwijder",{bron_id:btn.dataset.src});toast("Bron verwijderd");await load()}catch(e){btn.disabled=false;toast(e.message)}return}
+  let w={};
+  if(a==="save"||(openEdit.has(id)&&(a==="goedgekeurd"))){document.querySelectorAll(`#f-${CSS.escape(id)} [name],#g-${CSS.escape(id)} [name]`).forEach(e=>{if(e.value!==(v[e.name]||""))w[e.name]=e.value})}
+  if(a==="ppp")w.status="signaal",w.toegeschreven_door="",w.datum_bevestigd="";
+  if(a==="acc")w.status="aangeklaagd";
+  if(a==="bes")w.status="beschuldigd",w.toegeschreven_door=w.toegeschreven_door??v.toegeschreven_door;
+  if(["goedgekeurd","afgewezen","te_beoordelen"].includes(a))w.beoordeling=a;
+  if(!Object.keys(w).length){openEdit.delete(id);render();return}
+  btn.disabled=true;
+  try{const r=await api("/api/voorstel",{voorstel_id:id,wijzigingen:w});Object.assign(v,r.voorstel);openEdit.delete(id);
+    toast(a==="goedgekeurd"?"Goedgekeurd":a==="afgewezen"?"Afgewezen":a==="te_beoordelen"?"Teruggezet":a==="ppp"?"Status: signaal":a==="acc"?"Status: aangeklaagd":a==="bes"?"Status: beschuldigd":"Opgeslagen");render()}
+  catch(e){btn.disabled=false;toast(e.message)}}
+
+async function verwerk(){const b=$("#run");b.disabled=true;b.textContent="Bezig met verwerken…";
+  try{lastRun=await api("/api/verwerk",{})}catch(e){lastRun={fout:e.message}}await load();window.scrollTo({top:0})}
+function resultHTML(r){if(r.fout)return `<div class="banner bad">${esc(r.fout)}</div>`;
+  const v=r.stappen.find(s=>s.stap==="verwerk"),c=r.stappen.find(s=>s.stap==="valideer"),lines=v.uitvoer.filter(l=>/^\s*[✓✗]/.test(l)||/verwerkt/.test(l));
+  return `<div class="banner ${v.code?"bad":"ok"}"><b>Verwerkt.</b><p class="result">${esc(lines.join("\n"))}\n${esc(c.uitvoer.slice(-1).join(""))}</p>
+    <p style="margin:8px 0 0;font-size:14px">Mislukte voorstellen staan weer bij <i>Goedgekeurd</i> met de reden; pas ze aan en verwerk opnieuw. Zet daarna data/ online.</p></div>`}
+start();
+</script>
+</body>
+</html>
