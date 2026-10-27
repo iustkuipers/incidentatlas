@@ -126,7 +126,7 @@ def cases_payload(rows: list[dict], incidents: list[dict], devs: list[dict]) -> 
     out = []
     for r in incidents:
         out.append({"id": r["id"], "titel": r["titel"], "fase": atlas.phase(r["status"]), "land": r["land"], "categorie": r["categorie"],
-                    "datum": r["datum"], "laatste": last.get(r["id"], r["datum"]), "verwerkt": True})
+                    "datum": r["datum"], "laatste": last.get(r["id"], r["datum"]), "verwerkt": True, "controle": r.get("controle", "")})
     for r in rows:
         if r.get("soort") == "nieuw" and not r.get("verwerkt", "").startswith("ja") and r.get("beoordeling") != "afgewezen":
             out.append({"id": f"voorstel:{r['voorstel_id']}", "titel": r["titel"], "fase": atlas.phase(r["status"]), "land": r["land"],
@@ -298,6 +298,22 @@ def remove_source(sid: str) -> tuple[int, dict]:
             return 423, {"fout": "voorstellen.csv is geopend in een ander programma; sluit het en probeer opnieuw."}
     return 200, {"ok": True}
 
+def run_atlas_case(cmd: str, case: str, user: str) -> tuple[int, dict]:
+    """Zaak nagekeken of van de kaart halen; loopt via atlas.py zoals elke wijziging in incidenten.csv."""
+    if not re.fullmatch(r"[0-9]{4}[A-Za-z0-9-]{0,120}", case):
+        return 400, {"fout": "ongeldige zaak"}
+    if brief_busy():
+        return 409, {"fout": "De wekelijkse brief draait nu; probeer het straks opnieuw."}
+    env = dict(os.environ, PYTHONIOENCODING="utf-8")
+    with WRITE:
+        p = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "scripts" / "atlas.py"), cmd, "--id", case, "--door", user],
+                           capture_output=True, text=True, encoding="utf-8", cwd=ROOT, env=env, timeout=120)
+    if p.returncode:
+        return 400, {"fout": (p.stdout + p.stderr).strip() or "mislukt"}
+    subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "scripts" / "dossiers.py"), "bijwerken"],
+                   capture_output=True, cwd=ROOT, env=env, timeout=120)
+    return 200, {"ok": True, "melding": p.stdout.strip()}
+
 def run_process() -> dict:
     if brief_busy():
         return {"fout": "De wekelijkse brief draait nu; probeer het straks opnieuw."}
@@ -403,6 +419,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
             return self._send(code, res)
         if self.path == "/api/verwerk":
             return self._send(200, run_process())
+        if self.path in ("/api/zaak/nagekeken", "/api/zaak/verwijder"):
+            code, res = run_atlas_case("nagekeken" if self.path.endswith("nagekeken") else "verwijder", str(b.get("zaak", "")).strip(), user)
+            return self._send(code, res)
         self._send(404, {"fout": "niet gevonden"})
 
     def _login(self, naam: str):

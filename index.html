@@ -161,6 +161,7 @@ a.linkbtn{display:inline-block;margin-top:2px;text-decoration:none}
 .art:hover,.art.hl{background:var(--hover)}
 .art::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0;transition:opacity var(--t-fast) var(--ease)}
 .art.hl::before{opacity:1}
+.aib{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--ink-3);border:1px solid var(--rule-2);border-radius:var(--r-pill);padding:0 6px;line-height:18px;white-space:nowrap;cursor:help}
 .art-m{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink-2);margin-bottom:5px;white-space:nowrap;overflow:hidden}
 .art-m .c{overflow:hidden;text-overflow:ellipsis}
 .art-t{display:block;font-family:var(--f-head);font-size:17px;font-weight:600;line-height:1.3;color:var(--ink);text-wrap:pretty}
@@ -540,6 +541,7 @@ details.old summary{cursor:pointer;font-weight:600;color:var(--ink)}
       <div class="fsec"><span class="flab" id="perLab">Periode</span><div class="frange" role="group" aria-labelledby="perLab"><select id="yFrom" aria-label="Van"></select><span>tot en met</span><select id="yTo" aria-label="Tot en met"></select></div></div>
       <div class="fsec" id="catSec"><span class="flab">Soort actie</span><div class="chips" id="fCats" role="group" aria-label="Soort actie"></div></div>
       <div class="fsec"><label class="flab" for="fRegion">Regio</label><select id="fRegion"><option value="">Alle regio's</option></select></div>
+      <div class="fsec"><label class="flab" for="fCtl">Gecontroleerd door</label><select id="fCtl"><option value="">Mens en AI</option><option value="mens">Alleen nagekeken door een mens</option><option value="ai">Alleen AI-gecontroleerd</option></select></div>
       <label class="switch"><input type="checkbox" id="fUA"><span class="tg" aria-hidden="true"></span>Mijlpalen van de oorlog in Oekraïne tonen</label>
       <div class="ffoot"><button class="linkbtn" id="fReset">Alles wissen</button><button class="btn" id="fDone">Klaar</button></div>
     </div>
@@ -647,7 +649,7 @@ details.old summary{cursor:pointer;font-weight:600;color:var(--ink)}
     <section><div class="cols">
       <div class="panel"><h2 class="h3">Makers</h2><p>De Incidentatlas is een project van Bridgeview. <span class="todo">[Invullen: naam of namen van de redactie, met een korte achtergrond]</span></p></div>
       <div class="panel"><h2 class="h3">Financiering en belangen</h2><p><span class="todo">[Invullen: wie betaalt dit en of er belangen of opdrachtgevers zijn]</span></p></div>
-      <div class="panel"><h2 class="h3">Werkwijze</h2><p>Elke maandag zoekt een AI-agent een vaste lijst bronnen af. Een redacteur beoordeelt elk voorstel; daarna controleert een script opnieuw de link, het citaat en de bewijsregel. Niets komt automatisch online.</p></div>
+      <div class="panel"><h2 class="h3">Werkwijze</h2><p>Elke maandag zoekt een AI-agent een vaste lijst bronnen af. Een script controleert elk voorstel: werkt de link, staat het citaat letterlijk op de bronpagina en klopt de bewijsregel. Wat slaagt komt online met het teken <span class="aib">✦ AI</span>; zodra een redacteur de zaak heeft nagekeken verdwijnt dat teken. Met het filter <i>Gecontroleerd door</i> toon je alleen zaken die een mens heeft nagekeken.</p></div>
     </div></section>
     <section><h2>Correctiebeleid</h2><div class="prose"><p>Fouten herstellen we openbaar. Elke wijziging, van een extra bron tot een gecorrigeerde datum of een statuswijziging, staat in het <a href="#nieuw">wijzigingslog</a> en in <a href="data/wijzigingen.csv" download>wijzigingen.csv</a>. Incidenten verdwijnen niet stilletjes: blijkt een toeschrijving onjuist, dan krijgt het incident de status 'afgewezen' met de reden erbij.</p></div></section>
     <section id="melden"><h2>Fout gevonden? Meld het</h2><p class="sub">We nemen alleen iets op of passen iets aan met een bron die aan de <a href="#methode">methode</a> voldoet. Liever mailen: <span class="todo">[Invullen: contactadres]</span>.</p>
@@ -722,6 +724,8 @@ const vnVote=en=>NONUN.has(en)?"–":VN_TEGEN.has(en)?"tegen":VN_ONTH.has(en)?"o
 let DATA=[],byId={},CHANGES=[],RUNS=[],LANDEN={},GEO={type:"FeatureCollection",features:[]},GEO_BY={},NL2EN={};
 const TODAY=new Date().toISOString().slice(0,10);
 const bare=s=>String(s||"").replace(/\s*\(.*\)/,"").trim();
+const AIT="Gevonden en automatisch gecontroleerd door AI: de link werkt, het citaat staat op de bronpagina en de bewijsregel klopt. Nog niet nagekeken door een mens.";
+const aib=d=>d.ai?`<span class="aib" title="${AIT}">✦ AI</span>`:"";
 function toIncident(r){
   const status=normSt(r.status);
   const history=(r.statusgeschiedenis||"").split(";").filter(Boolean).map(x=>{const i=x.indexOf(":"),st=normSt(x.slice(i+1));return {date:x.slice(0,i),status:st,note:HNOTE[st]}});
@@ -730,7 +734,7 @@ function toIncident(r){
   const wasSignal=!!sig||status==="signaal";
   const sources=[1,2,3].filter(i=>r[`bron_${i}_url`]).map(i=>{let host="";try{host=new URL(r[`bron_${i}_url`]).hostname}catch(e){}return {lvl:r[`bron_${i}_niveau`]||"C",pub:r[`bron_${i}_uitgever`]||host,title:r[`bron_${i}_titel`],url:r[`bron_${i}_url`],archive:"https://web.archive.org/web/*/"+r[`bron_${i}_url`],checked:r.laatst_gecontroleerd?fd(r.laatst_gecontroleerd):"nog niet"}});
   return {id:r.id,date:r.datum,year:+String(r.datum).slice(0,4),title:r.titel,summary:r.samenvatting,country:r.land,region:r.regio,lat:parseFloat(r.lat),lon:parseFloat(r.lon),category:r.categorie,status,
-    ukraine:r.oekraine_oorlog==="ja",actor:r.actor,attribution:r.toegeschreven_door||"",confirmed:r.datum_bevestigd,added:r.toegevoegd_op,history,wasSignal,lagMonths:sig&&pb?monthsBetween(sig.date,pb.date):null,sources,dev:[]}
+    ukraine:r.oekraine_oorlog==="ja",ai:r.controle==="ai",actor:r.actor,attribution:r.toegeschreven_door||"",confirmed:r.datum_bevestigd,added:r.toegevoegd_op,history,wasSignal,lagMonths:sig&&pb?monthsBetween(sig.date,pb.date):null,sources,dev:[]}
 }
 // Incidenten met exact dezelfde coördinaten komen in een kleine kring te liggen, zodat elk apart aan te klikken is.
 function spread(list){const g={};for(const d of list){if(!isFinite(d.lat)||!isFinite(d.lon))continue;const k=d.lat.toFixed(4)+","+d.lon.toFixed(4);(g[k]=g[k]||[]).push(d)}
@@ -852,9 +856,9 @@ try{await loadData()}catch(e){
 
 // ================= FILTERS =================
 const Y0=2000,Y1=Math.max(new Date().getFullYear(),...DATA.map(d=>d.year).filter(isFinite));
-const S={p:true,a:false,b:false,g:false,x:false,ua:false,region:"",from:Y0,to:Y1,q:"",cats:new Set()};
+const S={p:true,a:false,b:false,g:false,x:false,ua:false,ctl:"",region:"",from:Y0,to:Y1,q:"",cats:new Set()};
 const stOn=s=>S[ST[s].k];
-function baseNY(d){return (S.ua||!d.ukraine)&&(!S.region||d.region===S.region)&&(!S.cats.size||S.cats.has(d.category))&&(!S.q||(d.title+" "+d.country+" "+d.actor+" "+d.attribution+" "+d.summary).toLowerCase().includes(S.q))}
+function baseNY(d){return (S.ua||!d.ukraine)&&(!S.ctl||(S.ctl==="ai")===d.ai)&&(!S.region||d.region===S.region)&&(!S.cats.size||S.cats.has(d.category))&&(!S.q||(d.title+" "+d.country+" "+d.actor+" "+d.attribution+" "+d.summary).toLowerCase().includes(S.q))}
 const base=d=>baseNY(d)&&d.year>=S.from&&d.year<=S.to;
 const match=d=>base(d)&&stOn(d.status);
 let R=[],CNT={};
@@ -872,8 +876,9 @@ $("fQ").oninput=e=>{S.q=e.target.value.trim().toLowerCase();render()};
 function years(){let a=+$("yFrom").value,b=+$("yTo").value;if(a>b)[a,b]=[b,a];S.from=a;S.to=b;render()}
 $("yFrom").onchange=years;$("yTo").onchange=years;
 $("fRegion").onchange=e=>{S.region=e.target.value;render()};
+$("fCtl").onchange=e=>{S.ctl=e.target.value;render()};
 $("fUA").onchange=e=>{S.ua=e.target.checked;render()};
-function resetFilters(){Object.assign(S,{region:"",ua:false,from:Y0,to:Y1,q:""});S.cats=new Set();$("fRegion").value="";$("fUA").checked=false;$("fQ").value="";$("yFrom").value=Y0;$("yTo").value=Y1;$("fCats").querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));render()}
+function resetFilters(){Object.assign(S,{region:"",ctl:"",ua:false,from:Y0,to:Y1,q:""});S.cats=new Set();$("fRegion").value="";$("fCtl").value="";$("fUA").checked=false;$("fQ").value="";$("yFrom").value=Y0;$("yTo").value=Y1;$("fCats").querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));render()}
 $("fReset").onclick=resetFilters;
 function setYears(a,b){S.from=a;S.to=b;$("yFrom").value=a;$("yTo").value=b;render()}
 
@@ -902,7 +907,7 @@ function frameTest(){if(!mapReady||U.view!=="kaart")return null;const b=map.getB
 
 const rootLabel=()=>U.view==="kaart"?"In beeld":"Nieuwste";
 // bewezen is de norm: dan alleen het symbool, bij andere fasen ook het woord
-const art=d=>`<li><button class="art${U.hov===d.id?" hl":""}" data-iv="${esc(d.id)}"><span class="art-m">${sym(d.status)}${d.status==="bewezen"?'<span class="sr">Bewezen</span>':`<span>${ST[d.status].l}</span><span aria-hidden="true">·</span>`}<span class="num">${fd(d.date)}</span><span aria-hidden="true">·</span><span class="c">${esc(d.country)}</span></span><span class="art-t">${esc(d.title)}</span>${d.summary?`<span class="art-s">${esc(d.summary)}</span>`:""}</button></li>`;
+const art=d=>`<li><button class="art${U.hov===d.id?" hl":""}" data-iv="${esc(d.id)}"><span class="art-m">${sym(d.status)}${d.status==="bewezen"?'<span class="sr">Bewezen</span>':`<span>${ST[d.status].l}</span><span aria-hidden="true">·</span>`}<span class="num">${fd(d.date)}</span><span aria-hidden="true">·</span><span class="c">${esc(d.country)}</span>${aib(d)}</span><span class="art-t">${esc(d.title)}</span>${d.summary?`<span class="art-s">${esc(d.summary)}</span>`:""}</button></li>`;
 let feedSig="";
 function renderFeed(top){
   const test=frameTest(),v=test?R.filter(d=>isFinite(d.lat)&&test(d)):R;
@@ -949,7 +954,7 @@ function renderIncident(){
   if((pr||ac)&&d.confirmed)kv.push([pr?"Datum toeschrijving":"Datum aanklacht",fdl(d.confirmed)]);
   if(d.actor)kv.push(["Genoemde actor",d.actor]);
   $("infoBody").innerHTML=`${crumbs("Incident")}<article class="inc">
-    <div class="tags"><span class="tag">${sym(d.status)}${ST[d.status].l}</span>${CATS[d.category]?`<span class="tag">${esc(CATS[d.category])}</span>`:""}</div>
+    <div class="tags"><span class="tag">${sym(d.status)}${ST[d.status].l}</span>${CATS[d.category]?`<span class="tag">${esc(CATS[d.category])}</span>`:""}${aib(d)}</div>
     <h2 class="inc-t">${esc(d.title)}</h2>
     <p class="inc-m">${fdl(d.date)} · ${esc(d.country)}</p>
     ${d.summary?`<p class="inc-s">${esc(d.summary)}</p>`:""}
@@ -1124,7 +1129,7 @@ function setView(v){U.view=v;
   feedSig="";renderInfo()}
 document.querySelectorAll(".viewbar [data-view]").forEach(b=>b.onclick=()=>{const h="#"+b.dataset.view;if(location.hash!==h)location.hash=h;else setView(b.dataset.view)});
 function render(){R=DATA.filter(match);CNT={};for(const d of R){const k=ck(d);if(k)CNT[k]=(CNT[k]||0)+1}
-  const extra=(S.from!==Y0||S.to!==Y1?1:0)+(S.region?1:0)+(S.ua?1:0)+S.cats.size;$("fCount").textContent=extra;$("fCount").hidden=!extra;
+  const extra=(S.from!==Y0||S.to!==Y1?1:0)+(S.region?1:0)+(S.ctl?1:0)+(S.ua?1:0)+S.cats.size;$("fCount").textContent=extra;$("fCount").hidden=!extra;
   U.feedN=60;U.shown=100;
   pushData();renderInfo();if(U.view==="lijst")renderList();if(U.view==="grafieken")renderCharts();
   $("mapMsg").hidden=!!DATA.length;if(!DATA.length)$("mapMsg").textContent="Nog geen incidenten in de dataset."}
@@ -1152,7 +1157,7 @@ function renderDetail(id){
       <div><span>${pr?"Datum toeschrijving":ac?"Datum aanklacht":"Opgenomen op"}</span><b class="num">${pr||ac?fd(d.confirmed)||"–":(d.history[0]?fd(d.history[0].date):"–")}</b></div>
       <div><span>Bronnen</span><b class="num">${d.sources.length}${top?" · hoogste "+top.lvl:""}</b></div>
     </div>
-    <div class="metarow">${CATS[d.category]?`<span class="tag">${esc(CATS[d.category])}</span>`:""}<span class="tag">${fdl(d.date)}</span><span class="tag">${esc(d.country)}</span></div>
+    <div class="metarow">${CATS[d.category]?`<span class="tag">${esc(CATS[d.category])}</span>`:""}<span class="tag">${fdl(d.date)}</span><span class="tag">${esc(d.country)}</span>${aib(d)}</div>
     <h1 style="margin-top:16px">${esc(d.title)}</h1>
     <p class="lede">${esc(d.summary)}</p>
     <dl class="facts">
@@ -1164,6 +1169,7 @@ function renderDetail(id){
       <dt>Kenmerk</dt><dd style="overflow-wrap:anywhere">${esc(d.id)}</dd>
     </dl>
     ${NOTE[d.status]?`<p class="note">${NOTE[d.status]}</p>`:""}
+    ${d.ai?`<p class="note">✦ ${AIT}</p>`:""}
     ${d.dev.length?`<section><h2>Verloop</h2><p class="sub">Elke stap in deze zaak, van eerste melding tot de huidige fase, met de bron.</p>${tlineHTML(d.dev,true)}</section>`:""}
     <section><h2>Bronnen</h2><p class="sub">Elke bron heeft een archiefkopie. Het niveau zegt wat voor bron het is (zie <a href="#methode">Methode</a>).</p>
      ${d.sources.map(s=>`<div class="src"><span class="lvl ${s.lvl==="A"?"A":""}" title="${LVT[s.lvl]||""}">${esc(s.lvl)}</span><div><b>${esc(s.pub)}</b><div class="t">${esc(s.title)}</div><div class="lk"><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">Origineel ↗</a><a href="${esc(s.archive)}" target="_blank" rel="noopener noreferrer">Archiefkopie ↗</a></div></div><span class="dte">gecontroleerd<br>${s.checked}</span></div>`).join("")}
@@ -1182,7 +1188,7 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-mapto]");i
   setTimeout(()=>{setSelLand(null);setFocus();renderInfo(true);if(mapReady)map.jumpTo({center:[d.mlon,d.mlat],zoom:Math.max(map.getZoom(),7)})},0)});
 
 function renderRuns(){
-  const LB={nieuw:"Nieuw",extra_bron:"Bron toegevoegd",statuswijziging:"Status gewijzigd",correctie:"Gecorrigeerd",link:"Link hersteld"};
+  const LB={nieuw:"Nieuw",extra_bron:"Bron toegevoegd",statuswijziging:"Status gewijzigd",correctie:"Gecorrigeerd",link:"Link hersteld",ontwikkeling:"Ontwikkeling",nagekeken:"Nagekeken",verwijderd:"Verwijderd"};
   const weeks={};CHANGES.forEach(c=>{(weeks[c.datum]=weeks[c.datum]||[]).push(c)});
   const dates=Object.keys(weeks).sort().reverse(),recent=dates.length?weeks[dates[0]].length:0;
   $("newBadge").textContent=$("newBadge2").textContent=recent?String(recent):"";

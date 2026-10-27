@@ -2,17 +2,19 @@
 #   Wekelijks (geplande taak):  powershell -File run_weekbrief.ps1
 #       -> officiele bronnen ophalen, dan zoeken (1), volglijst (2) en verrijken (3)
 #   Losse stappen:              -Modus volglijst | verrijken
-#   Archief:                    -Modus archief -Jaar 2024
+#   Archief, een jaar compleet: -Modus jaar -Jaar 2024   (ronde 1 zoeken, ronde 2 en 3 gaten dichten; max. $50)
+#   Archief, losse ronde:       -Modus archief -Jaar 2024 [-Ronde 2]
 #   Verdieping van een zaak:    -Modus verdieping -Zaak <id>
 #   Dossier vanaf nul:          -Modus dossier -Onderwerp "<omschrijving>"
 #   Vervolg na gebruikslimiet:  -Stappen "volglijst,verrijken"   (doet run_ophalen.ps1 vanzelf)
 #   Eenmalig hoger budget:      -Budget 3
 #
 # Per run: data\ bewaren, Claude Code headless (abonnement) met de opdracht uit Tasks\, tokens naar
-# logs\tokens.csv, controle met scripts\controleer_weekbrief.py, en per dossier vastleggen wanneer het
-# is nagezocht (scripts\dossiers.py). Zolang een run loopt bestaat logs\brief.lock.
-param([ValidateSet("week", "archief", "verdieping", "volglijst", "verrijken", "dossier")][string]$Modus = "week",
-      [string]$Jaar = "", [string]$Zaak = "", [string]$Budget = "", [string]$Onderwerp = "", [string]$Stappen = "")
+# logs\tokens.csv, controle met scripts\controleer_weekbrief.py, goedgekeurd namens de AI en verwerkt
+# (scripts\atlas.py, controle 'ai'), en per dossier vastleggen wanneer het is nagezocht
+# (scripts\dossiers.py). Zolang een run loopt bestaat logs\brief.lock.
+param([ValidateSet("week", "jaar", "archief", "verdieping", "volglijst", "verrijken", "dossier")][string]$Modus = "week",
+      [string]$Jaar = "", [string]$Zaak = "", [string]$Budget = "", [string]$Onderwerp = "", [string]$Stappen = "", [int]$Ronde = 1)
 
 $ErrorActionPreference = "Stop"
 Set-Location -LiteralPath $PSScriptRoot
@@ -35,7 +37,7 @@ $script:limiet = $false
 
 function Run-Mode([string]$m) {
     $slug = ($Onderwerp -replace '[^A-Za-z0-9]', ''); if ($slug.Length -gt 20) { $slug = $slug.Substring(0, 20) }
-    $naam = switch ($m) { "archief" { "archief-$Jaar" } "verdieping" { "verdieping-$datum-" + ($Zaak -replace '[^A-Za-z0-9-]', '_') } "dossier" { "dossier-$datum-$slug" } default { "$m-$datum" } }
+    $naam = switch ($m) { "archief" { "archief-$Jaar" + $(if ($Ronde -gt 1) { "-r$Ronde" } else { "" }) } "verdieping" { "verdieping-$datum-" + ($Zaak -replace '[^A-Za-z0-9-]', '_') } "dossier" { "dossier-$datum-$slug" } default { "$m-$datum" } }
     $txtLog = Join-Path $logDir "$naam.log"; $jsonLog = Join-Path $logDir "$naam.json"; $streamLog = Join-Path $logDir "$naam.jsonl"
     $backup = Join-Path $logDir "backup-$naam"
     function Log($msg) { $line = "{0}  {1}" -f (Get-Date -Format "HH:mm:ss"), $msg; Write-Host $line; Add-Content -LiteralPath $txtLog -Value $line -Encoding UTF8 }
@@ -75,8 +77,19 @@ function Run-Mode([string]$m) {
         "archief" {
             if (-not $Jaar) { Log "FOUT: geef -Jaar op."; return 2 }
             [void](Py "scripts\controleer_weekbrief.py" zaken --uit (Join-Path $logDir "zaken-$naam.csv"))
-            $prompt = "Lees Tasks/ONDERZOEKSPROTOCOL.md, Tasks/WEEKBRIEF.md en Tasks/ARCHIEF.md en voer de archiefopdracht uit. Jaar voor deze run: $Jaar. Datum van vandaag: $datum. Overzicht van zaken: logs/zaken-$naam.csv."
-            $allowed = @("Read", "WebSearch", "WebFetch(domain:nos.nl)", "Edit(./data/beoordelingen.csv)", "Edit(./data/voorstellen.csv)"); $budget = "3"
+            $prompt = "Lees Tasks/ONDERZOEKSPROTOCOL.md, Tasks/WEEKBRIEF.md en Tasks/ARCHIEF.md en voer de archiefopdracht uit. Jaar voor deze run: $Jaar. Datum van vandaag: $datum. Overzicht van zaken: logs/zaken-$naam.csv. Bronnenregister: data/bronnenregister.csv."
+            $gaten = Join-Path $logDir "gaten-archief-$Jaar.md"
+            # samen hoogstens $50 per jaar: ronde 1 breed zoeken, ronde 2 en 3 gaten dichten
+            $allowed = $alles + @("Edit(./data/beoordelingen.csv)", "Edit(./logs/gaten-archief-$Jaar.md)")
+            $budget = switch ($Ronde) { 1 { "25" } 2 { "15" } default { "10" } }
+            if ($Ronde -gt 1) {
+                if (-not (Test-Path -LiteralPath $gaten)) { Log "FOUT: $gaten ontbreekt; draai eerst ronde 1."; return 2 }
+                $prompt += " Dit is ronde $Ronde (gaten dichten): volg de sectie Ronde 2 in Tasks/ARCHIEF.md. De lijst met gaten: logs/gaten-archief-$Jaar.md; werk die aan het eind bij."
+            } else {
+                # ronde 1 vult zelf de lijst met gaten voor ronde 2
+                Set-Content -LiteralPath $gaten -Encoding UTF8 -Value "# Gaten archief $Jaar (na ronde 1)`r`n`r`n(nog in te vullen door ronde 1)"
+                $prompt += " Vul aan het eind logs/gaten-archief-$Jaar.md in volgens de sectie Lijst met gaten in Tasks/ARCHIEF.md."
+            }
         }
         "verdieping" {
             if (-not $Zaak) { Log "FOUT: geef -Zaak op."; return 2 }
@@ -111,6 +124,9 @@ function Run-Mode([string]$m) {
     Py "scripts\controleer_weekbrief.py" controleer --backup $backup --log $jsonLog --afgekeurd (Join-Path $logDir "afgekeurd-$naam.csv") @check | ForEach-Object { Log $_ }
     $checkCode = $script:pyCode
     if ($gezocht -and -not $script:limiet) { Py "scripts\dossiers.py" gezocht @gezocht | ForEach-Object { Log $_ } }
+    # wat de controle doorstond gaat met controle 'ai' op de kaart (link, citaat en bewijsregel opnieuw gecontroleerd)
+    Py "scripts\atlas.py" autogoedkeuren | ForEach-Object { Log $_ }
+    Py "scripts\atlas.py" verwerk --controleer-links | ForEach-Object { Log $_ }
     [void](Py "scripts\dossiers.py" bijwerken)
     if ($checkCode -ne 0) { Log "Controle heeft regels afgekeurd, gemist of teruggezet; zie 'controle' in $jsonLog"; return 1 }
     if ($code -ne 0) { return $code }
@@ -138,7 +154,16 @@ try {
             }
         }
     } else {
-        $rc = [int](Run-Mode $Modus | Select-Object -Last 1)
+        if ($Modus -eq "jaar") {
+            # een jaar archief in twee rondes: zoeken, dan de gaten dichten
+            $Ronde = 1; $rc = [int](Run-Mode "archief" | Select-Object -Last 1)
+            foreach ($r in 2, 3) {
+                if ($script:limiet) { Write-Host "Gebruikslimiet: verder later met -Modus archief -Jaar $Jaar -Ronde $r"; break }
+                $Ronde = $r; $rc = [Math]::Max($rc, [int](Run-Mode "archief" | Select-Object -Last 1))
+            }
+        } else {
+            $rc = [int](Run-Mode $Modus | Select-Object -Last 1)
+        }
     }
 } finally {
     if (Test-Path -LiteralPath $lock) { Remove-Item -LiteralPath $lock }

@@ -17,7 +17,7 @@ Gebruik:
       MAP bevat data/ van vóór de run. Daarna:
       - data/beoordelingen.csv en data/voorstellen.csv worden opnieuw opgebouwd als de versie van
         vóór de run plus de nieuwe regels die de controle doorstaan;
-      - week/archief: elke beoordeling hoort bij de lijst (week) of op nos.nl (archief), één per
+      - week/archief: elke beoordeling hoort bij de lijst (week) of op nos.nl/het register (archief), één per
         bericht, geldig besluit; bij nieuwe_zaak/ontwikkeling een geldige fase, categorie en een
         citaat dat echt op de pagina staat, en een bijbehorend voorstel;
       - verdieping/volglijst: alleen voorstellen (ontwikkelingen) bij bestaande zaken;
@@ -95,12 +95,17 @@ def register_domains() -> set[str]:
     return {r["domein"].lower().removeprefix("www.") for r in read_dicts(DATA / "bronnenregister.csv")
             if r.get("lijst") in ("voorkeur", "vertrouwd") and r.get("domein")}
 
+def searchable(url: str) -> bool:
+    """Archief: elk geopend artikel van nos.nl of een domein uit het register (behalve niet_gebruiken)."""
+    h = host(url)
+    return on_nos(url) or any(h == d or h.endswith("." + d) for d in
+        {r["domein"].lower().removeprefix("www.") for r in read_dicts(DATA / "bronnenregister.csv")
+         if r.get("domein") and r.get("lijst") != "niet_gebruiken"})
+
 def allowed_source(url: str, modus: str, reg: set[str]) -> bool:
     """Bewijs komt alleen van nos.nl of van een domein uit het bronnenregister (voorkeur/vertrouwd)."""
     if on_nos(url):
         return True
-    if modus == "archief":
-        return False  # het archief zoekt alleen binnen nos.nl
     h = host(url)
     return any(h == d or h.endswith("." + d) for d in reg)
 
@@ -207,7 +212,7 @@ def check_proposal_fields(d: dict, modus: str, reg: set[str], case_ids: set[str]
             if d.get("datum", "")[:4] < str(START_YEAR):
                 e.append(f"signalen alleen vanaf {START_YEAR}")
     if not allowed_source(d.get("bron_url", ""), modus, reg):
-        e.append("bron staat niet op nos.nl" + ("" if modus == "archief" else " of in het bronnenregister (voorkeur/vertrouwd)"))
+        e.append("bron staat niet op nos.nl of in het bronnenregister (voorkeur/vertrouwd)")
     q = d.get("citaat", "").strip()
     if not q:
         e.append("citaat ontbreekt")
@@ -308,8 +313,8 @@ def cmd_check(args) -> int:
             elif url in seen:
                 e.append("bericht twee keer beoordeeld in deze run")
             if modus == "archief":
-                if not on_nos(url):
-                    e.append("url staat niet op nos.nl")
+                if not searchable(url):
+                    e.append("url staat niet op nos.nl of in het bronnenregister")
                 if d.get("run_datum", "").strip() != "archief":
                     e.append("run_datum moet 'archief' zijn")
             else:

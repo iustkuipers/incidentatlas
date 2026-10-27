@@ -15,6 +15,14 @@ Gebruik:
   python scripts/atlas.py links
       Controleert alle bronlinks en werkt 'laatst_gecontroleerd' bij.
 
+  python scripts/atlas.py autogoedkeuren
+      Keurt alle voorstellen die nog te beoordelen zijn goed namens de AI (beoordeeld_door 'AI');
+      daarna 'verwerk --controleer-links'. Zulke zaken en stappen krijgen controle 'ai'.
+
+  python scripts/atlas.py nagekeken --id ID --door NAAM
+  python scripts/atlas.py verwijder --id ID --door NAAM
+      Een mens heeft de zaak nagekeken (alle stappen controle 'mens'), of haalt hem van de kaart.
+
 Alleen de standaardbibliotheek van Python 3.9+ is nodig.
 """
 from __future__ import annotations
@@ -47,7 +55,7 @@ COLUMNS = [
     "bron_1_url", "bron_1_uitgever", "bron_1_titel", "bron_1_niveau",
     "bron_2_url", "bron_2_uitgever", "bron_2_titel", "bron_2_niveau",
     "bron_3_url", "bron_3_uitgever", "bron_3_titel", "bron_3_niveau",
-    "statusgeschiedenis", "toegevoegd_op", "laatst_gecontroleerd", "opmerking",
+    "statusgeschiedenis", "toegevoegd_op", "laatst_gecontroleerd", "opmerking", "controle",
 ]
 PROPOSAL_COLUMNS = [
     "voorstel_id", "run_datum", "soort", "incident_id",
@@ -59,7 +67,20 @@ PROPOSAL_COLUMNS = [
 CHANGE_COLUMNS = ["datum", "run_datum", "soort", "incident_id", "titel", "omschrijving"]
 RUN_COLUMNS = ["run_datum", "inbox", "bekeken", "relevant", "voorstellen", "goedgekeurd", "afgewezen"]
 DEV_COLUMNS = ["ontwikkeling_id", "incident_id", "datum", "fase", "fasewissel", "wat", "wie",
-               "bron_url", "bron_uitgever", "bron_niveau", "citaat", "toegevoegd_op"]
+               "bron_url", "bron_uitgever", "bron_niveau", "citaat", "toegevoegd_op", "controle"]
+AI_REVIEWER = "AI"  # beoordeeld_door van voorstellen die zonder mens zijn goedgekeurd
+
+def controle_of(p: dict) -> str:
+    """'ai' als de AI het voorstel zelf goedkeurde, anders 'mens'."""
+    return "ai" if p.get("beoordeeld_door", "").strip().upper() == AI_REVIEWER else "mens"
+
+def sync_controle(incidents: list[dict], devs: list[dict]) -> None:
+    """Een zaak is door een mens gecontroleerd als al zijn stappen dat zijn."""
+    for d in devs:
+        d["controle"] = d.get("controle") or "mens"  # stappen van voor de AI-goedkeuring keurde een mens goed
+    ai = {d["incident_id"] for d in devs if d["controle"] == "ai"}
+    for r in incidents:
+        r["controle"] = "ai" if r["id"] in ai else "mens"
 
 CATEGORIES = {
     "sabotage": "Sabotage & brandstichting",
@@ -315,7 +336,7 @@ def dev_row(inc: dict, p: dict, fasewissel: bool, wat: str | None = None) -> dic
             "fase": inc["status"], "fasewissel": "ja" if fasewissel else "nee",
             "wat": (wat or p["samenvatting"] or p["titel"]).strip(), "wie": p["toegeschreven_door"].strip(),
             "bron_url": p["bron_url"], "bron_uitgever": p["bron_uitgever"], "bron_niveau": p["bron_niveau"],
-            "citaat": p["citaat"], "toegevoegd_op": today()}
+            "citaat": p["citaat"], "toegevoegd_op": today(), "controle": controle_of(p)}
 
 def cmd_process(args) -> int:
     """Neemt goedgekeurde voorstellen over. Soorten:
@@ -397,9 +418,9 @@ def cmd_process(args) -> int:
         if kind in ("ontwikkeling", "statuswijziging") and new != cur:
             if new not in STATUSES:
                 return f"onbekende fase {new!r}"
-            if new != "ontkracht" and cur != "ontkracht" and PHASE_RANK[new] < PHASE_RANK[cur]:
-                return f"fase kan niet omlaag van {cur} naar {new} (alleen naar ontkracht)"
-            switched = True
+            # een lagere fase (bijvoorbeeld een aanklacht na de toeschrijving) is een stap in de tijdlijn,
+            # maar de fase gaat nooit omlaag (alleen naar ontkracht)
+            switched = new == "ontkracht" or cur == "ontkracht" or PHASE_RANK[new] > PHASE_RANK[cur]
         if switched:
             promote_source(inc, p)  # de bron die de nieuwe fase draagt komt altijd vooraan
             err = None
@@ -462,9 +483,10 @@ def cmd_process(args) -> int:
         err = precheck(e) or develop(by_id[iid], e)
         finish(e, err)
 
+    all_devs = read_csv(DEVELOPMENTS, DEV_COLUMNS) + devs
+    sync_controle(incidents, all_devs)
     write_incidents(incidents)
-    if devs:
-        append_csv(DEVELOPMENTS, devs, DEV_COLUMNS)
+    write_csv(DEVELOPMENTS, all_devs, DEV_COLUMNS)
     if changes:
         append_csv(CHANGES, changes, CHANGE_COLUMNS)
 
@@ -518,6 +540,49 @@ def cmd_migrate(_args) -> int:
     print(f"{n} incidenten en {m} voorstellen omgezet naar de nieuwe fasenamen; {len(devs)} ontwikkelingen aangemaakt.")
     return 0
 
+def cmd_auto_approve(_args) -> int:
+    props = read_csv(PROPOSALS, PROPOSAL_COLUMNS)
+    n = 0
+    for p in props:
+        if p["beoordeling"].strip().lower() in ("", "te_beoordelen") and not p["verwerkt"].strip():
+            p["beoordeling"], p["beoordeeld_door"] = "goedgekeurd", AI_REVIEWER
+            n += 1
+    write_csv(PROPOSALS, props, PROPOSAL_COLUMNS)
+    print(f"{n} voorstel(len) goedgekeurd door de AI.")
+    return 0
+
+def cmd_reviewed(args) -> int:
+    incidents = read_csv(INCIDENTS, COLUMNS)
+    inc = next((r for r in incidents if r["id"] == args.id), None)
+    if not inc:
+        print(f"Zaak niet gevonden: {args.id}")
+        return 1
+    devs = read_csv(DEVELOPMENTS, DEV_COLUMNS)
+    for d in devs:
+        if d["incident_id"] == args.id:
+            d["controle"] = "mens"
+    sync_controle(incidents, devs)
+    write_incidents(incidents)
+    write_csv(DEVELOPMENTS, devs, DEV_COLUMNS)
+    append_csv(CHANGES, [dict(datum=today(), run_datum="", soort="nagekeken", incident_id=args.id, titel=inc["titel"],
+                              omschrijving=f"Nagekeken door {args.door}")], CHANGE_COLUMNS)
+    print(f"Nagekeken: {inc['titel']}")
+    return 0
+
+def cmd_remove(args) -> int:
+    incidents = read_csv(INCIDENTS, COLUMNS)
+    inc = next((r for r in incidents if r["id"] == args.id), None)
+    if not inc:
+        print(f"Zaak niet gevonden: {args.id}")
+        return 1
+    devs = [d for d in read_csv(DEVELOPMENTS, DEV_COLUMNS) if d["incident_id"] != args.id]
+    write_incidents([r for r in incidents if r["id"] != args.id])
+    write_csv(DEVELOPMENTS, devs, DEV_COLUMNS)
+    append_csv(CHANGES, [dict(datum=today(), run_datum="", soort="verwijderd", incident_id=args.id, titel=inc["titel"],
+                              omschrijving=f"Van de kaart gehaald door {args.door}")], CHANGE_COLUMNS)
+    print(f"Verwijderd: {inc['titel']}")
+    return 0
+
 # ------------------------------------------------------------- links
 def cmd_links(_args) -> int:
     rows = read_csv(INCIDENTS, COLUMNS)
@@ -550,6 +615,12 @@ def main() -> int:
     pr.set_defaults(fn=cmd_process)
     sub.add_parser("links").set_defaults(fn=cmd_links)
     sub.add_parser("migreer").set_defaults(fn=cmd_migrate)
+    sub.add_parser("autogoedkeuren").set_defaults(fn=cmd_auto_approve)
+    for name, fn in (("nagekeken", cmd_reviewed), ("verwijder", cmd_remove)):
+        sp = sub.add_parser(name)
+        sp.add_argument("--id", required=True)
+        sp.add_argument("--door", required=True)
+        sp.set_defaults(fn=fn)
     args = ap.parse_args()
     return args.fn(args)
 

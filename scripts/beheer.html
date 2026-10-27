@@ -91,7 +91,7 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const api=async(path,body)=>{const r=await fetch(path,body?{method:"POST",headers:{"Content-Type":"application/json","X-Beheer":"1"},body:JSON.stringify(body)}:{});
   let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.fout||("fout "+r.status));return j};
 function toast(t){const e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2600)}
-let D=null,tab="open",zaakSel=null,me="",openEdit=new Set(),addSrc=new Set(),lastRun=null;
+let tabChosen=false,D=null,tab="open",zaakSel=null,me="",openEdit=new Set(),addSrc=new Set(),lastRun=null;
 // 'bewezen' zonder één A-bron of twee B-bronnen (extra bronnen tellen mee), en nog niet verwerkt
 const needsSrc=v=>{if(v.status!=="bewezen"||v.verwerkt.startsWith("ja")||v.beoordeling==="afgewezen")return false;const lv=[v.bron_niveau,...(v._extra||[]).map(e=>e.bron_niveau)];return !(lv.includes("A")||lv.filter(x=>x==="B").length>=2)};
 const state=v=>v.verwerkt.startsWith("ja")?"verwerkt":v.beoordeling==="goedgekeurd"?"goed":v.beoordeling==="afgewezen"?"af":"open";
@@ -122,13 +122,16 @@ async function load(){try{D=await api("/api/voorstellen");D.voorstellen=D.voorst
 let autoRefresh=null;
 function render(){clearTimeout(autoRefresh);if(D&&D.verdieping_bezig&&D.verdieping_bezig.zaak)autoRefresh=setTimeout(load,20000);const V=D.voorstellen,c={open:0,goed:0,af:0,verwerkt:0};V.forEach(v=>c[state(v)]++);
   const nb=V.filter(needsSrc).length;
-  const tabs=[["bron","Bronnen nodig",nb],["open","Te beoordelen",c.open],["goed","Goedgekeurd",c.goed],["af","Afgewezen",c.af],["verwerkt","Verwerkt",c.verwerkt],["zaken","Zaken",D.zaken.length]];
-  const all=tab==="zaken"?D.zaken:tab==="bron"?V.filter(needsSrc):V.filter(v=>state(v)===tab);
+  const nk=D.zaken.filter(z=>z.verwerkt&&z.controle==="ai");
+  if(tab==="open"&&!c.open&&nk.length&&!tabChosen)tab="nakijken";
+  const tabs=[["nakijken","Na te kijken",nk.length],["bron","Bronnen nodig",nb],["open","Te beoordelen",c.open],["goed","Goedgekeurd",c.goed],["af","Afgewezen",c.af],["verwerkt","Verwerkt",c.verwerkt],["zaken","Zaken",D.zaken.length]];
+  const isCase=tab==="zaken"||tab==="nakijken";
+  const all=tab==="nakijken"?nk:tab==="zaken"?D.zaken:tab==="bron"?V.filter(needsSrc):V.filter(v=>state(v)===tab);
   // per dossier kiezen, anders wordt de lijst heel lang
-  const groups=new Map();if(tab!=="zaken")for(const v of all){const k=v._zaak||"";if(!groups.has(k))groups.set(k,{titel:v.soort==="nieuw"?v.titel:v._incident_titel||v.incident_id||"Zonder dossier",n:0});groups.get(k).n++}
+  const groups=new Map();if(!isCase)for(const v of all){const k=v._zaak||"";if(!groups.has(k))groups.set(k,{titel:v.soort==="nieuw"?v.titel:v._incident_titel||v.incident_id||"Zonder dossier",n:0});groups.get(k).n++}
   if(zaakSel!==""&&!groups.has(zaakSel))zaakSel=groups.size?[...groups.keys()][0]:"";
-  const list=tab==="zaken"||zaakSel===""?all:all.filter(v=>(v._zaak||"")===zaakSel);
-  const pick=tab!=="zaken"&&groups.size?`<div class="bar"><label class="grow" style="max-width:520px">Dossier<select id="zsel"><option value="" ${zaakSel===""?"selected":""}>Alle dossiers (${all.length})</option>${[...groups].map(([k,g])=>`<option value="${esc(k)}" ${k===zaakSel?"selected":""}>${esc(g.titel)} (${g.n})</option>`).join("")}</select></label>
+  const list=isCase||zaakSel===""?all:all.filter(v=>(v._zaak||"")===zaakSel);
+  const pick=!isCase&&groups.size?`<div class="bar"><label class="grow" style="max-width:520px">Dossier<select id="zsel"><option value="" ${zaakSel===""?"selected":""}>Alle dossiers (${all.length})</option>${[...groups].map(([k,g])=>`<option value="${esc(k)}" ${k===zaakSel?"selected":""}>${esc(g.titel)} (${g.n})</option>`).join("")}</select></label>
       ${tab==="open"&&zaakSel!==""&&list.length>1?`<button id="allok" ${D.brief_bezig?"disabled":""}>Alle ${list.length} in dit dossier goedkeuren</button>`:""}</div>`:"";
   app.innerHTML=`<header><div class="wrap"><b>Incidentatlas · beoordelen</b>
     <div class="tabs" role="group" aria-label="Filter">${tabs.map(([k,t,n])=>`<button data-tab="${k}" aria-pressed="${tab===k}"${n?"":" data-zero"}>${t}<span class="n">${n}</span></button>`).join("")}</div>
@@ -136,16 +139,16 @@ function render(){clearTimeout(autoRefresh);if(D&&D.verdieping_bezig&&D.verdiepi
   <main class="wrap">
     ${D.brief_bezig?'<div class="banner warn">De wekelijkse brief draait nu. Opslaan en verwerken kan zodra die klaar is.</div>':""}
     ${D.verdieping_bezig&&D.verdieping_bezig.zaak?`<div class="banner warn">Verdieping loopt voor <b>${esc(D.verdieping_bezig.zaak)}</b>. Dit duurt een paar minuten; de pagina ververst zichzelf.</div>`:""}
-    <div class="bar"><div class="grow">${tab==="zaken"?"Alle zaken met hun fase en tijdlijn. Verdiepen laat de AI de hele geschiedenis van één zaak zoeken (max. $1); de gevonden stappen komen als voorstellen bij Te beoordelen.":
+    <div class="bar"><div class="grow">${tab==="nakijken"?"Door de AI gevonden en automatisch gecontroleerd (link, citaat, bewijsregel); ze staan al op de kaart met ✦ AI. Kijk de tijdlijn na en kies Nagekeken of Klopt niet.":tab==="zaken"?"Alle zaken met hun fase en tijdlijn. Verdiepen laat de AI de hele geschiedenis van één zaak zoeken (max. $1); de gevonden stappen komen als voorstellen bij Te beoordelen.":
       tab==="open"?"Lees het citaat, open zo nodig het NOS-artikel, pas velden aan en kies Goedkeuren of Afwijzen.":
       tab==="bron"?"Bewezen, maar nog geen A-bron of twee B-bronnen. Voeg per voorstel een bron toe, of kies een voorzichtigere status. Zonder extra bron komt het niet door de verwerking.":
       tab==="goed"?"Goedgekeurd en klaar om te verwerken. Verwerken controleert de link, het citaat en de bewijsregel opnieuw.":""}</div>
       <button class="primary" id="run" ${c.goed&&!D.brief_bezig?"":"disabled"}>Verwerk goedgekeurde (${c.goed})</button></div>
     ${lastRun?resultHTML(lastRun):""}
     ${pick}
-    ${list.length?list.map(tab==="zaken"?zaakCard:card).join(""):`<p class="empty">Niets in deze lijst.</p>`}
+    ${list.length?list.map(isCase?zaakCard:card).join(""):`<p class="empty">Niets in deze lijst.</p>`}
   </main>`;
-  document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});
+  document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;tabChosen=true;render()});
   $("#out").onclick=async()=>{await api("/api/logout",{});start()};
   $("#run").onclick=verwerk;
   if($("#zsel"))$("#zsel").onchange=e=>{zaakSel=e.target.value;render()};
@@ -201,16 +204,19 @@ function zaakCard(z){const st=STATUS[z.fase]||["s",z.fase],open=["signaal","besc
   const slapend=z.wachtrij?z.wachtrij==="slapend":open&&z.laatste&&(Date.now()-Date.parse(z.laatste.length===7?z.laatste+"-01":z.laatste.length===4?z.laatste+"-01-01":z.laatste))>365*864e5;
   const bezig=D.verdieping_bezig&&D.verdieping_bezig.zaak;
   const rij={volglijst:"op de volglijst",verrijken:"bronnen zoeken",afgerond:"afgerond"}[z.wachtrij];
-  return `<article class="card"><span class="pill ${st[0]}">${st[1]}</span>${slapend?' <span class="pill s">slapend</span>':""}${rij?` <span class="pill s">${rij}</span>`:""}${z.verwerkt?"":' <span class="pill s">nog niet verwerkt</span>'}
+  return `<article class="card"><span class="pill ${st[0]}">${st[1]}</span>${slapend?' <span class="pill s">slapend</span>':""}${rij?` <span class="pill s">${rij}</span>`:""}${z.verwerkt?"":' <span class="pill s">nog niet verwerkt</span>'}${z.controle==="ai"?' <span class="pill s" title="Gevonden en automatisch gecontroleerd door AI; nog niet nagekeken door een mens">✦ AI-gecontroleerd</span>':z.controle==="mens"?' <span class="pill s">✓ nagekeken</span>':""}
   <h2 style="margin-top:10px">${esc(z.titel)}</h2><div class="meta"><span>${esc(z.datum)}</span><span>${esc(z.land)}</span><span>${esc(D.categorieen[z.categorie]||z.categorie)}</span><span>laatst bijgewerkt ${esc(z.laatste)}</span><span>laatst nagezocht ${z.laatst_gezocht?esc(z.laatst_gezocht)+(z.laatst_gezocht_door?" ("+esc(z.laatst_gezocht_door)+(z.laatste_uitkomst?": "+esc(z.laatste_uitkomst):"")+")":""):"nog nooit"}</span>${z.bronniveaus?`<span>bronnen ${esc(z.bronniveaus.split("+").filter(x=>x==="A").length)}×A, ${esc(z.bronniveaus.split("+").filter(x=>x==="B").length)}×B${z.bronnen_voldoende==="nee"?" (te weinig)":""}</span>`:""}</div>
   ${timelineHTML(z.tijdlijn,"","")}
-  <div class="actions"><span class="grow"></span><button data-act="verdiep" data-id="${esc(z.id)}" ${bezig||D.brief_bezig?"disabled":""}>${bezig===z.id?"Verdieping loopt…":"Verdiepen (max. $1)"}</button></div></article>`}
+  <div class="actions">${z.verwerkt&&z.controle==="ai"?`<button data-act="nagekeken" data-id="${esc(z.id)}">Nagekeken</button>`:""}${z.verwerkt?`<button data-act="weg" data-id="${esc(z.id)}">Klopt niet</button>`:""}<span class="grow"></span><button data-act="verdiep" data-id="${esc(z.id)}" ${bezig||D.brief_bezig?"disabled":""}>${bezig===z.id?"Verdieping loopt…":"Verdiepen (max. $1)"}</button></div></article>`}
 
 async function act(id,a,btn){const v=D.voorstellen.find(x=>x.voorstel_id===id)||{};
   if(a==="edit"){openEdit.add(id);render();document.querySelector(`#f-${CSS.escape(id)} input,#f-${CSS.escape(id)} select`)?.focus();return}
   if(a==="cancel"){openEdit.delete(id);render();return}
   if(a==="verdiep"){if(!confirm("De AI zoekt de hele geschiedenis van deze zaak (max. $1). De gevonden stappen komen als voorstellen bij Te beoordelen. Doorgaan?"))return;
     btn.disabled=true;try{await api("/api/verdiep",{zaak:id});toast("Verdieping gestart");await load()}catch(e){btn.disabled=false;toast(e.message)}return}
+  if(a==="nagekeken"||a==="weg"){const z=D.zaken.find(x=>x.id===id)||{};
+    if(a==="weg"&&!confirm(`"${z.titel}" van de kaart halen? De zaak en zijn tijdlijn verdwijnen uit de data (in wijzigingen.csv blijft staan dat jij hem verwijderde).`))return;
+    btn.disabled=true;try{await api(a==="weg"?"/api/zaak/verwijder":"/api/zaak/nagekeken",{zaak:id});toast(a==="weg"?"Van de kaart gehaald":"Gemarkeerd als nagekeken");await load()}catch(e){btn.disabled=false;toast(e.message)}return}
   if(a==="addsrc"){addSrc.add(id);render();document.querySelector(`#s-${CSS.escape(id)} input`)?.focus();return}
   if(a==="cancelsrc"){addSrc.delete(id);render();return}
   if(a==="savesrc"){const f=Object.fromEntries([...document.querySelectorAll(`#s-${CSS.escape(id)} [name]`)].map(e=>[e.name,e.value]));btn.disabled=true;btn.textContent="Controleren…";

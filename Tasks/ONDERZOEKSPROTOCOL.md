@@ -227,15 +227,24 @@ officiële bron volgt via proces 2 en 3.
 - Nieuwe bronnen voeg jij toe (of keur je goed als Claude ze voorstelt); alleen bronnen in het register
   tellen als bewijs.
 
-### 5j. Goedkeuren (jij, in het beheerscherm)
-Per voorstel zie je de tijdlijn van de zaak met de voorgestelde stap erin. Controleer:
+### 5j. Goedkeuren: AI-controle en nakijken door een mens
+Sinds 2026-10-26 gaat wat de AI vindt **zonder handmatige goedkeuring** op de kaart, als het door de
+automatische controle komt: de controle van de run (5l, afbakening, register, coördinaten) en daarna
+`atlas.py verwerk --controleer-links` (link werkt, citaat staat letterlijk op de bronpagina, bewijsregel).
+Zulke zaken en stappen krijgen `controle` = `ai` en op de site het teken **✦ AI**: "nog niet nagekeken
+door een mens". Een zaak telt als `mens` als al zijn stappen door een mens zijn goedgekeurd of nagekeken;
+komt er een AI-stap bij, dan is hij weer `ai`.
+
+Nakijken doe je wanneer je tijd hebt, in het beheerscherm (tabblad *Zaken*): **Nagekeken** (alle stappen
+worden `mens`) of **Klopt niet** (zaak en tijdlijn van de kaart; `wijzigingen.csv` houdt het bij).
+Voorstellen die je zelf goedkeurt worden meteen `mens`. Bij nakijken controleer je:
 1. **Klopt de afbakening?** Categorie, doelwit Europa/NAVO, periode.
 2. **Draagt het citaat de fase?** Staat er echt wie Rusland aanwijst, aanklaagt of veroordeelt?
 3. **Is het dezelfde zaak** als een bestaande, of terecht een nieuwe?
 4. **Is de zekerheid goed** (feiten los van de dader)?
 5. **Genoeg bronnen voor de fase?** Zo niet: bron toevoegen of fase verlagen (tabblad *Bronnen nodig*).
 
-Daarna: *goedkeuren*, *aanpassen en goedkeuren*, of *afwijzen*. Pas na *verwerken* komt het op de site.
+Bij een voorstel dat nog open staat: *goedkeuren*, *aanpassen en goedkeuren*, of *afwijzen*.
 
 ### 5k. Bijhouden per dossier
 Python houdt per dossier bij (in `data/dossierstatus.csv`, na elke run en elke verwerking):
