@@ -726,6 +726,16 @@ const TODAY=new Date().toISOString().slice(0,10);
 const bare=s=>String(s||"").replace(/\s*\(.*\)/,"").trim();
 const AIT="Gevonden en automatisch gecontroleerd door AI: de link werkt, het citaat staat op de bronpagina en de bewijsregel klopt. Nog niet nagekeken door een mens.";
 const aib=d=>d.ai?`<span class="aib" title="${AIT}">✦ AI</span>`:"";
+// samenvatting voor de lezer: zonder werkaantekeningen (protocolcodes als D4/W5, plek van de coördinaten,
+// datumkeuze, bronniveau, voorstel-ids); in de data blijven ze staan voor het nakijken
+const pubText=s=>String(s||"").normalize("NFC")
+  .replace(/\s*\((?:\s*[DWCO]\d\s*[,;]?)+\)/g,"")
+  .replace(/\((?:\s*[DWCO]\d\s*[,;]?)+[:;]?\s*/g,"(")
+  .replace(/[;,]\s*[DWCO]\d(?:\s*,\s*[DWCO]\d)*(?=\s*[);])/g,"")
+  .replace(/\s*(?:Coördinaten|Datum:)[\s\S]*?(?:\.(?=\s+[A-ZÀ-Ž])|$)/g,"")
+  .replace(/\s*[^.;]*[EeÉé]én [AB]-bron[^.;]*(?:\.[a-z]+[^.;]*)*[.;]?/g,"")
+  .replace(/\s*\(?[^.;()]*\barchief-\d{4}-\d+[^.;()]*\)?[.;]?/g,"")
+  .replace(/;\s*$/,".").replace(/\s{2,}/g," ").trim();
 function toIncident(r){
   const status=normSt(r.status);
   const history=(r.statusgeschiedenis||"").split(";").filter(Boolean).map(x=>{const i=x.indexOf(":"),st=normSt(x.slice(i+1));return {date:x.slice(0,i),status:st,note:HNOTE[st]}});
@@ -733,7 +743,7 @@ function toIncident(r){
   const sig=history.find(h=>h.status==="signaal"),pb=history.find(h=>h.status==="bewezen");
   const wasSignal=!!sig||status==="signaal";
   const sources=[1,2,3].filter(i=>r[`bron_${i}_url`]).map(i=>{let host="";try{host=new URL(r[`bron_${i}_url`]).hostname}catch(e){}return {lvl:r[`bron_${i}_niveau`]||"C",pub:r[`bron_${i}_uitgever`]||host,title:r[`bron_${i}_titel`],url:r[`bron_${i}_url`],archive:"https://web.archive.org/web/*/"+r[`bron_${i}_url`],checked:r.laatst_gecontroleerd?fd(r.laatst_gecontroleerd):"nog niet"}});
-  return {id:r.id,date:r.datum,year:+String(r.datum).slice(0,4),title:r.titel,summary:r.samenvatting,country:r.land,region:r.regio,lat:parseFloat(r.lat),lon:parseFloat(r.lon),category:r.categorie,status,
+  return {id:r.id,date:r.datum,year:+String(r.datum).slice(0,4),title:r.titel,summary:pubText(r.samenvatting),country:r.land,region:r.regio,lat:parseFloat(r.lat),lon:parseFloat(r.lon),category:r.categorie,status,
     ukraine:r.oekraine_oorlog==="ja",ai:r.controle==="ai",actor:r.actor,attribution:r.toegeschreven_door||"",confirmed:r.datum_bevestigd,added:r.toegevoegd_op,history,wasSignal,lagMonths:sig&&pb?monthsBetween(sig.date,pb.date):null,sources,dev:[]}
 }
 // Incidenten met exact dezelfde coördinaten komen in een kleine kring te liggen, zodat elk apart aan te klikken is.
@@ -749,7 +759,7 @@ async function loadData(){
   byId=Object.fromEntries(DATA.map(d=>[d.id,d]));spread(DATA);
   // ontwikkelingen per zaak (fasen); het bestand is optioneel
   try{for(const o of await getCSV("data/ontwikkelingen.csv")){const d=byId[o.incident_id];if(!d)continue;
-    d.dev.push({date:o.datum,fase:normSt(o.fase),wissel:/^(ja|true|1)$/i.test(o.fasewissel),wat:o.wat,wie:o.wie,url:o.bron_url,pub:o.bron_uitgever,lvl:o.bron_niveau,quote:o.citaat});
+    d.dev.push({date:o.datum,fase:normSt(o.fase),wissel:/^(ja|true|1)$/i.test(o.fasewissel),wat:pubText(o.wat),wie:o.wie,url:o.bron_url,pub:o.bron_uitgever,lvl:o.bron_niveau,quote:o.citaat});
     if(normSt(o.fase)==="signaal")d.wasSignal=true}
     for(const d of DATA)d.dev.sort((a,b)=>a.date.localeCompare(b.date))}catch(e){}
   // wanneer elk dossier is bijgewerkt en nagezocht; het bestand is optioneel

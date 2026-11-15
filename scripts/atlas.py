@@ -34,6 +34,7 @@ import html
 import io
 import re
 import sys
+import time
 import unicodedata
 import urllib.error
 import urllib.parse
@@ -193,16 +194,22 @@ def iri_to_uri(url: str) -> str:
     q = lambda s: urllib.parse.quote(s, safe="/%:@!$&'()*+,;=-._~?")
     return urllib.parse.urlunsplit((p.scheme, netloc, q(p.path), q(p.query), q(p.fragment)))
 
-def fetch(url: str, timeout: int = 20) -> tuple[int, str]:
+def fetch(url: str, timeout: int = 20, retries: int = 3) -> tuple[int, str]:
+    """Bij 'te veel verzoeken' (429) of een tijdelijke storing (503) even wachten en opnieuw."""
     req = urllib.request.Request(iri_to_uri(url), headers={"User-Agent": "Mozilla/5.0 (Incidentatlas linkcheck)"})
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            body = r.read(3_000_000).decode("utf-8", "ignore")
-            return r.status, body
-    except urllib.error.HTTPError as e:
-        return e.code, ""
-    except Exception:
-        return 0, ""
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                body = r.read(3_000_000).decode("utf-8", "ignore")
+                return r.status, body
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 503) and attempt < retries:
+                time.sleep(20 * (attempt + 1))
+                continue
+            return e.code, ""
+        except Exception:
+            return 0, ""
+    return 0, ""
 
 def norm(text: str) -> str:
     """Alleen de woorden, in volgorde: zonder HTML, entiteiten, hoofdletters, leestekens,

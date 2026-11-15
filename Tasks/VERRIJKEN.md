@@ -25,7 +25,11 @@ Wekelijkse opdracht, na de volglijst. Onderaan staat het pad naar de lijst dossi
    - `status` = de huidige fase van het dossier (verrijken verandert de fase niet; draagt de bron een
      **hogere** fase, gebruik dan `soort` = `ontwikkeling` met die fase);
    - `bron_*`, `bron_niveau` uit het register en een letterlijk `citaat` uit die bron;
-   - titel, land, regio, lat, lon, categorie, oekraine_oorlog exact zoals de zaak.
+   - titel, land, regio, lat, lon, categorie, oekraine_oorlog exact zoals de zaak;
+   - `beoordeling` = `te_beoordelen`; `beoordeeld_door` en `verwerkt` leeg (anders keurt de controle
+     de regel af).
+   - Een citaat uit een pdf of uit de zoekweergave kan de controle niet nalezen; neem liever een
+     html-pagina (persbericht, nieuwsbericht van de instantie) met dezelfde vaststelling.
 5. Niet gevonden: niets schrijven; noem het dossier in je samenvatting met wat je probeerde.
 
 ## Wat je schrijft

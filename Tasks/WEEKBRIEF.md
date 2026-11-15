@@ -15,7 +15,9 @@ alleen wat je leest, doet en schrijft. Je publiceert niets en je keurt niets goe
 3. Zo nodig `data/ontwikkelingen.csv` (de tijdlijn per zaak) en `data/voorstellen.csv`.
 
 ## Werkwijze
-1. Beoordeel **elk** bericht, in de volgorde van de lijst. Beslis eerst op de titel; open alleen
+1. Beoordeel **elk** bericht, in de volgorde van de lijst. Stop niet halverwege omdat je denkt dat
+   het budget op is: de run wordt vanzelf afgebroken als dat zo is, en wat je in blokken hebt
+   geschreven blijft bewaard. Een lange lijst is geen reden om te stoppen. Beslis eerst op de titel; open alleen
    artikelen die relevant kunnen zijn. Open alleen de site van de bron zelf (de url uit de lijst).
    Titels in een andere taal beoordeel je net zo; schrijf `reden`, `titel` en `samenvatting` altijd
    in het Nederlands, het `citaat` in de taal van het artikel.
@@ -61,15 +63,22 @@ Zelfde kolommen als het bestand al heeft. `voorstel_id` = `JJJJ-MM-DD-nn` (runda
 | `incident_id` | leeg | id van de zaak |
 | `datum`, `datum_precisie` | datum van het voorval; `dag`/`maand`/`jaar` | datum van deze ontwikkeling |
 | `titel` | korte titel van de zaak (Nederlands) | titel van de zaak |
-| `samenvatting` | 1–2 zinnen in eigen woorden, met de bron van onzekere claims | **wat** er nu gebeurde, in één zin |
+| `samenvatting` | 1–2 zinnen in eigen woorden, met de bron van onzekere claims; dit staat zo op de kaart, dus **geen werkaantekeningen** (bronniveaus, "één B-bron", voorstel-ids, "vervangt …") – die horen in de afsluiting | **wat** er nu gebeurde, in één zin |
 | `land`, `regio`, `lat`, `lon` | land in het Nederlands; `regio` **alleen** uit: Europa, Afrika, Midden-Oosten, Azië, Noord-Amerika, Latijns-Amerika, Rusland & buurlanden, Oekraïne (nooit een stad); zie *Coördinaten* | **exact gelijk aan de zaak** (de plek van het voorval, niet van deze ontwikkeling) |
 | `categorie` | zie protocol 2c | zoals de zaak |
 | `status` | de fase | de fase **na** deze ontwikkeling (gelijk aan nu, tenzij de bron een hogere fase draagt of ontkracht) |
 | `toegeschreven_door`, `datum_bevestigd` | bij beschuldigd/aangeklaagd/bewezen: **wie** Rusland aanwijst, vervolgt of veroordeelt, en wanneer | **wie** het in deze ontwikkeling zegt |
-| `oekraine_oorlog` | `ja` of `nee` | zoals de zaak |
+| `oekraine_oorlog` | bijna altijd `nee`; zie *Oorlog in Oekraïne* | zoals de zaak |
 | `bron_url`, `bron_uitgever`, `bron_titel`, `bron_niveau` | het artikel; de omroep of het persbureau (`NOS`, `ERR`, `Reuters` …); titel; `B` | idem |
 | `citaat` | hetzelfde citaat als in de beoordeling | idem |
 | `zekerheid` | `hoog`, `middel` of `laag` (protocol 3c: over de feiten, niet over de dader) | idem |
+
+### Oorlog in Oekraïne
+`oekraine_oorlog` = `ja` **alleen** voor mijlpalen van de oorlog zelf: de annexatie van de Krim, de
+invasie, en internationale uitspraken over de oorlog (VN, ICJ, ICC). Die staan op de kaart achter een
+schakelaar die standaard uit staat. Een Russische actie in een ander land (sabotage, spionage, cyber,
+desinformatie, drones of raketten die op NAVO-grondgebied terechtkomen) is altijd `nee`, ook als de
+oorlog het motief is of het doelwit hulp aan Oekraïne is.
 
 ### Coördinaten
 - **De plek van het oorspronkelijke voorval, waar het eerst werd gesignaleerd** – nooit waar later

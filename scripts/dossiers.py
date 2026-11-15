@@ -8,7 +8,7 @@ Gebruik:
       voldoende zijn en de datum van de laatste ontwikkeling, en schrijft data/dossierstatus.csv.
       Eerder vastgelegde zoekdata blijven behouden.
 
-  python scripts/dossiers.py wachtrij --soort volglijst|verrijken --uit LIJST.csv [--max 15]
+  python scripts/dossiers.py wachtrij --soort volglijst|verrijken|versterken --uit LIJST.csv [--max 15]
       Werkt eerst bij en zet dan de dossiers van die wachtrij klaar, het langst niet gezocht eerst.
       Print het aantal.
 
@@ -134,6 +134,9 @@ def cmd_queue(args) -> int:
             g = as_date(r["laatst_gezocht"])
             if r["wachtrij"] == "slapend" and (not g or (today - g).days >= SLAPEND_CHECK):
                 sel.append(r)
+    elif args.soort == "versterken":
+        # bewezen met alleen B-bronnen: de regel is gehaald, maar een primaire bron (A) is sterker
+        sel = [r for r in rows if r["fase"] == "bewezen" and "A" not in r["_d"]["levels"]]
     else:
         sel = [r for r in rows if r["wachtrij"] == "verrijken"]
     sel.sort(key=lambda r: (r["laatst_gezocht"] or "0000", r["laatst_bijgewerkt"]))
@@ -165,7 +168,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("bijwerken").set_defaults(fn=lambda a: (cmd_update(a), 0)[1])
-    q = sub.add_parser("wachtrij"); q.add_argument("--soort", required=True, choices=["volglijst", "verrijken"])
+    q = sub.add_parser("wachtrij"); q.add_argument("--soort", required=True, choices=["volglijst", "verrijken", "versterken"])
     q.add_argument("--uit", required=True, type=Path); q.add_argument("--max", type=int, default=15); q.set_defaults(fn=cmd_queue)
     g = sub.add_parser("gezocht"); g.add_argument("--lijst", type=Path); g.add_argument("--door", required=True)
     g.add_argument("--prefix", required=True); g.set_defaults(fn=cmd_searched)

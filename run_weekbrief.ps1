@@ -2,6 +2,7 @@
 #   Wekelijks (geplande taak):  powershell -File run_weekbrief.ps1
 #       -> officiele bronnen ophalen, dan zoeken (1), volglijst (2) en verrijken (3)
 #   Losse stappen:              -Modus volglijst | verrijken
+#   Bewezen zonder A-bron:      -Modus versterken   (primaire bron zoeken bij bewezen zaken met alleen B)
 #   Archief, een jaar compleet: -Modus jaar -Jaar 2024   (ronde 1 zoeken, ronde 2 en 3 gaten dichten; max. $50)
 #   Archief, losse ronde:       -Modus archief -Jaar 2024 [-Ronde 2]
 #   Verdieping van een zaak:    -Modus verdieping -Zaak <id>
@@ -13,7 +14,7 @@
 # logs\tokens.csv, controle met scripts\controleer_weekbrief.py, goedgekeurd namens de AI en verwerkt
 # (scripts\atlas.py, controle 'ai'), en per dossier vastleggen wanneer het is nagezocht
 # (scripts\dossiers.py). Zolang een run loopt bestaat logs\brief.lock.
-param([ValidateSet("week", "jaar", "archief", "verdieping", "volglijst", "verrijken", "dossier")][string]$Modus = "week",
+param([ValidateSet("week", "jaar", "archief", "verdieping", "volglijst", "verrijken", "versterken", "dossier")][string]$Modus = "week",
       [string]$Jaar = "", [string]$Zaak = "", [string]$Budget = "", [string]$Onderwerp = "", [string]$Stappen = "", [int]$Ronde = 1)
 
 $ErrorActionPreference = "Stop"
@@ -73,6 +74,15 @@ function Run-Mode([string]$m) {
             if ($n -eq 0) { Log "Alle dossiers hebben genoeg bronnen."; return 0 }
             $prompt = "Lees Tasks/ONDERZOEKSPROTOCOL.md en Tasks/VERRIJKEN.md en voer de opdracht uit. Datum van vandaag: $datum. Dossiers: $rel ($n dossiers). Inbox officiele bronnen: data/inbox_officieel.csv. Bronnenregister: data/bronnenregister.csv."
             $allowed = $alles; $budget = "1.5"; $gezocht = @("--lijst", $lijst, "--door", "verrijken", "--prefix", "verrijken-$datum")
+        }
+        "versterken" {
+            # bewezen zaken met alleen B-bronnen: zoek de primaire bron (vonnis, aanklacht, toeschrijving)
+            $n = [int](Py "scripts\dossiers.py" wachtrij --soort versterken --uit $lijst --max 100 | Select-Object -Last 1)
+            Log "Bewezen dossiers zonder A-bron: $n"
+            if ($n -eq 0) { Log "Alle bewezen dossiers hebben een A-bron."; return 0 }
+            $prompt = "Lees Tasks/ONDERZOEKSPROTOCOL.md en Tasks/VERRIJKEN.md en voer de opdracht uit, met deze afwijking: deze dossiers zijn bewezen en halen de bronnenregel al met twee B-bronnen. Zoek per dossier alleen de primaire bron (A) van de stap die het bewijs draagt (vonnis, aanklacht, officiele toeschrijving of sancties), in de taal van het land; een extra B-bron schrijf je niet. Probeer per dossier minstens drie zoekopdrachten voordat je het opgeeft, en werk de hele lijst af. Gebruik voorstel_id versterken-$datum-nn. Datum van vandaag: $datum. Dossiers: $rel ($n dossiers). Inbox officiele bronnen: data/inbox_officieel.csv. Bronnenregister: data/bronnenregister.csv."
+            $allowed = $alles; $budget = "25"; $check = @("--modus", "verrijken")
+            $gezocht = @("--lijst", $lijst, "--door", "versterken", "--prefix", "versterken-$datum")
         }
         "archief" {
             if (-not $Jaar) { Log "FOUT: geef -Jaar op."; return 2 }
@@ -139,7 +149,8 @@ Set-Content -LiteralPath $lock -Value "$Modus $datum" -Encoding ascii
 $rc = 0
 try {
     if ($Modus -eq "week") {
-        $todo = if ($Stappen) { @($Stappen -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ }) } else { @("ophalen", "week", "volglijst", "verrijken") }
+        # @() om de hele if: anders wordt één stap een losse tekst en is $todo[0] de eerste letter
+        $todo = @(if ($Stappen) { $Stappen -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ } } else { "ophalen", "week", "volglijst", "verrijken" })
         if (Test-Path -LiteralPath $vervolg) { Remove-Item -LiteralPath $vervolg }
         for ($i = 0; $i -lt $todo.Count; $i++) {
             $stap = $todo[$i]

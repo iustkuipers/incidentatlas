@@ -14,7 +14,30 @@ afwijkingen hieronder. Doel: **geen zaak uit dit jaar missen** die binnen de afb
 
 Per zaak heeft een officiële bron (A) de voorkeur: zoek bij een aanklacht, vonnis of toeschrijving
 gericht bij de instantie zelf (`site:<domein>` uit het register, ook in de taal van het land). Lukt dat
-niet, dan een omroep of persbureau (B). De NOS is één van de B-bronnen, niet de enige.
+niet, dan een omroep of persbureau (B). De NOS is één van de B-bronnen, niet de enige: schreef de NOS
+over een zaak, voeg dat artikel dan ook toe (als bron of `extra_bron`), want de kaart is voor een
+Nederlands publiek.
+
+### Sites die de AI niet kan openen, en wat je in de plaats neemt
+Deze sites weigeren geautomatiseerde bezoekers. Probeer ze niet en omzeil de blokkade niet; zie je er
+een zaak in een zoekresultaat, zoek hetzelfde nieuws dan bij de vervanger.
+| geblokkeerd | neem in de plaats |
+| --- | --- |
+| Reuters | `swissinfo.ch` (neemt Reuters-berichten letterlijk over), de officiële bron |
+| AP | `pbs.org`, `abcnews.go.com`, `nbcnews.com`, `cbsnews.com` |
+| BBC, The Guardian, NYT, Washington Post, CNN, Bloomberg, CNBC, UPI | de omroep van het land waar het gebeurde (ERR, LRT, LSM, Yle, SVT, NRK, DR, VRT, ČT24, Polskie Radio), `rferl.org`, `euronews.com` |
+| DW, tagesschau.de | `zdfheute.de`, `spiegel.de`, `generalbundesanwalt.de` (aanklachten en vonnissen) |
+| lemonde.fr, AFP | `france24.com` (wisselend), `justice.gouv.fr`, `diplomatie.gouv.fr` |
+| consilium.europa.eu, eur-lex | `ec.europa.eu`, `eeas.europa.eu`, `sanctionsmap.eu` |
+| justice.gov, fbi.gov, cisa.gov | `state.gov`, `home.treasury.gov`, `media.defense.gov`, de omroep |
+| kapo.ee (pdf) | `news.err.ee` (bericht over het jaarboek), `prokuratuur.ee` |
+Een pagina die "te veel verzoeken" (429) geeft, kun je later in de run nog eens proberen; de controle
+probeert het ook zelf een paar keer.
+
+### Oorlog in Oekraïne
+`oekraine_oorlog` = `ja` alleen voor mijlpalen van de oorlog zelf (annexatie, invasie, uitspraken van
+VN, ICJ of ICC). Elke Russische actie in een ander land is `nee`, ook als de oorlog het motief is; zie
+`Tasks/WEEKBRIEF.md`.
 
 ## Werkwijze
 1. **Per categorie zoeken**, in deze volgorde: `sabotage`, `cyber`, `spionage`,
@@ -48,6 +71,10 @@ niet, dan een omroep of persbureau (B). De NOS is één van de B-bronnen, niet d
   pagina gecontroleerd; een pagina die je niet kon openen, gebruik je niet als bron.
 - Wat de controle doorstaat, gaat automatisch op de kaart met het teken "AI-gecontroleerd". Wees dus
   streng: liever een zaak als `signaal` met een goede bron dan een te hoge fase.
+- **`bewezen` alleen met een A-bron of twee B-bronnen**, anders valt het hele voorstel af. Heb je voor een
+  vonnis maar één B-bron, begin de zaak dan als `aangeklaagd` (de arrestatie of aanklacht) en zet het
+  vonnis als `ontwikkeling` met `bewezen` pas als je een tweede bron hebt (`extra_bron` bij dezelfde zaak,
+  of de rechtbank of het OM zelf). Dit is in eerdere jaren vaak misgegaan.
 
 ## Budget
 **Gebruik het.** Stop niet zolang het minimum niet gehaald is of er nog zaken op je lijst staan; een run
