@@ -62,7 +62,7 @@ Zelfde kolommen als het bestand al heeft. `voorstel_id` = `JJJJ-MM-DD-nn` (runda
 | `soort` | `nieuw` | `ontwikkeling` |
 | `incident_id` | leeg | id van de zaak |
 | `datum`, `datum_precisie` | datum van het voorval; `dag`/`maand`/`jaar` | datum van deze ontwikkeling |
-| `titel` | korte titel van de zaak (Nederlands) | titel van de zaak |
+| `titel` | korte titel van de zaak, in gewoon Nederlands: vertaal ook samengestelde woorden uit de bron ("drone met explosieven", niet "Sprengstofdrone"); alleen eigennamen blijven zoals ze zijn | titel van de zaak |
 | `samenvatting` | 1–2 zinnen in eigen woorden, met de bron van onzekere claims; dit staat zo op de kaart, dus **geen werkaantekeningen** (bronniveaus, "één B-bron", voorstel-ids, "vervangt …") – die horen in de afsluiting | **wat** er nu gebeurde, in één zin |
 | `land`, `regio`, `lat`, `lon` | land in het Nederlands; `regio` **alleen** uit: Europa, Afrika, Midden-Oosten, Azië, Noord-Amerika, Latijns-Amerika, Rusland & buurlanden, Oekraïne (nooit een stad); zie *Coördinaten* | **exact gelijk aan de zaak** (de plek van het voorval, niet van deze ontwikkeling) |
 | `categorie` | zie protocol 2c | zoals de zaak |
